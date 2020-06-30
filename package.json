@@ -4,7 +4,8 @@
   "description": "api kairos",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "DEBUG=app:* nodemon api/index",
+    "start": "NODE_ENV=production node api/index.js"
   },
   "repository": {
     "type": "git",
@@ -43,5 +44,13 @@
     "nodemon": "^2.0.4",
     "proxyquire": "^2.1.3",
     "supertest": "^4.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
   }
 }
