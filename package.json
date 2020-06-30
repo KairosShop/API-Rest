@@ -16,5 +16,20 @@
   "bugs": {
     "url": "https://gitlab.com/kairos6/api-kairos/issues"
   },
-  "homepage": "https://gitlab.com/kairos6/api-kairos#readme"
+  "homepage": "https://gitlab.com/kairos6/api-kairos#readme",
+  "dependencies": {
+    "@google-cloud/debug-agent": "^5.1.0",
+    "@hapi/boom": "^9.1.0",
+    "@hapi/joi": "^17.1.1",
+    "@sentry/node": "^5.18.1",
+    "axios": "^0.19.2",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.23.3",
+    "jsonwebtoken": "^8.5.1",
+    "swagger-ui-express": "^4.1.4"
+  }
 }
