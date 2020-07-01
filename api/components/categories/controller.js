@@ -8,8 +8,8 @@ module.exports = function (injectedStore) {
     store = require('../../../store/mocks');
   }
 
-  async function getCategories() {
-    const categories = await store.getAll(TABLE);
+  async function getCategories(category) {
+    const categories = await store.getAll(TABLE, category);
     return categories || [];
   }
 

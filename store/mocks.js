@@ -4,8 +4,13 @@ const db = {
     categories
 }
 
-async function getAll(table) {
-    return db[table];
+async function getAll(table, category='') {
+    let categories = db[table];
+    if (category  !== ''){
+        categories =  categories.filter(item => item.category.toUpperCase() === category.toUpperCase());
+    }
+
+    return categories;
 }
 async function getById(table, id) {
     const row = await getAll(table);
