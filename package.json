@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "DEBUG=app:* nodemon api/index",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "start": "NODE_ENV=production node api/index.js"
   },
   "repository": {
@@ -52,5 +55,14 @@
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "testResultsProcessor": "jest-sonar-reporter",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ]
   }
 }

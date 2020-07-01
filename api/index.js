@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const { api } = require('../config');
 
-const categoriesApi = require('./components/categories/network');
+const categories = require('./components/categories/network');
 
 
 const cors = require('cors');
@@ -15,8 +15,7 @@ app.use(bodyParser.json());
 app.use(helmet());
 
 // Routing
-
-categoriesApi(app);
+app.use('/api/categories', categories);
 
 
 app.listen(api.port, () => {
