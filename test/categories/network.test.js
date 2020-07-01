@@ -6,7 +6,7 @@ describe('routes - categories', function () {
     const request = testServer(route);
     describe('GET /categories', function () {
         test('should respond with status 200', function (done) {
-            request.get('/api/categories').expect(200, done);
+            request.get('/api/').expect(200, done);
         });
     });
 });
