@@ -10,4 +10,10 @@ describe('controller - categories', () => {
       expect(categories).toStrictEqual(categoriesMock);
     });
   });
+
+  test('should return object category', () => {
+    return Controller.getCategory(1).then((category) => {
+      expect(category).toStrictEqual(categoriesMock[0]);
+    });
+  });
 });
