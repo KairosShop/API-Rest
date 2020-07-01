@@ -9,7 +9,13 @@ module.exports =  function (injectedStore) {
         const categories = await store.getAll(TABLE);
         return categories || [];
     }
+
+    async function getCategory(id){
+        const category = await store.getById(TABLE, id);
+        return category || [];
+    }
     return {
-        getCategories
+        getCategories,
+        getCategory
     }
 }
