@@ -1,0 +1,44 @@
+config-compile:
+    image: node:10
+    stage: build
+    script:
+      - node api/utils/config-compile.js
+    only:
+      refs:
+        - master
+    artifacts:
+      paths:
+        - app.yaml
+      expire_in: 1 days
+      when: alway
+    needs:
+      - config-compile
+
+image: google/cloud-sdk:alpine
+
+deploy_production:
+  stage: deploy
+  environment: Production
+  only:
+    - master
+  script:
+    - echo $SERVICE_ACCOUNT > /tmp/$CI_PIPELINE_ID.json
+    - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+    - gcloud --quiet --project $PROJECT_ID app deploy app.yaml
+  needs:
+    - config-compile
+
+deploy_staging:
+  stage: deploy
+  environment: Staging
+  only:
+    - staging
+  script:
+    - echo $SERVICE_ACCOUNT > /tmp/$CI_PIPELINE_ID.json
+    - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+    - gcloud --quiet --project $PROJECT_ID app deploy staging-app.yaml
+  needs:
+    - config-compile
+
+after_script:
+- rm /tmp/$CI_PIPELINE_ID.json
