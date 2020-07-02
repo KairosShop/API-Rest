@@ -53,7 +53,7 @@ deploy_staging:
 
 
 sonarcloud-check:
-  stage: test
+  stage: post test
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
@@ -62,13 +62,13 @@ sonarcloud-check:
     paths:
       - .sonar/cache
   script:
-    - npm install
-    - npm run test:coverage
     - sonar-scanner
   only:
     - merge_requests
     - master
     - staging
+  needs:
+    - api-testing
 
 after_script:
 - rm /tmp/$CI_PIPELINE_ID.json
