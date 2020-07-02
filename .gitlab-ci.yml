@@ -1,3 +1,11 @@
+stages:
+  - build
+  - test
+  - post test
+  - staging
+  - production
+
+
 variables:
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"
   GIT_DEPTH: "0"
@@ -23,7 +31,7 @@ api-testing:
 
 deploy_production:
   image: google/cloud-sdk:alpine
-  stage: deploy
+  stage: production
   environment: Production
   only:
     - master
@@ -32,10 +40,9 @@ deploy_production:
     - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
     - gcloud --quiet --project $PROJECT_ID app deploy app.yaml dispatch.yaml
 
-
 deploy_staging:
   image: google/cloud-sdk:alpine
-  stage: deploy
+  stage: staging
   environment: Staging
   only:
     - staging
