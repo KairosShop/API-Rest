@@ -28,7 +28,7 @@ api-testing:
   stage: test
   script:
     - npm run test:coverage
-   artifacts:
+  artifacts:
     paths:
         - test-report.xml
 
