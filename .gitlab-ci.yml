@@ -28,6 +28,9 @@ api-testing:
   stage: test
   script:
     - npm run test:coverage
+   artifacts:
+    paths:
+        - test-report.xml
 
 deploy_production:
   image: google/cloud-sdk:alpine
