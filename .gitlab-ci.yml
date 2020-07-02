@@ -46,6 +46,7 @@ deploy_staging:
 
 
 sonarcloud-check:
+  stage: test
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
@@ -59,8 +60,6 @@ sonarcloud-check:
     - merge_requests
     - master
     - staging
-  needs:
-    - api-testing
 
 after_script:
 - rm /tmp/$CI_PIPELINE_ID.json
