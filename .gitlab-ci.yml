@@ -4,7 +4,7 @@ variables:
 
 cache:
   paths:
-    - api/node_modules/
+    - node_modules/
 
 api-dependencies:
   image: node:10
@@ -13,7 +13,7 @@ api-dependencies:
     - npm install
   artifacts:
     paths:
-        - api/node_modules/
+        - node_modules/
 
 api-testing:
   image: node:10
@@ -59,6 +59,8 @@ sonarcloud-check:
     - merge_requests
     - master
     - staging
+  needs:
+    - api-testing
 
 after_script:
 - rm /tmp/$CI_PIPELINE_ID.json
