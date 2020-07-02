@@ -61,6 +61,8 @@ sonarcloud-check:
     - merge_requests
     - master
     - staging
+  needs:
+    - api-dependencies
 
 after_script:
 - rm /tmp/$CI_PIPELINE_ID.json
