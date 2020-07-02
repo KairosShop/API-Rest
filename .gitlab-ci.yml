@@ -27,7 +27,7 @@ api-testing:
   image: node:10
   stage: test
   script:
-    - npm run test
+    - npm run test:coverage
 
 deploy_production:
   image: google/cloud-sdk:alpine
