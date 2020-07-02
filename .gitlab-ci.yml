@@ -63,10 +63,6 @@ sonarcloud-check:
       - .sonar/cache
   script:
     - sonar-scanner
-  only:
-    - merge_requests
-    - master
-    - staging
   needs:
     - api-testing
 
