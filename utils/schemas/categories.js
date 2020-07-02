@@ -1,8 +1,8 @@
 const joi = require('@hapi/joi');
 
-const categoryIdSchema = joi.number().min(1).max(11);
-const categorySchema = joi.string().alphanum().min(3).max(50).required();
-const urlImageSchema = joi.string().alphanum().max(255);
+const categoryIdSchema = joi.number().min(1).max(99999999999);
+const categorySchema = joi.string().min(3).max(50).required();
+const urlImageSchema = joi.string().max(255);
 const activeSchema = joi.number().min(0).max(1);
 
 const createCategorySchema = {

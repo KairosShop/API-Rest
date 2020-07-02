@@ -16,7 +16,7 @@ router.delete('/:idCategory',validationHandler({ idCategory: categoryIdSchema },
 async function get(req, res, next) {
   let { category = '' } = req.query;
   try {
-    const categories = await Controller.getCategories(category);
+    const categories = await Controller.getCategories({category});
     responses.success(req, res, categories, 200);
   } catch (error) {
     next(error);
