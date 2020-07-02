@@ -18,11 +18,15 @@
   "tags": [
     {
       "name": "categories",
-      "description": "Everything about you categories"
+      "description": "Everything about your categories"
     },
     {
       "name": "subcategories",
-      "description": "Everything about you subcategories"
+      "description": "Everything about your subcategories"
+    },
+    {
+      "name": "measures",
+      "description": "Everything about your measures"
     }
   ],
   "paths": {
@@ -455,6 +459,88 @@
           }
         }
       }
+    },
+    "/measures": {
+      "get": {
+        "tags": [
+          "measures"
+        ],
+        "summary": "get all measures",
+        "description": "get all measures, optional with params measure",
+        "operationId": "getMeasures",
+        "parameters": [
+          {
+            "name": "measure",
+            "in": "query",
+            "description": "Measure values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/measures/{idMeasure}": {
+      "get": {
+        "tags": [
+          "measures"
+        ],
+        "summary": "Find measures by id",
+        "description": "Returns a single measure",
+        "operationId": "getMeasure",
+        "parameters": [
+          {
+            "name": "idMeasure",
+            "in": "path",
+            "description": "ID of measure to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {}
+          }
+        }
+      }
     }
   },
   "components": {
@@ -502,6 +588,18 @@
             "type": "string"
           },
           "url_image": {
+            "type": "string"
+          },
+          "active": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "Measure": {
+        "type": "object",
+        "properties": {
+          "measure": {
             "type": "string"
           },
           "active": {
