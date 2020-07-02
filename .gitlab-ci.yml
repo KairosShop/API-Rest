@@ -19,7 +19,7 @@ api-testing:
   image: node:10
   stage: test
   script:
-    - npm run test:coverage
+    - npm run test
 
 deploy_production:
   image: google/cloud-sdk:alpine
@@ -55,6 +55,7 @@ sonarcloud-check:
     paths:
       - .sonar/cache
   script:
+    - npm run test:coverage
     - sonar-scanner
   only:
     - merge_requests
