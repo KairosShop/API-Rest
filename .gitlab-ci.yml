@@ -1,11 +1,41 @@
+stages:
+  - build
+  - test
+  - post test
+  - staging
+  - production
+
+
 variables:
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"
   GIT_DEPTH: "0"
 
-image: google/cloud-sdk:alpine
+cache:
+  paths:
+    - node_modules/
+
+api-dependencies:
+  image: node:10
+  stage: build
+  script:
+    - npm install
+  artifacts:
+    paths:
+        - node_modules/
+
+api-testing:
+  image: node:10
+  stage: test
+  script:
+    - npm run test:coverage
+  artifacts:
+    paths:
+        - test-report.xml
+        - coverage/
 
 deploy_production:
-  stage: deploy
+  image: google/cloud-sdk:alpine
+  stage: production
   environment: Production
   only:
     - master
@@ -14,9 +44,9 @@ deploy_production:
     - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
     - gcloud --quiet --project $PROJECT_ID app deploy app.yaml dispatch.yaml
 
-
 deploy_staging:
-  stage: deploy
+  image: google/cloud-sdk:alpine
+  stage: staging
   environment: Staging
   only:
     - staging
@@ -27,6 +57,7 @@ deploy_staging:
 
 
 sonarcloud-check:
+  stage: post test
   image:
     name: sonarsource/sonar-scanner-cli:latest
     entrypoint: [""]
@@ -36,10 +67,8 @@ sonarcloud-check:
       - .sonar/cache
   script:
     - sonar-scanner
-  only:
-    - merge_requests
-    - master
-    - staging
+  needs:
+    - api-testing
 
 after_script:
 - rm /tmp/$CI_PIPELINE_ID.json
