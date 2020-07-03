@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
+const cors = require('cors');
 const { api } = require('../config');
 
 const swaggerUi = require('swagger-ui-express');
@@ -9,9 +10,6 @@ const swaggerDoc = require('./swagger.json');
 const categories = require('./components/categories/network');
 const subcategories = require('./components/subcategories/network');
 const measures = require('./components/measures/network');
-
-
-const cors = require('cors');
 
 const app = express();
 

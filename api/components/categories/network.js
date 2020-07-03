@@ -6,7 +6,6 @@ const router = express.Router();
 const { categoryIdSchema, createCategorySchema, updateCategorySchema } = require('../../../utils/schemas/categories');
 const validationHandler = require('../../../utils/middleware/validationHandler');
 
-
 router.get('/', get);
 router.get('/:idCategory',validationHandler({ idCategory: categoryIdSchema }, 'params'), getById);
 router.post('/',validationHandler(createCategorySchema), createCategory);
@@ -21,7 +20,7 @@ async function get(req, res, next) {
   } catch (error) {
     next(error);
   }
-};
+}
 
 async function getById(req, res, next) {
   const { idCategory } = req.params;
@@ -31,7 +30,7 @@ async function getById(req, res, next) {
   } catch (error) {
     next(error);
   }
-};
+}
 
 async function createCategory(req, res, next) {
   const { body: category } = req;
@@ -41,7 +40,7 @@ async function createCategory(req, res, next) {
   } catch (error) {
     next(error);
   }
-};
+}
 
 async function updateCategory(req, res, next) {
   const { idCategory } = req.params;
@@ -52,7 +51,7 @@ async function updateCategory(req, res, next) {
   } catch (error) {
     next(error);
   }
-};
+}
 
 async function removeCategory(req, res, next) {
   const { idCategory } = req.params;
@@ -62,6 +61,6 @@ async function removeCategory(req, res, next) {
   } catch (error) {
     next(error);
   }
-};
+}
 
 module.exports = router;
