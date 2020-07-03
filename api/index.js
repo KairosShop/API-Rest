@@ -10,6 +10,7 @@ const swaggerDoc = require('./swagger.json');
 const categories = require('./components/categories/network');
 const subcategories = require('./components/subcategories/network');
 const measures = require('./components/measures/network');
+const users =  require('./components/users/network');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use('/api/categories', categories);
 app.use('/api/subcategories', subcategories);
 app.use('/api/measures', measures);
+app.use('/api/users', users);
 
 
 app.listen(api.port, () => {

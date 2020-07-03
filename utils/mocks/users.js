@@ -31,7 +31,7 @@ const users = [{
   "email": "seggers3@youtube.com",
   "firstName": "Shanan",
   "lastName": "Eggers",
-  "rol": "user",
+  "rol": "customer",
   "verified": 0,
   "active": 1
 }, {
@@ -40,7 +40,7 @@ const users = [{
   "email": "rossipenko4@mapquest.com",
   "firstName": "Rube",
   "lastName": "Ossipenko",
-  "rol": "user",
+  "rol": "customer",
   "verified": 1,
   "active": 1
 }, {
@@ -58,7 +58,7 @@ const users = [{
   "email": "jpoulter6@clickbank.net",
   "firstName": "Jonah",
   "lastName": "Poulter",
-  "rol": "user",
+  "rol": "customer",
   "verified": 0,
   "active": 1
 }, {
@@ -67,7 +67,7 @@ const users = [{
   "email": "acabena7@biblegateway.com",
   "firstName": "Alexei",
   "lastName": "Cabena",
-  "rol": "user",
+  "rol": "customer",
   "verified": 0,
   "active": 1
 }, {
