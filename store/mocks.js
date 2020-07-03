@@ -1,16 +1,21 @@
 const categories = require('../utils/mocks/categories');
+const subcategories = require('../utils/mocks/subcategories');
 
 const db = {
-    categories
+    categories,
+    subcategories
 }
 
-async function getAll(table, category='') {
-    let categories = db[table];
-    if (category  !== ''){
-        categories =  categories.filter(item => item.category.toUpperCase() === category.toUpperCase());
+async function getAll(table, filter={}) {
+    let data = db[table];
+    if ( Object.keys(filter).length ) {
+        Object.entries(filter).forEach(([key, value]) =>{
+            if(value){
+                data = data.filter(item => item[key] == value);
+            }
+        })
     }
-
-    return categories;
+    return data;
 }
 async function getById(table, id) {
     const row = await getAll(table);

@@ -1,16 +1,16 @@
 const testServer = require('../../utils/testServer');
 
-describe('routes - categories', function () {
-    const route = require('../../api/components/categories/network')
+describe('routes - subcategories', function () {
+    const route = require('../../api/components/subcategories/network')
 
     const request = testServer(route);
-    describe('GET /categories', function () {
+    describe('GET /subcategories', function () {
         test('should respond with status 200', function (done) {
-            request.get('/api/').expect(200, done);
+            request.get('/api/category/1').expect(200, done);
         });
 
         test('should respond with status 200', function (done) {
-            request.get('/api/?category=Lacteos').expect(200, done);
+            request.get('/api/category/1/?subcategory=Leche').expect(200, done);
         });
 
         test('should respond with status 200', function (done) {
@@ -18,22 +18,24 @@ describe('routes - categories', function () {
         });
 
         it("should respond with status 201", function(done) {
-            const createCategory = {
-                category:"Limpieza",
+            const createSubcategory = {
+                category_id:3,
+                subcategory:"Leche",
                 url_image:"https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg",
             }
-            request.post("/api/").send(createCategory).end((err, res) => {
+            request.post("/api/").send(createSubcategory).end((err, res) => {
               expect(res.body).toMatchObject({error:false, status:201, body:{}});
               done();
             });
         });
 
         it("should respond with status 200", function(done) {
-            const updateCategory = {
-                category:"Limpieza",
+            const updateSubcategory = {
+                category_id:3,
+                subcategory:"Huevo",
                 url_image:"https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg",
             }
-            request.put("/api/2").send(updateCategory).end((err, res) => {
+            request.put("/api/2").send(updateSubcategory).end((err, res) => {
               expect(res.body).toMatchObject({error:false, status:200, body:{}});
               done();
             });
