@@ -1,9 +1,17 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const helmet = require("helmet");
-const { api } = require("../config");
+const express = require('express');
+const bodyParser = require('body-parser');
+const helmet = require('helmet');
+const { api } = require('../config');
 
-const cors = require("cors");
+const swaggerUi = require('swagger-ui-express');
+const swaggerDoc = require('./swagger.json');
+
+const categories = require('./components/categories/network');
+const subcategories = require('./components/subcategories/network');
+const measures = require('./components/measures/network');
+
+
+const cors = require('cors');
 
 const app = express();
 
@@ -12,10 +20,12 @@ app.use(bodyParser.json());
 app.use(helmet());
 
 // Routing
-app.get("/", function (req, res) {
-  res.send("Hello World!");
-});
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+app.use('/api/categories', categories);
+app.use('/api/subcategories', subcategories);
+app.use('/api/measures', measures);
+
 
 app.listen(api.port, () => {
-  console.log(`API escuchando en el puerto ${api.port}`);
+  console.log(`API running in http://localhost:${api.port}`);
 });

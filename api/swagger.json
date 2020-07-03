@@ -1,0 +1,613 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Kairos Shop",
+    "description": "API Kairos shop.",
+    "termsOfService": "https://api.kairosshop.xyz/",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.kairosshop.xyz/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "categories",
+      "description": "Everything about your categories"
+    },
+    {
+      "name": "subcategories",
+      "description": "Everything about your subcategories"
+    },
+    {
+      "name": "measures",
+      "description": "Everything about your measures"
+    }
+  ],
+  "paths": {
+    "/categories": {
+      "post": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "Add a new category to the store",
+        "operationId": "createCategory",
+        "requestBody": {
+          "description": "Category object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {}
+          },
+          "405": {
+            "description": "Invalid input",
+            "content": {}
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "get all categories",
+        "description": "get all categories, optional with params category",
+        "operationId": "getCategories",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Category values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/categories/{idCategory}": {
+      "get": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "Find category by id",
+        "description": "Returns a single category",
+        "operationId": "getCategory",
+        "parameters": [
+          {
+            "name": "idCategory",
+            "in": "path",
+            "description": "ID of category to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "Update an existing category",
+        "operationId": "updateCategory",
+        "parameters": [
+          {
+            "name": "idCategory",
+            "in": "path",
+            "description": "Category id to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Category object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid id",
+            "content": {}
+          },
+          "404": {
+            "description": "not found",
+            "content": {}
+          },
+          "405": {
+            "description": "Validation exception",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "Delete category",
+        "operationId": "removeCategory",
+        "parameters": [
+          {
+            "name": "idCategory",
+            "in": "path",
+            "description": "Category id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/subcategories": {
+      "post": {
+        "tags": [
+          "subcategories"
+        ],
+        "summary": "Add a new subcategory to the store",
+        "operationId": "createSubcategory",
+        "requestBody": {
+          "description": "Subcategory object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Subcategory"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {}
+          },
+          "405": {
+            "description": "Invalid input",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/subcategories/{idSubcategory}": {
+      "put": {
+        "tags": [
+          "subcategories"
+        ],
+        "summary": "Update an existing subcategory",
+        "operationId": "updateSubcategory",
+        "parameters": [
+          {
+            "name": "idSubcategory",
+            "in": "path",
+            "description": "Subcategory id to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Subcategory object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Subcategory"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid id",
+            "content": {}
+          },
+          "404": {
+            "description": "not found",
+            "content": {}
+          },
+          "405": {
+            "description": "Validation exception",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "subcategories"
+        ],
+        "summary": "Delete subcategory",
+        "operationId": "removeSubcategory",
+        "parameters": [
+          {
+            "name": "idSubcategory",
+            "in": "path",
+            "description": "Subcategory id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {}
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "subcategories"
+        ],
+        "summary": "Find subcategory by id",
+        "description": "Returns a single subcategory",
+        "operationId": "getSubcategory",
+        "parameters": [
+          {
+            "name": "idSubcategory",
+            "in": "path",
+            "description": "ID of subcategory to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/subcategories/category/{idCategory}": {
+      "get": {
+        "tags": [
+          "subcategories"
+        ],
+        "summary": "get all subcategories by idCategory",
+        "description": "get all subcategories by idCategory, optional with params subcategory",
+        "operationId": "getSubcategories",
+        "parameters": [
+          {
+            "name": "idCategory",
+            "in": "path",
+            "description": "ID of category to return child subcategories",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "subcategory",
+            "in": "query",
+            "description": "Subcategory values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/measures": {
+      "get": {
+        "tags": [
+          "measures"
+        ],
+        "summary": "get all measures",
+        "description": "get all measures, optional with params measure",
+        "operationId": "getMeasures",
+        "parameters": [
+          {
+            "name": "measure",
+            "in": "query",
+            "description": "Measure values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/measures/{idMeasure}": {
+      "get": {
+        "tags": [
+          "measures"
+        ],
+        "summary": "Find measures by id",
+        "description": "Returns a single measure",
+        "operationId": "getMeasure",
+        "parameters": [
+          {
+            "name": "idMeasure",
+            "in": "path",
+            "description": "ID of measure to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "format": "int64"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "body": {
+            "type": "object",
+            "format": "int32"
+          }
+        }
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "cateory": {
+            "type": "string"
+          },
+          "url_image": {
+            "type": "string"
+          },
+          "active": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "Subcategory": {
+        "type": "object",
+        "properties": {
+          "cateory_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "subcategory": {
+            "type": "string"
+          },
+          "url_image": {
+            "type": "string"
+          },
+          "active": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "Measure": {
+        "type": "object",
+        "properties": {
+          "measure": {
+            "type": "string"
+          },
+          "active": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      }
+    }
+  }
+}

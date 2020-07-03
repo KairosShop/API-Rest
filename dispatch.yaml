@@ -1,0 +1,7 @@
+dispatch:
+
+    - url: "api.kairosshop.xyz/*"
+      service: default
+
+    - url: "staging.kairosshop.xyz/*"
+      service: staging
