@@ -6,7 +6,6 @@ const router = express.Router();
 const { measureIdSchema } = require('../../../utils/schemas/measure');
 const validationHandler = require('../../../utils/middleware/validationHandler');
 
-
 router.get('/', get);
 router.get('/:idMeasure',validationHandler({ idMeasure: measureIdSchema }, 'params'), getById);
 
@@ -18,7 +17,7 @@ async function get(req, res, next) {
   } catch (error) {
     next(error);
   }
-};
+}
 
 async function getById(req, res, next) {
   const { idMeasure } = req.params;
@@ -28,6 +27,6 @@ async function getById(req, res, next) {
   } catch (error) {
     next(error);
   }
-};
+}
 
 module.exports = router;

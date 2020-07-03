@@ -27,6 +27,10 @@
     {
       "name": "measures",
       "description": "Everything about your measures"
+    },
+    {
+      "name": "users",
+      "description": "Everything about your users"
     }
   ],
   "paths": {
@@ -59,13 +63,25 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
           "404": {
             "description": "not found",
-            "content": {}
-          },
-          "405": {
-            "description": "Invalid input",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
           }
         }
       },
@@ -105,9 +121,25 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
           "404": {
             "description": "not found",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
           }
         }
       }
@@ -143,9 +175,25 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
           "404": {
             "description": "not found",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
           }
         }
       },
@@ -168,7 +216,7 @@
           }
         ],
         "requestBody": {
-          "description": "Category object that needs to be added to the store",
+          "description": "Category object that needs to be updated to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -190,16 +238,24 @@
             }
           },
           "400": {
-            "description": "Invalid id",
-            "content": {}
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
           },
           "404": {
             "description": "not found",
-            "content": {}
-          },
-          "405": {
-            "description": "Validation exception",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
           }
         }
       },
@@ -232,9 +288,25 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
           "404": {
             "description": "not found",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
           }
         }
       }
@@ -268,13 +340,25 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
           "404": {
             "description": "not found",
-            "content": {}
-          },
-          "405": {
-            "description": "Invalid input",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
           }
         }
       }
@@ -299,7 +383,7 @@
           }
         ],
         "requestBody": {
-          "description": "Subcategory object that needs to be added to the store",
+          "description": "Subcategory object that needs to be updated to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -321,16 +405,24 @@
             }
           },
           "400": {
-            "description": "Invalid id",
-            "content": {}
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
           },
           "404": {
             "description": "not found",
-            "content": {}
-          },
-          "405": {
-            "description": "Validation exception",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
           }
         }
       },
@@ -363,9 +455,25 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
           "404": {
             "description": "not found",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
           }
         }
       },
@@ -399,9 +507,25 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
           "404": {
             "description": "not found",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
           }
         }
       }
@@ -453,9 +577,25 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
           "404": {
             "description": "not found",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
           }
         }
       }
@@ -497,9 +637,25 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
           "404": {
             "description": "not found",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
           }
         }
       }
@@ -535,9 +691,367 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
           "404": {
             "description": "not found",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Add a new user to the store",
+        "operationId": "createUser",
+        "requestBody": {
+          "description": "User object that needs to be added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "get all users",
+        "description": "get all users, optional with params",
+        "operationId": "getUsers",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "email values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "firtName",
+            "in": "query",
+            "description": "firtName values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "lastName",
+            "in": "query",
+            "description": "lastName values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "rol",
+            "in": "query",
+            "description": "rol [admin, customer, super market] values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "verified",
+            "in": "query",
+            "description": "verified [1,0] values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "items": {
+                "type": "integer"
+              }
+            }
+          },
+          {
+            "name": "active",
+            "in": "query",
+            "description": "active [1,0] values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "items": {
+                "type": "integer"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{idUser}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Find user by id",
+        "description": "Returns a single user",
+        "operationId": "getUser",
+        "parameters": [
+          {
+            "name": "idUser",
+            "in": "path",
+            "description": "ID of user to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update an existing user",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "idUser",
+            "in": "path",
+            "description": "User id to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "User object that needs to be update to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Delete user",
+        "operationId": "removeUser",
+        "parameters": [
+          {
+            "name": "idUser",
+            "in": "path",
+            "description": "User id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
           }
         }
       }
@@ -559,6 +1073,38 @@
           "body": {
             "type": "object",
             "format": "int32"
+          }
+        }
+      },
+      "ApiError400": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "stack": {
+            "type": "string"
+          }
+        }
+      },
+      "ApiError404": {
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
           }
         }
       },
@@ -600,6 +1146,60 @@
         "type": "object",
         "properties": {
           "measure": {
+            "type": "string"
+          },
+          "active": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "AddUser": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "rol": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "customer",
+              "super market"
+            ]
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateUser": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "rol": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "customer",
+              "super market"
+            ]
+          },
+          "url_image": {
             "type": "string"
           },
           "active": {
