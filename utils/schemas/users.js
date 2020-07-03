@@ -1,7 +1,7 @@
 const joi = require('@hapi/joi');
 
 const userIdSchema = joi.number().min(1).max(99999999999);
-const urlImageSchema = joi.string().max(255);
+const urlImageSchema = joi.string().uri().trim();
 const emailSchema = joi.string().min(5).max(50).email();
 const firstNameSchema = joi.string().min(2).max(50);
 const lastNameSchema = joi.string().min(2).max(50);

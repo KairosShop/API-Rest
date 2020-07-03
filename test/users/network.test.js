@@ -47,7 +47,7 @@ describe('routes - users', function () {
             }
             request.post("/api/").send(createUser).end((err, res) => {
               expect(res.body).toMatchObject({error: false, status: 201, body: {} });
-              done
+              done();
             });
         });
         it("should respond with status 500 - error valid schema", function(done) {
