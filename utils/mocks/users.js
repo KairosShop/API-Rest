@@ -1,0 +1,92 @@
+const users = [{
+  "id": 1,
+  "url_image": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
+  "email": "cbirtwistle0@blog.com",
+  "firstName": "Clayborne",
+  "lastName": "Birtwistle",
+  "rol": "admin",
+  "verified": 0,
+  "active": 1
+}, {
+  "id": 2,
+  "url_image": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
+  "email": "mburnes1@blogs.com",
+  "firstName": "Mickey",
+  "lastName": "Burnes",
+  "rol": "admin",
+  "verified": 1,
+  "active": 1
+}, {
+  "id": 3,
+  "url_image": "",
+  "email": "bfroschauer2@freewebs.com",
+  "firstName": "Berrie",
+  "lastName": "Froschauer",
+  "rol": "super market",
+  "verified": 1,
+  "active": 1
+}, {
+  "id": 4,
+  "url_image": "",
+  "email": "seggers3@youtube.com",
+  "firstName": "Shanan",
+  "lastName": "Eggers",
+  "rol": "user",
+  "verified": 0,
+  "active": 1
+}, {
+  "id": 5,
+  "url_image": "",
+  "email": "rossipenko4@mapquest.com",
+  "firstName": "Rube",
+  "lastName": "Ossipenko",
+  "rol": "user",
+  "verified": 1,
+  "active": 1
+}, {
+  "id": 6,
+  "url_image": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
+  "email": "rwitcomb5@about.com",
+  "firstName": "Rozalie",
+  "lastName": "Witcomb",
+  "rol": "super market",
+  "verified": 0,
+  "active": 1
+}, {
+  "id": 7,
+  "url_image": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
+  "email": "jpoulter6@clickbank.net",
+  "firstName": "Jonah",
+  "lastName": "Poulter",
+  "rol": "user",
+  "verified": 0,
+  "active": 1
+}, {
+  "id": 8,
+  "url_image": "",
+  "email": "acabena7@biblegateway.com",
+  "firstName": "Alexei",
+  "lastName": "Cabena",
+  "rol": "user",
+  "verified": 0,
+  "active": 1
+}, {
+  "id": 9,
+  "url_image": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
+  "email": "fgascard8@domainmarket.com",
+  "firstName": "Fanchon",
+  "lastName": "Gascard",
+  "rol": "super market",
+  "verified": 0,
+  "active": 1
+}, {
+  "id": 10,
+  "url_image": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
+  "email": "chumble9@reddit.com",
+  "firstName": "Connie",
+  "lastName": "Humble",
+  "rol": "super market",
+  "verified": 0,
+  "active": 1
+}]
+module.exports = users;
