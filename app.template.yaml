@@ -1,0 +1,10 @@
+runtime: nodejs10
+env_variables:
+    PORT: 8080
+    CORS: "*"
+
+env_variables:
+    PORT: 8080
+    CORS: "*"
+    SENTRY_DNS: "<% SENTRY_DNS %>"
+    SENTRY_ID: <% SENTRY_ID %>

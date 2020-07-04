@@ -10,7 +10,7 @@ describe('routes - categories', function () {
         });
 
         test('should respond with status 200', function (done) {
-            request.get('/api/?category=Lacteos').expect(200, done);
+            request.get('/api/?category=Lácteos').expect(200, done);
         });
 
         test('should respond with status 200', function (done) {
