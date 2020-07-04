@@ -21,13 +21,13 @@ const createProductSchema = {
   active: activeSchema,
 };
 const updateProductSchema = {
-  title: titleSchema.required(),
-  description: descriptionSchema.required(),
+  title: titleSchema,
+  description: descriptionSchema,
   url_image: urlImageSchema,
-  quantity: quantitySchema.required(),
-  measure_id: measureIdSchema.required(),
-  category_id: categoryIdSchema.required(),
-  subcategory_id: subcategoryIdSchema.required(),
+  quantity: quantitySchema,
+  measure_id: measureIdSchema,
+  category_id: categoryIdSchema,
+  subcategory_id: subcategoryIdSchema,
   active: activeSchema,
 };
 const filterSchema = {
