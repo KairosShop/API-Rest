@@ -7,7 +7,7 @@ fs.writeFileSync('app.yaml', content);
 
 const templateStaging = fs.readFileSync('staging-app.template.yaml').toString();
 const contentStaging = renderTemplate(templateStaging, process.env);
-fs.writeFileSync('app.yaml', contentStaging);
+fs.writeFileSync('staging-app.yaml', contentStaging);
 
 function renderTemplate(template, variables) {
     Object

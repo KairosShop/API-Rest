@@ -35,6 +35,7 @@ config-compile:
   artifacts:
     paths:
       - app.yaml
+      - staging-app.yaml
     expire_in: 1 days
     when: always
 
