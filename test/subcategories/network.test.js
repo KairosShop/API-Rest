@@ -19,7 +19,7 @@ describe('routes - subcategories', function () {
 
         it("should respond with status 201", function(done) {
             const createSubcategory = {
-                category_id:3,
+                id_category:3,
                 subcategory:"Leche",
                 url_image:"https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg",
             }
@@ -31,7 +31,7 @@ describe('routes - subcategories', function () {
 
         it("should respond with status 200", function(done) {
             const updateSubcategory = {
-                category_id:3,
+                id_category:3,
                 subcategory:"Huevo",
                 url_image:"https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg",
             }

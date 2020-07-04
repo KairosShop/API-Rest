@@ -34,10 +34,10 @@ async function get(req, res, next) {
   let {
     title = '',
     description = '',
-    category_id = '',
-    subcategory_id = '',
+    id_category = '',
+    id_subcategory = '',
     quantity = '',
-    measure_id = '',
+    id_measure = '',
     active = '',
     order = 'asc',
     page = '1',
@@ -47,10 +47,10 @@ async function get(req, res, next) {
     const products = await Controller.getProducts({
       title,
       description,
-      category_id,
-      subcategory_id,
+      id_category,
+      id_subcategory,
       quantity,
-      measure_id,
+      id_measure,
       active,
       order,
       page,
@@ -65,8 +65,8 @@ async function get(req, res, next) {
 async function getById(req, res, next) {
   const { idProduct } = req.params;
   try {
-    const user = await Controller.getProduct(idProduct);
-    responses.success(req, res, user, 200);
+    const product = await Controller.getProduct(idProduct);
+    responses.success(req, res, product, 200);
   } catch (error) {
     next(error);
   }

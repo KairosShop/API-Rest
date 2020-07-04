@@ -124,9 +124,9 @@
             }
           },
           {
-            "name": "category_id",
+            "name": "id_category",
             "in": "query",
-            "description": "The category_id values that optional to be considered for filter",
+            "description": "The id_category values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -135,9 +135,9 @@
             }
           },
           {
-            "name": "subcategory_id",
+            "name": "id_subcategory",
             "in": "query",
-            "description": "The subcategory_id values that optional to be considered for filter",
+            "description": "The id_subcategory values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -157,9 +157,9 @@
             }
           },
           {
-            "name": "measure_id",
+            "name": "id_measure",
             "in": "query",
-            "description": "The measure_id values that optional to be considered for filter",
+            "description": "The id_measure values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -181,13 +181,17 @@
           {
             "name": "order",
             "in": "query",
-            "description": "The order values [asc, desc] that optional to be considered for filter",
+            "description": "Sort order values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
               "type": "string",
               "items": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
               }
             }
           },
@@ -1199,39 +1203,52 @@
           {
             "name": "rol",
             "in": "query",
-            "description": "rol [admin, customer, super market] values that optional to be considered for filter",
+            "description": "rol  values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
               "type": "string",
               "items": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "admin",
+                  "customer",
+                  "super market"
+                ]
               }
             }
           },
           {
             "name": "verified",
             "in": "query",
-            "description": "verified [1,0] values that optional to be considered for filter",
+            "description": "verified  values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
               "type": "integer",
               "items": {
-                "type": "integer"
+                "type": "integer",
+                "enum": [
+                  1,
+                  0
+                ]
               }
             }
           },
           {
             "name": "active",
             "in": "query",
-            "description": "active [1,0] values that optional to be considered for filter",
+            "description": "active values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
               "type": "integer",
               "items": {
-                "type": "integer"
+                "type": "integer",
+                "enum": [
+                  1,
+                  0
+                ]
               }
             }
           }
@@ -1439,6 +1456,364 @@
           }
         }
       }
+    },
+    "/supermarket": {
+      "post": {
+        "tags": [
+          "supermarket"
+        ],
+        "summary": "Add a new supermarket to the store",
+        "operationId": "createSupermarket",
+        "requestBody": {
+          "description": "Supermarket object that needs to be add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Supermarket"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "supermarket"
+        ],
+        "summary": "get all supermarkets",
+        "description": "get all supermarkets, optional with params",
+        "operationId": "getSupermarkets",
+        "parameters": [
+          {
+            "name": "supermarket",
+            "in": "query",
+            "description": "The supermarket values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string",
+                "minLength": 3
+              }
+            }
+          },
+          {
+            "name": "address",
+            "in": "query",
+            "description": "The address values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string",
+                "minLength": 3
+              }
+            }
+          },
+          {
+            "name": "id_user",
+            "in": "query",
+            "description": "The id_user values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "active",
+            "in": "query",
+            "description": "The active values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "items": {
+                "enum": [
+                  1,
+                  0
+                ]
+              }
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The limit values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/supermarket/{idSupermarket}": {
+      "get": {
+        "tags": [
+          "supermarket"
+        ],
+        "summary": "Find supermarket by id",
+        "description": "Returns a single supermarket",
+        "operationId": "getSupermarket",
+        "parameters": [
+          {
+            "name": "idSupermarket",
+            "in": "path",
+            "description": "ID of supermarket to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "supermarket"
+        ],
+        "summary": "Update an existing supermarket",
+        "operationId": "updateSupermarket",
+        "parameters": [
+          {
+            "name": "idSupermarket",
+            "in": "path",
+            "description": "Supermarket id to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Supermarket object that needs to be update to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Supermarket"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "supermarket"
+        ],
+        "summary": "Delete supermarket",
+        "operationId": "removeSupermarket",
+        "parameters": [
+          {
+            "name": "idSupermarket",
+            "in": "path",
+            "description": "Supermarket id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1501,11 +1876,11 @@
           "description": {
             "type": "string"
           },
-          "category_id": {
+          "id_category": {
             "type": "integer",
             "format": "int64"
           },
-          "subcategory_id": {
+          "id_subcategory": {
             "type": "integer",
             "format": "int64"
           },
@@ -1513,7 +1888,7 @@
             "type": "number",
             "multipleOf": 0.1
           },
-          "measure_id": {
+          "id_measure": {
             "type": "integer",
             "format": "int64"
           },
@@ -1524,13 +1899,22 @@
             "type": "integer",
             "format": "int64"
           }
-        }
+        },
+        "required": [
+          "title",
+          "description",
+          "id_category",
+          "id_subcategory",
+          "quantity",
+          "url_image"
+        ]
       },
       "Category": {
         "type": "object",
         "properties": {
           "cateory": {
-            "type": "string"
+            "type": "string",
+            "uniqueItems": true
           },
           "url_image": {
             "type": "string"
@@ -1539,12 +1923,16 @@
             "type": "integer",
             "format": "int64"
           }
-        }
+        },
+        "required": [
+          "cateory",
+          "url_image"
+        ]
       },
       "Subcategory": {
         "type": "object",
         "properties": {
-          "cateory_id": {
+          "id_category": {
             "type": "integer",
             "format": "int64"
           },
@@ -1558,25 +1946,36 @@
             "type": "integer",
             "format": "int64"
           }
-        }
+        },
+        "required": [
+          "id_category",
+          "subcategory",
+          "url_image"
+        ]
       },
       "Measure": {
         "type": "object",
         "properties": {
           "measure": {
-            "type": "string"
+            "type": "string",
+            "uniqueItems": true
           },
           "active": {
             "type": "integer",
             "format": "int64"
           }
-        }
+        },
+        "required": [
+          "measure"
+        ]
       },
       "AddUser": {
         "type": "object",
         "properties": {
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email",
+            "uniqueItems": true
           },
           "firstName": {
             "type": "string"
@@ -1595,13 +1994,22 @@
           "password": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "rol",
+          "password"
+        ]
       },
       "UpdateUser": {
         "type": "object",
         "properties": {
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email",
+            "uniqueItems": true
           },
           "firstName": {
             "type": "string"
@@ -1625,6 +2033,41 @@
             "format": "int64"
           }
         }
+      },
+      "Supermarket": {
+        "type": "object",
+        "properties": {
+          "supermarket": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "string"
+          },
+          "longitude": {
+            "type": "string"
+          },
+          "url_logo": {
+            "type": "string"
+          },
+          "active": {
+            "type": "string"
+          },
+          "id_user": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "required": [
+          "supermarket",
+          "address",
+          "latitude",
+          "longitude",
+          "url_logo",
+          "id_user"
+        ]
       }
     }
   }

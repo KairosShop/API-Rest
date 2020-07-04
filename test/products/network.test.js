@@ -17,20 +17,20 @@ describe('routes - products', function () {
             request.get('/api/?description=Squirt el auténtico quitased sabor toronja, con más de 50 años en el mercado mexicano.').expect(200, done);
         });
 
-        test('should respond with status 200 - search by category_id', function (done) {
-            request.get('/api/?category_id=6').expect(200, done);
+        test('should respond with status 200 - search by id_category', function (done) {
+            request.get('/api/?id_category=6').expect(200, done);
         });
 
-        test('should respond with status 200 - search by subcategory_id', function (done) {
-            request.get('/api/?subcategory_id=25').expect(200, done);
+        test('should respond with status 200 - search by id_subcategory', function (done) {
+            request.get('/api/?id_subcategory=25').expect(200, done);
         });
 
         test('should respond with status 200 - search by quantity', function (done) {
             request.get('/api/?quantity=2').expect(200, done);
         });
 
-        test('should respond with status 200 - search by measure_id', function (done) {
-            request.get('/api/?measure_id=3').expect(200, done);
+        test('should respond with status 200 - search by id_measure', function (done) {
+            request.get('/api/?id_measure=3').expect(200, done);
         });
 
         test('should respond with status 200 - search by active', function (done) {
@@ -55,9 +55,9 @@ describe('routes - products', function () {
                 "description":"6 cervezas modelo especial de lata",
                 "url_image":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
                 "quantity": 355,
-                "measure_id": 4,
-                "category_id": 7,
-                "subcategory_id": 31,
+                "id_measure": 4,
+                "id_category": 7,
+                "id_subcategory": 31,
                 "active":"1"
             }
             request.post("/api/").send(createProduct).end((err, res) => {
@@ -80,9 +80,9 @@ describe('routes - products', function () {
                 "description":"6 cervezas modelo negra especial de lata",
                 "url_image":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
                 "quantity": 600,
-                "measure_id": 4,
-                "category_id": 7,
-                "subcategory_id": 31,
+                "id_measure": 4,
+                "id_category": 7,
+                "id_subcategory": 31,
                 "active":"0"
             }
             request.put("/api/2").send(updateProduct).end((err, res) => {
