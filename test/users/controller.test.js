@@ -51,8 +51,8 @@ describe('controller - users', () => {
     });
   });
   test('should return object IdUser', () => {
-    return Controller.removeUser(3).then((category) => {
-      expect(typeof category.id).toBe('number');
+    return Controller.removeUser(3).then((user) => {
+      expect(typeof user.id).toBe('number');
     });
   });
 });
