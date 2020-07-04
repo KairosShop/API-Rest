@@ -3,7 +3,7 @@ const Sentry = require("@sentry/node");
 const { sentry, dev } = require('../../config/index');
 
 if (sentry.sentryDns && sentry.sentryId) {
-  Sentry.init({ dsn: `https://${sentry.sentryDns}@o415919.ingest.sentry.io/${sentry.sentryId}` });
+  Sentry.init({ dsn: `https://${sentry.sentryDns}@o416099.ingest.sentry.io/${sentry.sentryId}` });
 }
 function withErrorStack(error, stack) {
   if (dev) {
