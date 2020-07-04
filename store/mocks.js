@@ -3,13 +3,15 @@ const subcategories = require('../utils/mocks/subcategories');
 const measures = require('../utils/mocks/measures');
 const users = require('../utils/mocks/users');
 const products = require('../utils/mocks/products');
+const supermarket =  require('../utils/mocks/supermarket');
 
 const db = {
     categories,
     subcategories,
     measures,
     users,
-    products
+    products,
+    supermarket
 }
 
 async function getAll(table, filter={}) {
