@@ -9,13 +9,13 @@ const activeSchema = joi.number().min(0).max(1);
 
 const createSubcategorySchema = {
   subcategory: subcategorySchema,
-  category_id: categoryIdSchema.required(),
+  id_category: categoryIdSchema.required(),
   url_image: urlImageSchema.required(),
   active: activeSchema,
 };
 const updateSubcategorySchema = {
   subcategory: subcategorySchema,
-  category_id:categoryIdSchema.required(),
+  id_category:categoryIdSchema.required(),
   url_image: urlImageSchema,
   active: activeSchema,
 };

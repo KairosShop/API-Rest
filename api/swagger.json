@@ -124,9 +124,9 @@
             }
           },
           {
-            "name": "category_id",
+            "name": "id_category",
             "in": "query",
-            "description": "The category_id values that optional to be considered for filter",
+            "description": "The id_category values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -135,9 +135,9 @@
             }
           },
           {
-            "name": "subcategory_id",
+            "name": "id_subcategory",
             "in": "query",
-            "description": "The subcategory_id values that optional to be considered for filter",
+            "description": "The id_subcategory values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -157,9 +157,9 @@
             }
           },
           {
-            "name": "measure_id",
+            "name": "id_measure",
             "in": "query",
-            "description": "The measure_id values that optional to be considered for filter",
+            "description": "The id_measure values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -1501,11 +1501,11 @@
           "description": {
             "type": "string"
           },
-          "category_id": {
+          "id_category": {
             "type": "integer",
             "format": "int64"
           },
-          "subcategory_id": {
+          "id_subcategory": {
             "type": "integer",
             "format": "int64"
           },
@@ -1513,7 +1513,7 @@
             "type": "number",
             "multipleOf": 0.1
           },
-          "measure_id": {
+          "id_measure": {
             "type": "integer",
             "format": "int64"
           },
@@ -1544,7 +1544,7 @@
       "Subcategory": {
         "type": "object",
         "properties": {
-          "cateory_id": {
+          "id_category": {
             "type": "integer",
             "format": "int64"
           },
