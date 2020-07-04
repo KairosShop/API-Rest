@@ -65,8 +65,8 @@ async function get(req, res, next) {
 async function getById(req, res, next) {
   const { idProduct } = req.params;
   try {
-    const user = await Controller.getProduct(idProduct);
-    responses.success(req, res, user, 200);
+    const product = await Controller.getProduct(idProduct);
+    responses.success(req, res, product, 200);
   } catch (error) {
     next(error);
   }
