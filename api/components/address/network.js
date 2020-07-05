@@ -56,7 +56,7 @@ async function getById(req, res, next) {
   const id_user = 3;
   try {
     const address = await Controller.getAddress({ id, id_user });
-    responses.success(req, res, address, 200);
+    responses.success(req, res, address[0], 200);
   } catch (error) {
     next(error);
   }
