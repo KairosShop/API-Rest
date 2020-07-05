@@ -10,17 +10,15 @@ const createAddressSchema = {
   address: addressSchema.required(),
   latitude: latitudeSchema.required(),
   longitude: longitudeSchema.required(),
-  id_user: idUserSchema.required(),
+  id_user: idUserSchema,
 };
 const updateAddressSchema = {
   address: addressSchema,
   latitude: latitudeSchema,
   longitude: longitudeSchema,
-  id_user: idUserSchema,
 };
 const filterSchema = {
   address: joi.string().min(2),
-  id_user: idUserSchema,
   order: joi.string().min(3).max(4),
   page: joi.number().integer().min(1),
   limit: joi.number().integer().min(1),
