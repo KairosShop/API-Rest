@@ -1,6 +1,6 @@
 const joi = require('@hapi/joi');
 
-const productIdSchema = joi.number().integer().min(1).max(99999999999);
+const productIdSchema = joi.number().integer().min(1).max(99999999999).required();
 const titleSchema = joi.string().min(2).max(50);
 const descriptionSchema = joi.string().min(10);
 const urlImageSchema = joi.string().uri().trim();

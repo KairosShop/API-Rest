@@ -19,12 +19,12 @@ module.exports = function (injectedStore) {
   }
 
   async function createCategory(categoryData) {
-    categoryData.createAt= date;
+    categoryData.create_at= date;
     const created = await store.create(TABLE, categoryData);
     return created || [];
   }
   async function updateCategory(categoryData, id) {
-    categoryData.updateAt= date;
+    categoryData.update_at= date;
     const updated = await store.update(TABLE, categoryData, id);
     return updated || [];
   }
