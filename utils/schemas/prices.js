@@ -1,8 +1,8 @@
 const joi = require('@hapi/joi');
 
-const priceIdSchema = joi.number().integer().min(1).max(99999999999);
-const productIdSchema = priceIdSchema;
-const supermarketIdSchema = priceIdSchema;
+let priceIdSchema = joi.number().integer().min(1).max(99999999999);
+let productIdSchema = priceIdSchema;
+let supermarketIdSchema = priceIdSchema;
 const priceSchema = joi.number().min(1).max(99999999999);
 const activeSchema = joi.number().integer().min(0).max(1);
 const pageSchema =  joi.number().integer().min(1);
@@ -32,6 +32,6 @@ module.exports = {
   createPriceSchema,
   updatePriceSchema,
   filterSchema,
-  productIdSchema: productIdSchema.require(),
-  supermarketIdSchema: supermarketIdSchema.require()
+  productIdSchema: productIdSchema.required(),
+  supermarketIdSchema: supermarketIdSchema.required()
 };
