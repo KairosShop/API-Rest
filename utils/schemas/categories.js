@@ -1,10 +1,15 @@
 const joi = require('@hapi/joi');
+const {
+  orderSchema,
+  pageSchema,
+  limitSchema,
+  urlImageSchema,
+} = require('./general');
 
 const categoryIdSchema = joi.number().min(1).max(99999999999);
 const categorySchema = joi.string().min(3).max(30);
-const urlImageSchema = joi.string().uri().trim();
 const activeSchema = joi.boolean();
-const pageSchema =  joi.number().integer().min(1);
+const allSchema = joi.boolean();
 
 const createCategorySchema = {
   category: categorySchema,
@@ -19,9 +24,10 @@ const updateCategorySchema = {
 const filterSchema = {
   category: categorySchema,
   active: activeSchema,
-  order: joi.string().min(3).max(4),
-  page: pageSchema,
+  order: orderSchema,
+  page: limitSchema,
   limit: pageSchema,
+  all: allSchema,
 };
 module.exports = {
   categoryIdSchema,

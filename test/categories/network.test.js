@@ -64,41 +64,22 @@ describe('routes - categories', function () {
       request.get('/api/subcategories/?limit=1&page=2').expect(200, done);
     });
   });
-  describe('POST /categories', function () {
-    it('should respond with status 201', function (done) {
-      const createCategory = {
-        category: 'Limpieza',
-        url_image:
-          'https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg',
-      };
-      request
-        .post('/api/')
-        .send(createCategory)
-        .end((err, res) => {
-          expect(res.body).toMatchObject({
-            error: false,
-            status: 201,
-            body: {},
-          });
-          done();
-        });
-    });
-  });
+
   describe('PUT /categories', function () {
     it('should respond with status 200', function (done) {
       const updateCategory = {
         category: 'Limpieza',
-        url_image:
+        urlImage:
           'https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg',
       };
       request
-        .put('/api/2')
+        .put('/api/1')
         .send(updateCategory)
         .end((err, res) => {
           expect(res.body).toMatchObject({
             error: false,
             status: 200,
-            body: {},
+            body: [1],
           });
           done();
         });

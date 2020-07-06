@@ -1,16 +1,16 @@
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const models = require('./models');
+let and = Op.and;
 
 async function getAll(TABLE, filter) {
   if (TABLE == 'categories') {
-    let and = Op.and;
     let newFilter = {
       [and]: [{ deleted: false }],
     };
-    let { category, all } = filter;
+    let { category, all, order, page, limit } = filter;
 
-    if (all == 'false') {
+    if (!all) {
       newFilter[and] = [{ active: true }, ...newFilter[and]];
     }
 
@@ -18,8 +18,14 @@ async function getAll(TABLE, filter) {
       newFilter[and] = [{ category }, ...newFilter[and]];
     }
 
+    const orderFilter = [['category', order]]
+    const offset = (page-1)*limit;
+
     return models.Category.findAll({
       where: newFilter,
+      order: orderFilter,
+      offset,
+      limit
     });
   }
 }
@@ -40,7 +46,9 @@ async function create(TABLE, data) {
 
 async function update(TABLE, data, id) {
   if (TABLE == 'categories') {
-    return models.Category.update(data, { where: { id } });
+    return models.Category.update(data, {
+      where: { [Op.and]: [{ id }, { deleted: false }] },
+    });
   }
 }
 

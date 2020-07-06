@@ -36,9 +36,21 @@ router.delete(
 );
 
 async function get(req, res, next) {
-  let { category = '', order = 'asc', page = '1', limit = '15' } = req.query;
+  let {
+    category = '',
+    order = 'asc',
+    page = '1',
+    limit = '15',
+    all = false,
+  } = req.query;
   try {
-    const categories = await Controller.getCategories({ category, order, page, limit });
+    const categories = await Controller.getCategories({
+      category,
+      order,
+      page,
+      limit,
+      all
+    });
     responses.success(req, res, categories, 200);
   } catch (error) {
     next(error);
@@ -48,7 +60,12 @@ async function get(req, res, next) {
 async function getWithSubcategories(req, res, next) {
   let { category = '', order = 'asc', page = '1', limit = '15' } = req.query;
   try {
-    const categories = await Controller.getWithSubcategories({ category, order, page, limit });
+    const categories = await Controller.getWithSubcategories({
+      category,
+      order,
+      page,
+      limit,
+    });
     responses.success(req, res, categories, 200);
   } catch (error) {
     next(error);
@@ -76,10 +93,13 @@ async function createCategory(req, res, next) {
 
 async function updateCategory(req, res, next) {
   const { idCategory } = req.params;
-  const { body: category } = req;
+  const { body: categoryUpdate } = req;
   try {
-    const categories = await Controller.updateCategory(category, idCategory);
-    responses.success(req, res, categories, 200);
+    const category = await Controller.updateCategory(
+      categoryUpdate,
+      idCategory
+    );
+    responses.success(req, res, category, 200);
   } catch (error) {
     next(error);
   }
