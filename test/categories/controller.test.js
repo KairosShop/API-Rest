@@ -23,7 +23,7 @@ describe('controller - categories', () => {
         id: expect.any(Number),
         category: expect.any(String),
         url_image: expect.any(String),
-        subcategories: expect.any(Object)
+        subcategories: expect.any(Array)
       });
     });
   });
