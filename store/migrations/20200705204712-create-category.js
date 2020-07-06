@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false,
         defaultValue: true
       },
-      category: {
+      title: {
         type: Sequelize.STRING(30),
         allowNull: false,
         unique: true,

@@ -12,17 +12,17 @@ const categorySchema = joi.string().min(3).max(30);
 const allSchema = joi.boolean();
 
 const createCategorySchema = {
-  category: categorySchema,
+  title: categorySchema,
   urlImage: urlImageSchema,
   active: activeSchema,
 };
 const updateCategorySchema = {
-  category: categorySchema,
+  title: categorySchema,
   urlImage: urlImageSchema,
   active: activeSchema,
 };
 const filterSchema = {
-  category: categorySchema,
+  title: categorySchema,
   active: activeSchema,
   order: orderSchema,
   page: limitSchema,

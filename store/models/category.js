@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: true,
       },
-      category: DataTypes.STRING(30),
+      title: DataTypes.STRING(30),
       urlImage: DataTypes.TEXT,
       deleted: {
         type: DataTypes.BOOLEAN,

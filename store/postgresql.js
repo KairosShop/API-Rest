@@ -12,17 +12,17 @@ async function getAll(TABLE, filter) {
       [and]: [{ deleted: false }, { active: true }],
     };
 
-    let { category, all, order, page, limit } = filter;
+    let { title, all, order, page, limit } = filter;
 
     if (!all) {
       newFilter[and] = [{ active: true }, ...newFilter[and]];
     }
 
-    if (category) {
-      newFilter[and] = [{ category }, ...newFilter[and]];
+    if (title) {
+      newFilter[and] = [{ title }, ...newFilter[and]];
     }
 
-    const orderFilter = [['category', order]];
+    const orderFilter = [['title', order]];
     const offset = (page - 1) * limit;
 
     return models.Category.findAll({

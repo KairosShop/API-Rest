@@ -32,7 +32,7 @@ router.delete(
 
 async function get(req, res, next) {
   let {
-    category = '',
+    title = '',
     order = 'asc',
     page = '1',
     limit = '15',
@@ -40,7 +40,7 @@ async function get(req, res, next) {
   } = req.query;
   try {
     const categories = await Controller.getCategories({
-      category,
+      title,
       order,
       page,
       limit,

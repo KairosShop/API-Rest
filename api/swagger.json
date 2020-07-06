@@ -477,7 +477,7 @@
         "operationId": "getCategories",
         "parameters": [
           {
-            "name": "category",
+            "name": "title",
             "in": "query",
             "description": "Category values that optional to be considered for filter",
             "required": false,
@@ -2694,7 +2694,7 @@
             "uniqueItems": true,
             "readOnly": true
           },
-          "category": {
+          "title": {
             "type": "string",
             "uniqueItems": true,
             "minimum": 1,

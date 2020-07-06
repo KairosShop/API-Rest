@@ -8,7 +8,7 @@ describe('routes - categories', function () {
   describe('GET /categories', function () {
     it('should create new category', async (done) => {
       let mockCategory = {
-        category: mocks[0].category,
+        title: mocks[0].title,
         urlImage: mocks[0].urlImage,
       };
 
@@ -19,7 +19,7 @@ describe('routes - categories', function () {
         status: 201,
         body: {},
       });
-      expect(res.body).toHaveProperty('body.category', mockCategory.category);
+      expect(res.body).toHaveProperty('body.title', mockCategory.title);
       done();
     });
 
@@ -28,7 +28,7 @@ describe('routes - categories', function () {
     });
 
     test('should respond with status 200', function (done) {
-      request.get('/api/?category=Lácteos').expect(200, done);
+      request.get('/api/?title=Lácteos').expect(200, done);
     });
 
     test('should respond with status 200 - sort asc order', function (done) {
@@ -43,32 +43,11 @@ describe('routes - categories', function () {
       request.get('/api/?limit=1&page=2').expect(200, done);
     });
   });
-  describe('GET /categories/subcategories', function () {
-    test('should respond with status 200', function (done) {
-      request.get('/api/subcategories/').expect(200, done);
-    });
-
-    test('should respond with status 200', function (done) {
-      request.get('/api/subcategories/?category=Lácteos').expect(200, done);
-    });
-
-    test('should respond with status 200 - sort asc order', function (done) {
-      request.get('/api/subcategories/?order=asc').expect(200, done);
-    });
-
-    test('should respond with status 200 - sort desc order', function (done) {
-      request.get('/api/subcategories/?order=desc').expect(200, done);
-    });
-
-    test('should respond with status 200 - limit and page', function (done) {
-      request.get('/api/subcategories/?limit=1&page=2').expect(200, done);
-    });
-  });
 
   describe('PUT /categories', function () {
     it('should respond with status 200', function (done) {
       const updateCategory = {
-        category: 'Limpieza',
+        title: 'Limpieza',
         urlImage:
           'https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg',
       };
