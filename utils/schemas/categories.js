@@ -7,12 +7,12 @@ const activeSchema = joi.number().min(0).max(1);
 
 const createCategorySchema = {
   category: categorySchema,
-  url_image: urlImageSchema.required(),
+  urlImage: urlImageSchema,
   active: activeSchema,
 };
 const updateCategorySchema = {
   category: categorySchema,
-  url_image: urlImageSchema,
+  urlImage: urlImageSchema,
   active: activeSchema,
 };
 
