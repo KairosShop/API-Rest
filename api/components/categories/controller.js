@@ -19,14 +19,17 @@ module.exports = function (injectedStore) {
     const created = await store.create(TABLE, data);
     return created || [];
   }
+
   async function updateCategory(data, id) {
     const updated = await store.update(TABLE, data, id);
     return updated || [];
   }
+
   async function removeCategory(id) {
     const deleted = await store.remove(TABLE, id);
     return deleted || [];
   }
+
   return {
     getCategories,
     getCategory,

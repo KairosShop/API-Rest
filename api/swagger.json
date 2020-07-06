@@ -17,6 +17,14 @@
   ],
   "tags": [
     {
+      "name": "products",
+      "description": "Everything about your products"
+    },
+    {
+      "name": "prices",
+      "description": "Everything about your prices"
+    },
+    {
       "name": "categories",
       "description": "Everything about your categories"
     },
@@ -31,9 +39,397 @@
     {
       "name": "users",
       "description": "Everything about your users"
+    },
+    {
+      "name": "supermarket",
+      "description": "Everything about your supermarkets"
     }
   ],
   "paths": {
+    "/products": {
+      "post": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Add a new product to the store",
+        "operationId": "createProduct",
+        "requestBody": {
+          "description": "Product object that needs to be add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "get all products",
+        "description": "get all products, optional with params",
+        "operationId": "getProducts",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "description": "The title values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "The description values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "id_category",
+            "in": "query",
+            "description": "The id_category values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "id_subcategory",
+            "in": "query",
+            "description": "The id_subcategory values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "quantity",
+            "in": "query",
+            "description": "The quantity values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "id_measure",
+            "in": "query",
+            "description": "The id_measure values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "active",
+            "in": "query",
+            "description": "The active values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The limit values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{idProduct}": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Find product by id",
+        "description": "Returns a single product",
+        "operationId": "getProduct",
+        "parameters": [
+          {
+            "name": "idProduct",
+            "in": "path",
+            "description": "ID of product to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Update an existing product",
+        "operationId": "updateProduct",
+        "parameters": [
+          {
+            "name": "idProduct",
+            "in": "path",
+            "description": "Product id to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Product object that needs to be update to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Delete product",
+        "operationId": "removeProduct",
+        "parameters": [
+          {
+            "name": "idProduct",
+            "in": "path",
+            "description": "Product id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/categories": {
       "post": {
         "tags": [
@@ -42,7 +438,7 @@
         "summary": "Add a new category to the store",
         "operationId": "createCategory",
         "requestBody": {
-          "description": "Category object that needs to be added to the store",
+          "description": "Category object that needs to be add to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -216,7 +612,7 @@
           }
         ],
         "requestBody": {
-          "description": "Category object that needs to be updated to the store",
+          "description": "Category object that needs to be update to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -319,7 +715,7 @@
         "summary": "Add a new subcategory to the store",
         "operationId": "createSubcategory",
         "requestBody": {
-          "description": "Subcategory object that needs to be added to the store",
+          "description": "Subcategory object that needs to be add to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -383,7 +779,7 @@
           }
         ],
         "requestBody": {
-          "description": "Subcategory object that needs to be updated to the store",
+          "description": "Subcategory object that needs to be update to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -722,7 +1118,7 @@
         "summary": "Add a new user to the store",
         "operationId": "createUser",
         "requestBody": {
-          "description": "User object that needs to be added to the store",
+          "description": "User object that needs to be add to the store",
           "content": {
             "application/json": {
               "schema": {
@@ -815,39 +1211,52 @@
           {
             "name": "rol",
             "in": "query",
-            "description": "rol [admin, customer, super market] values that optional to be considered for filter",
+            "description": "rol  values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
               "type": "string",
               "items": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "admin",
+                  "customer",
+                  "super market"
+                ]
               }
             }
           },
           {
             "name": "verified",
             "in": "query",
-            "description": "verified [1,0] values that optional to be considered for filter",
+            "description": "verified  values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
               "type": "integer",
               "items": {
-                "type": "integer"
+                "type": "integer",
+                "enum": [
+                  1,
+                  0
+                ]
               }
             }
           },
           {
             "name": "active",
             "in": "query",
-            "description": "active [1,0] values that optional to be considered for filter",
+            "description": "active values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
               "type": "integer",
               "items": {
-                "type": "integer"
+                "type": "integer",
+                "enum": [
+                  1,
+                  0
+                ]
               }
             }
           }
@@ -1055,6 +1464,746 @@
           }
         }
       }
+    },
+    "/supermarket": {
+      "post": {
+        "tags": [
+          "supermarket"
+        ],
+        "summary": "Add a new supermarket to the store",
+        "operationId": "createSupermarket",
+        "requestBody": {
+          "description": "Supermarket object that needs to be add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Supermarket"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "supermarket"
+        ],
+        "summary": "get all supermarkets",
+        "description": "get all supermarkets, optional with params",
+        "operationId": "getSupermarkets",
+        "parameters": [
+          {
+            "name": "supermarket",
+            "in": "query",
+            "description": "The supermarket values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string",
+                "minLength": 3
+              }
+            }
+          },
+          {
+            "name": "address",
+            "in": "query",
+            "description": "The address values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string",
+                "minLength": 3
+              }
+            }
+          },
+          {
+            "name": "id_user",
+            "in": "query",
+            "description": "The id_user values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "active",
+            "in": "query",
+            "description": "The active values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "items": {
+                "enum": [
+                  1,
+                  0
+                ]
+              }
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The limit values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/supermarket/{idSupermarket}": {
+      "get": {
+        "tags": [
+          "supermarket"
+        ],
+        "summary": "Find supermarket by id",
+        "description": "Returns a single supermarket",
+        "operationId": "getSupermarket",
+        "parameters": [
+          {
+            "name": "idSupermarket",
+            "in": "path",
+            "description": "ID of supermarket to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "supermarket"
+        ],
+        "summary": "Update an existing supermarket",
+        "operationId": "updateSupermarket",
+        "parameters": [
+          {
+            "name": "idSupermarket",
+            "in": "path",
+            "description": "Supermarket id to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Supermarket object that needs to be update to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Supermarket"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "supermarket"
+        ],
+        "summary": "Delete supermarket",
+        "operationId": "removeSupermarket",
+        "parameters": [
+          {
+            "name": "idSupermarket",
+            "in": "path",
+            "description": "Supermarket id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prices": {
+      "post": {
+        "tags": [
+          "prices"
+        ],
+        "summary": "Add a new prices to the store",
+        "operationId": "createPrice",
+        "requestBody": {
+          "description": "Prices object that needs to be add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Prices"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prices/{idPrice}": {
+      "put": {
+        "tags": [
+          "prices"
+        ],
+        "summary": "Update an existing price",
+        "operationId": "updatePrice",
+        "parameters": [
+          {
+            "name": "idPrice",
+            "in": "path",
+            "description": "Price id to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Price object that needs to be update to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePrices"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prices/supermarket/{idSupermarket}": {
+      "get": {
+        "tags": [
+          "prices"
+        ],
+        "summary": "Find prices by id_supermarket",
+        "description": "Returns all prices by supermarket",
+        "operationId": "getPrices",
+        "parameters": [
+          {
+            "name": "idSupermarket",
+            "in": "path",
+            "description": "ID of supermarket to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "id_product",
+            "in": "query",
+            "description": "The id_product values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "price",
+            "in": "query",
+            "description": "The price values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "active",
+            "in": "query",
+            "description": "The active values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "items": {
+                "enum": [
+                  1,
+                  0
+                ]
+              }
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The limit values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prices/product/{idProduct}": {
+      "get": {
+        "tags": [
+          "prices"
+        ],
+        "summary": "Find prices by id_product",
+        "description": "Returns all prices by product",
+        "operationId": "getPrice",
+        "parameters": [
+          {
+            "name": "idProduct",
+            "in": "path",
+            "description": "ID of product to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "id_supermarket",
+            "in": "query",
+            "description": "The id_supermarket values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "price",
+            "in": "query",
+            "description": "The price values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "active",
+            "in": "query",
+            "description": "The active values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "items": {
+                "enum": [
+                  1,
+                  0
+                ]
+              }
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The limit values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1108,11 +2257,35 @@
           }
         }
       },
-      "Category": {
+      "Product": {
         "type": "object",
         "properties": {
-          "cateory": {
+          "id": {
+            "type": "integer",
+            "uniqueItems": true,
+            "readOnly": true
+          },
+          "title": {
             "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "id_category": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "id_subcategory": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quantity": {
+            "type": "number",
+            "multipleOf": 0.1
+          },
+          "id_measure": {
+            "type": "integer",
+            "format": "int64"
           },
           "url_image": {
             "type": "string"
@@ -1120,13 +2293,87 @@
           "active": {
             "type": "integer",
             "format": "int64"
+          },
+          "create_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "update_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
           }
+        },
+        "required": [
+          "title",
+          "description",
+          "id_category",
+          "id_subcategory",
+          "id_measure",
+          "quantity",
+          "url_image"
+        ],
+        "example": {
+          "title": "Nestle Condensed Milk",
+          "description": "Pack 2 cans of Nestle Condensed Milk.",
+          "id_category": 1,
+          "id_subcategory": 2,
+          "quantity": 90,
+          "id_measure": 4,
+          "url_image": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
+          "active": 1
+        }
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "uniqueItems": true,
+            "readOnly": true
+          },
+          "cateory": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "url_image": {
+            "type": "string"
+          },
+          "active": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "create_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "update_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "cateory",
+          "url_image"
+        ],
+        "example": {
+          "cateory": "Milks",
+          "url_image": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
+          "active": 1
         }
       },
       "Subcategory": {
         "type": "object",
         "properties": {
-          "cateory_id": {
+          "id": {
+            "type": "integer",
+            "uniqueItems": true,
+            "readOnly": true
+          },
+          "id_category": {
             "type": "integer",
             "format": "int64"
           },
@@ -1139,26 +2386,73 @@
           "active": {
             "type": "integer",
             "format": "int64"
+          },
+          "create_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "update_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
           }
+        },
+        "required": [
+          "id_category",
+          "subcategory",
+          "url_image"
+        ],
+        "example": {
+          "id_category": 2,
+          "subcategory": "Condensed Milk",
+          "url_image": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
+          "active": 1
         }
       },
       "Measure": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "uniqueItems": true,
+            "readOnly": true
+          },
           "measure": {
-            "type": "string"
+            "type": "string",
+            "uniqueItems": true
           },
           "active": {
             "type": "integer",
             "format": "int64"
+          },
+          "create_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "update_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
           }
-        }
+        },
+        "required": [
+          "measure"
+        ]
       },
       "AddUser": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "uniqueItems": true,
+            "readOnly": true
+          },
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email",
+            "uniqueItems": true
           },
           "firstName": {
             "type": "string"
@@ -1175,15 +2469,46 @@
             ]
           },
           "password": {
-            "type": "string"
+            "type": "string",
+            "format": "password"
+          },
+          "active": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "create_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "update_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
           }
+        },
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "rol",
+          "password"
+        ],
+        "example": {
+          "email": "hola@carlosramirezflores.com",
+          "firstName": "Carlos",
+          "lastName": "Ramírez",
+          "rol": "customer",
+          "password": "idonothavepassword1"
         }
       },
       "UpdateUser": {
         "type": "object",
         "properties": {
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email",
+            "uniqueItems": true
           },
           "firstName": {
             "type": "string"
@@ -1206,6 +2531,137 @@
             "type": "integer",
             "format": "int64"
           }
+        },
+        "example": {
+          "email": "hola@carlosramirezflores.com",
+          "firstName": "Carlos",
+          "lastName": "Ramírez",
+          "rol": "customer",
+          "url_image": "https://encrypted-tbn0gstatic.com/images?q=tbn%3AANd9GcQRQwITGCC0JMklTMN9rwebGYR9EuhHs0EviA&usqp=CAU",
+          "active": 1
+        }
+      },
+      "Supermarket": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "uniqueItems": true,
+            "readOnly": true
+          },
+          "supermarket": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "string"
+          },
+          "longitude": {
+            "type": "string"
+          },
+          "url_logo": {
+            "type": "string"
+          },
+          "active": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "id_user": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "create_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "update_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "supermarket",
+          "address",
+          "latitude",
+          "longitude",
+          "url_logo",
+          "id_user"
+        ],
+        "example": {
+          "supermarket": "Abarrotes panchisco",
+          "address": "Av México No.44, colonia centro, Jalpa Zacatecas México",
+          "latitude": 3.7220621,
+          "longitude": 96.8297403,
+          "url_logo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
+          "id_user": 1,
+          "active": 1
+        }
+      },
+      "Prices": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "uniqueItems": true,
+            "readOnly": true
+          },
+          "id_supermarket": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "id_product": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "price": {
+            "type": "number"
+          },
+          "active": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "create_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "update_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "id_supermarket",
+          "id_product",
+          "price",
+          "active"
+        ],
+        "example": {
+          "id_supermarket": 1,
+          "id_product": 2,
+          "price": 50,
+          "active": 1
+        }
+      },
+      "UpdatePrices": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "type": "number"
+          },
+          "active": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "example": {
+          "price": 50,
+          "active": 1
         }
       }
     }

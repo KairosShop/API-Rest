@@ -18,13 +18,13 @@ module.exports = function (injectedStore) {
   }
 
   async function createUser(userData) {
-    userData.createAt= date;
+    userData.create_at= date;
     const created = await store.create(TABLE, userData);
     return created || [];
   }
 
   async function updateUser(userData, id) {
-    userData.updateAt= date;
+    userData.update_at= date;
     const updated = await store.update(TABLE, userData, id);
     return updated || [];
   }

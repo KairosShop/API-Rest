@@ -19,12 +19,12 @@ module.exports = function (injectedStore) {
   }
 
   async function createSubcategory(subcategoryData) {
-    subcategoryData.createAt= date;
+    subcategoryData.create_at= date;
     const created = await store.create(TABLE, subcategoryData);
     return created || [];
   }
   async function updateSubcategory(subcategoryData, id) {
-    subcategoryData.updateAt= date;
+    subcategoryData.update_at= date;
     const updated = await store.update(TABLE, subcategoryData, id);
     return updated || [];
   }
