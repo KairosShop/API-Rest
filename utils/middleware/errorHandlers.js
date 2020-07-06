@@ -2,8 +2,9 @@ const boom = require('@hapi/boom');
 const Sentry = require("@sentry/node");
 const { sentry, dev } = require('../../config/index');
 
-Sentry.init({ dsn: `https://${sentry.sentryDns}@sentry.io/${sentry.sentryId}` });
-
+if (sentry.sentryDns && sentry.sentryId) {
+  Sentry.init({ dsn: `https://${sentry.sentryDns}@o416099.ingest.sentry.io/${sentry.sentryId}` });
+}
 function withErrorStack(error, stack) {
   if (dev) {
     return { ...error, stack };
@@ -14,7 +15,6 @@ function withErrorStack(error, stack) {
 
 function logErrors(err, req, res, next) {
   Sentry.captureException(err);
-  console.log(err);
   next(err);
 }
 
