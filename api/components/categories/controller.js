@@ -15,15 +15,17 @@ module.exports = function (injectedStore) {
 
   async function getWithSubcategories(filter={}) {
     const categories = await store.getAll(TABLE, filter);
-    Object.entries(categories).forEach(async([key, value]) =>{
-      if(value){
-        let subcategories = await store.getAll('subcategories', {id_category: value.id});
-        if (subcategories){
-          categories[key].subcategories = subcategories;
-        }
-      }
-    })
-    return categories || [];
+    const categoriesWithSubcategories = function(categories) {
+      return Promise.all(
+        categories.map(async(category) => {
+          let subcategories = await store.getAll('subcategories', {id_category: category.id});
+            if (subcategories){
+              return Object.assign(category,{'subcategories': subcategories});
+            }
+        })
+      )
+    }
+    return categoriesWithSubcategories(categories).then(data => data);
   }
   async function getCategory(id) {
     const category = await store.getById(TABLE, id);

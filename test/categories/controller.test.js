@@ -18,12 +18,18 @@ describe('controller - categories', () => {
   });
 
   test('should return object category with subcategories', () => {
-    return Controller.getWithSubcategories().then((category) => {
-      expect(category[0]).toMatchObject({
+    return Controller.getWithSubcategories().then((categoriesWithSubcategories) => {
+      expect(categoriesWithSubcategories[0]).toMatchObject({
         id: expect.any(Number),
         category: expect.any(String),
         url_image: expect.any(String),
         subcategories: expect.any(Array)
+      });
+      expect(categoriesWithSubcategories[0].subcategories[0]).toMatchObject({
+        id: expect.any(Number),
+        id_category: expect.any(Number),
+        subcategory: expect.any(String),
+        url_image: expect.any(String)
       });
     });
   });
