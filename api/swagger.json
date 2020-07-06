@@ -2774,36 +2774,37 @@
             "uniqueItems": true,
             "readOnly": true
           },
-          "cateory": {
+          "category": {
             "type": "string",
-            "uniqueItems": true
+            "uniqueItems": true,
+            "minimum": 1,
+            "maximum": 30
           },
-          "url_image": {
+          "urlImage": {
             "type": "string"
           },
           "active": {
-            "type": "integer",
-            "format": "int64"
+            "type": "boolean"
           },
-          "create_at": {
+          "createdAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           },
-          "update_at": {
+          "updatedAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           }
         },
         "required": [
-          "cateory",
-          "url_image"
+          "category",
+          "urlImage"
         ],
         "example": {
-          "cateory": "Milks",
-          "url_image": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
-          "active": 1
+          "category": "Milks",
+          "urlImage": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
+          "active": true
         }
       },
       "Subcategory": {
