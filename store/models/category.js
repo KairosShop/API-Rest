@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Category extends Model {
     /**
@@ -12,15 +10,26 @@ module.exports = (sequelize, DataTypes) => {
     static associate() {
       // define association here
     }
-  };
-  Category.init({
-    active: DataTypes.BOOLEAN,
-    category: DataTypes.STRING(30),
-    urlImage: DataTypes.TEXT,
-    deleted: DataTypes.BOOLEAN
-  }, {
-    sequelize,
-    modelName: 'Category',
-  });
+  }
+  Category.init(
+    {
+      active: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
+      category: DataTypes.STRING(30),
+      urlImage: DataTypes.TEXT,
+      deleted: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+    },
+    {
+      sequelize,
+      modelName: 'Category',
+    }
+  );
   return Category;
 };
