@@ -41,6 +41,10 @@
       "description": "Everything about your users"
     },
     {
+      "name": "address",
+      "description": "Everything about your address"
+    },
+    {
       "name": "supermarket",
       "description": "Everything about your supermarkets"
     }
@@ -500,6 +504,105 @@
               "items": {
                 "type": "string"
               }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories/subcategories": {
+      "get": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "get all categories with subcategories",
+        "description": "get all categories with subcategories, optional with params category",
+        "operationId": "getWithSubcategories",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Category values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The limit values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
             }
           }
         ],
@@ -2204,6 +2307,322 @@
           }
         }
       }
+    },
+    "/address": {
+      "post": {
+        "tags": [
+          "address"
+        ],
+        "summary": "Add a new address to the store",
+        "operationId": "createAddress",
+        "requestBody": {
+          "description": "Address object that needs to be add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Address"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "address"
+        ],
+        "summary": "get all address",
+        "description": "get all address, optional with params address",
+        "operationId": "getAddress",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "description": "Address values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The limit values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/address/{idAddress}": {
+      "get": {
+        "tags": [
+          "address"
+        ],
+        "summary": "Find address by id",
+        "description": "Returns a single address",
+        "operationId": "getById",
+        "parameters": [
+          {
+            "name": "idAddress",
+            "in": "path",
+            "description": "ID of address to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "address"
+        ],
+        "summary": "Update an existing address",
+        "operationId": "updateAddress",
+        "parameters": [
+          {
+            "name": "idAddress",
+            "in": "path",
+            "description": "Address id to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Address object that needs to be update to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Address"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "address"
+        ],
+        "summary": "Delete address",
+        "operationId": "removeAddress",
+        "parameters": [
+          {
+            "name": "idAddress",
+            "in": "path",
+            "description": "Address id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2223,6 +2642,17 @@
             "type": "object",
             "format": "int32"
           }
+        },
+        "example": {
+          "error": false,
+          "status": 200,
+          "body": [
+            {
+              "id": 1,
+              "data1": "result1",
+              "data2": "result2"
+            }
+          ]
         }
       },
       "ApiError400": {
@@ -2241,6 +2671,12 @@
           "stack": {
             "type": "string"
           }
+        },
+        "example": {
+          "statusCode": 400,
+          "error": "Bad Request",
+          "message": "id is not allowed",
+          "stack": "ValidationError id is not allowed"
         }
       },
       "ApiError404": {
@@ -2255,6 +2691,11 @@
           "message": {
             "type": "string"
           }
+        },
+        "example": {
+          "statusCode": 404,
+          "error": "Not Found",
+          "message": "Not Found"
         }
       },
       "Product": {
@@ -2592,8 +3033,8 @@
           "id_user"
         ],
         "example": {
-          "supermarket": "Abarrotes panchisco",
-          "address": "Av México No.44, colonia centro, Jalpa Zacatecas México",
+          "supermarket": "The Market",
+          "address": "3w Weeping Birch Avenue",
           "latitude": 3.7220621,
           "longitude": 96.8297403,
           "url_logo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
@@ -2662,6 +3103,50 @@
         "example": {
           "price": 50,
           "active": 1
+        }
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "uniqueItems": true,
+            "readOnly": true
+          },
+          "id_user": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "address": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "string"
+          },
+          "longitude": {
+            "type": "string"
+          },
+          "create_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "update_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "address",
+          "latitude",
+          "longitude"
+        ],
+        "example": {
+          "address": "7089 Weeping Birch Avenue",
+          "latitude": -25.4426635,
+          "longitude": -49.0628847
         }
       }
     }

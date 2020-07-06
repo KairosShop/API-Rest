@@ -17,6 +17,7 @@ const users =  require('./components/users/network');
 const products =  require('./components/products/network');
 const supermarket =  require('./components/supermarket/network');
 const prices =  require('./components/prices/network');
+const address =  require('./components/address/network');
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use('/api/users', users);
 app.use('/api/products', products);
 app.use('/api/supermarket', supermarket);
 app.use('/api/prices', prices);
+app.use('/api/address', address);
 
 // middlewares by errors
 app.use(notFoundHandler);
