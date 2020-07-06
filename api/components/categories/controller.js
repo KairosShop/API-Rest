@@ -10,20 +10,6 @@ module.exports = function (injectedStore) {
     return categories || [];
   }
 
-  async function getWithSubcategories(filter={}) {
-    const categories = await store.getAll(TABLE, filter);
-    const categoriesWithSubcategories = function(categories) {
-      return Promise.all(
-        categories.map(async(category) => {
-          let subcategories = await store.getAll('subcategories', {id_category: category.id});
-            if (subcategories){
-              return Object.assign(category,{'subcategories': subcategories});
-            }
-        })
-      )
-    }
-    return categoriesWithSubcategories(categories).then(data => data);
-  }
   async function getCategory(id) {
     const category = await store.getById(TABLE, id);
     return category || [];
@@ -46,7 +32,6 @@ module.exports = function (injectedStore) {
 
   return {
     getCategories,
-    getWithSubcategories,
     getCategory,
     createCategory,
     updateCategory,
