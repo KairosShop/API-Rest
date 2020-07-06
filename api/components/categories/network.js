@@ -36,9 +36,9 @@ router.delete(
 );
 
 async function get(req, res, next) {
-  let { category = '', order = 'asc', page = '1', limit = '15' } = req.query;
+  let { title = '', order = 'asc', page = '1', limit = '15' } = req.query;
   try {
-    const categories = await Controller.getCategories({ category, order, page, limit });
+    const categories = await Controller.getCategories({ title, order, page, limit });
     responses.success(req, res, categories, 200);
   } catch (error) {
     next(error);
@@ -46,9 +46,9 @@ async function get(req, res, next) {
 }
 
 async function getWithSubcategories(req, res, next) {
-  let { category = '', order = 'asc', page = '1', limit = '15' } = req.query;
+  let { title = '', order = 'asc', page = '1', limit = '15' } = req.query;
   try {
-    const categories = await Controller.getWithSubcategories({ category, order, page, limit });
+    const categories = await Controller.getWithSubcategories({ title, order, page, limit });
     responses.success(req, res, categories, 200);
   } catch (error) {
     next(error);

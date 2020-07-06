@@ -21,7 +21,7 @@ describe('controller - categories', () => {
     return Controller.getWithSubcategories().then((categoriesWithSubcategories) => {
       expect(categoriesWithSubcategories[0]).toMatchObject({
         id: expect.any(Number),
-        category: expect.any(String),
+        title: expect.any(String),
         url_image: expect.any(String),
         subcategories: expect.any(Array)
       });
@@ -36,7 +36,7 @@ describe('controller - categories', () => {
 
   test('should return object category created', () => {
     const createCategory = {
-      category: 'Limpieza',
+      title: 'Limpieza',
       url_image:
         'https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg',
       active: 1,
@@ -47,7 +47,7 @@ describe('controller - categories', () => {
   });
   test('should return object category updated', () => {
     const updateCategory = {
-      category: 'Lacteos',
+      title: 'Lacteos',
       url_image:
         'https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg',
     };

@@ -494,9 +494,9 @@
         "operationId": "getCategories",
         "parameters": [
           {
-            "name": "category",
+            "name": "title",
             "in": "query",
-            "description": "Category values that optional to be considered for filter",
+            "description": "Title values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -554,9 +554,9 @@
         "operationId": "getWithSubcategories",
         "parameters": [
           {
-            "name": "category",
+            "name": "title",
             "in": "query",
-            "description": "Category values that optional to be considered for filter",
+            "description": "Title values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -2774,7 +2774,7 @@
             "uniqueItems": true,
             "readOnly": true
           },
-          "cateory": {
+          "title": {
             "type": "string",
             "uniqueItems": true
           },
@@ -2797,11 +2797,11 @@
           }
         },
         "required": [
-          "cateory",
+          "title",
           "url_image"
         ],
         "example": {
-          "cateory": "Milks",
+          "title": "Milks",
           "url_image": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
           "active": 1
         }

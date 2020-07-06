@@ -9,6 +9,7 @@ const categories = [
       {
         id_cart: 1,
         id_product: 24,
+        quantity: 2,
         id_supermarket: '',
         price: '',
         create_at: '2020-06-24 06:09:24',
@@ -17,6 +18,7 @@ const categories = [
       {
         id_cart: 1,
         id_product: 28,
+        quantity: 2,
         id_supermarket: '',
         price: '',
         create_at: '2020-05-13 20:07:46',
@@ -25,6 +27,7 @@ const categories = [
       {
         id_cart: 1,
         id_product: 34,
+        quantity: 2,
         id_supermarket: '',
         price: '',
         create_at: '2020-05-17 14:30:52',
@@ -42,6 +45,7 @@ const categories = [
       {
         id_cart: 2,
         id_product: 31,
+        quantity: 3,
         id_supermarket: 3,
         price: '6.82',
         create_at: '2020-05-31 06:50:30',
@@ -50,6 +54,7 @@ const categories = [
       {
         id_cart: 2,
         id_product: 19,
+        quantity: 7,
         id_supermarket: 7,
         price: '4.12',
         create_at: '2020-07-04 09:37:50',
@@ -58,6 +63,7 @@ const categories = [
       {
         id_cart: 2,
         id_product: 16,
+        quantity: 1,
         id_supermarket: 1,
         price: '4.63',
         create_at: '2020-05-30 19:24:18',
@@ -66,6 +72,7 @@ const categories = [
       {
         id_cart: 2,
         id_product: 5,
+        quantity: 4,
         id_supermarket: 4,
         price: '1.45',
         create_at: '2020-06-04 21:24:34',
@@ -83,6 +90,7 @@ const categories = [
       {
         id_cart: 3,
         id_product: 14,
+        quantity: 5,
         id_supermarket: 5,
         price: '3.29',
         create_at: '2020-05-27 08:37:03',
@@ -91,6 +99,7 @@ const categories = [
       {
         id_cart: 3,
         id_product: 17,
+        quantity: 5,
         id_supermarket: 5,
         price: '2.86',
         create_at: '2020-05-22 20:12:01',
@@ -99,6 +108,7 @@ const categories = [
       {
         id_cart: 3,
         id_product: 28,
+        quantity: 3,
         id_supermarket: 3,
         price: '6.31',
         create_at: '2020-05-07 11:04:15',
@@ -107,6 +117,7 @@ const categories = [
       {
         id_cart: 3,
         id_product: 19,
+        quantity: 4,
         id_supermarket: 4,
         price: '7.00',
         create_at: '2020-05-26 07:58:05',
@@ -124,6 +135,7 @@ const categories = [
       {
         id_cart: 4,
         id_product: 46,
+        quantity: 3,
         id_supermarket: 3,
         price: '7.42',
         create_at: '2020-07-05 21:08:42',
@@ -132,6 +144,7 @@ const categories = [
       {
         id_cart: 4,
         id_product: 30,
+        quantity: 4,
         id_supermarket: 4,
         price: '1.26',
         create_at: '2020-05-29 21:09:35',
@@ -140,6 +153,7 @@ const categories = [
       {
         id_cart: 4,
         id_product: 5,
+        quantity: 7,
         id_supermarket: 7,
         price: '7.95',
         create_at: '2020-07-02 14:14:27',
@@ -148,6 +162,7 @@ const categories = [
       {
         id_cart: 4,
         id_product: 44,
+        quantity: 2,
         id_supermarket: 2,
         price: '5.36',
         create_at: '2020-06-26 13:37:41',
@@ -156,6 +171,7 @@ const categories = [
       {
         id_cart: 4,
         id_product: 14,
+        quantity: 3,
         id_supermarket: 3,
         price: '7.20',
         create_at: '2020-06-16 14:20:29',
@@ -164,6 +180,7 @@ const categories = [
       {
         id_cart: 4,
         id_product: 14,
+        quantity: 3,
         id_supermarket: 3,
         price: '1.24',
         create_at: '2020-05-03 05:17:54',
@@ -181,6 +198,7 @@ const categories = [
       {
         id_cart: 5,
         id_product: 50,
+        quantity: 7,
         id_supermarket: 7,
         price: '6.29',
         create_at: '2020-05-17 23:22:19',
@@ -189,6 +207,7 @@ const categories = [
       {
         id_cart: 5,
         id_product: 40,
+        quantity: 3,
         id_supermarket: 3,
         price: '7.42',
         create_at: '2020-05-29 17:01:19',
@@ -197,6 +216,7 @@ const categories = [
       {
         id_cart: 5,
         id_product: 45,
+        quantity: 1,
         id_supermarket: 1,
         price: '5.53',
         create_at: '2020-06-11 02:37:34',
@@ -205,6 +225,7 @@ const categories = [
       {
         id_cart: 5,
         id_product: 12,
+        quantity: 6,
         id_supermarket: 6,
         price: '8.65',
         create_at: '2020-05-04 06:00:00',
@@ -213,6 +234,7 @@ const categories = [
       {
         id_cart: 5,
         id_product: 1,
+        quantity: 4,
         id_supermarket: 4,
         price: '3.28',
         create_at: '2020-06-01 15:44:58',
@@ -221,6 +243,7 @@ const categories = [
       {
         id_cart: 5,
         id_product: 9,
+        quantity: 6,
         id_supermarket: 6,
         price: '8.07',
         create_at: '2020-05-21 02:23:52',
@@ -238,6 +261,7 @@ const categories = [
       {
         id_cart: 6,
         id_product: 9,
+        quantity: 4,
         id_supermarket: 4,
         price: '2.99',
         create_at: '2020-06-22 16:40:02',
@@ -246,6 +270,7 @@ const categories = [
       {
         id_cart: 6,
         id_product: 3,
+        quantity: 6,
         id_supermarket: 6,
         price: '9.34',
         create_at: '2020-05-30 07:52:01',
@@ -254,6 +279,7 @@ const categories = [
       {
         id_cart: 6,
         id_product: 7,
+        quantity: 4,
         id_supermarket: 4,
         price: '5.39',
         create_at: '2020-06-23 20:04:07',
@@ -262,6 +288,7 @@ const categories = [
       {
         id_cart: 6,
         id_product: 9,
+        quantity: 1,
         id_supermarket: 1,
         price: '4.18',
         create_at: '2020-06-25 06:03:07',
@@ -279,6 +306,7 @@ const categories = [
       {
         id_cart: 7,
         id_product: 13,
+        quantity: 7,
         id_supermarket: 7,
         price: '2.14',
         create_at: '2020-06-24 05:41:49',
@@ -287,6 +315,7 @@ const categories = [
       {
         id_cart: 7,
         id_product: 25,
+        quantity: 7,
         id_supermarket: 7,
         price: '4.18',
         create_at: '2020-05-06 07:28:51',
@@ -295,6 +324,7 @@ const categories = [
       {
         id_cart: 7,
         id_product: 16,
+        quantity: 6,
         id_supermarket: 6,
         price: '9.95',
         create_at: '2020-06-28 04:57:20',
@@ -312,6 +342,7 @@ const categories = [
       {
         id_cart: 8,
         id_product: 15,
+        quantity: 6,
         id_supermarket: 6,
         price: '8.91',
         create_at: '2020-06-22 13:56:29',
@@ -320,6 +351,7 @@ const categories = [
       {
         id_cart: 8,
         id_product: 16,
+        quantity: 1,
         id_supermarket: 1,
         price: '8.38',
         create_at: '2020-05-19 03:07:21',
@@ -328,6 +360,7 @@ const categories = [
       {
         id_cart: 8,
         id_product: 40,
+        quantity: 5,
         id_supermarket: 5,
         price: '3.12',
         create_at: '2020-06-22 16:26:06',
@@ -336,6 +369,7 @@ const categories = [
       {
         id_cart: 8,
         id_product: 31,
+        quantity: 2,
         id_supermarket: 2,
         price: '4.86',
         create_at: '2020-05-10 17:59:21',
@@ -353,6 +387,7 @@ const categories = [
       {
         id_cart: 9,
         id_product: 7,
+        quantity: 3,
         id_supermarket: 3,
         price: '5.75',
         create_at: '2020-07-05 22:41:30',
@@ -361,6 +396,7 @@ const categories = [
       {
         id_cart: 9,
         id_product: 24,
+        quantity: 2,
         id_supermarket: 2,
         price: '4.88',
         create_at: '2020-05-22 10:07:27',
@@ -369,6 +405,7 @@ const categories = [
       {
         id_cart: 9,
         id_product: 36,
+        quantity: 2,
         id_supermarket: 2,
         price: '8.83',
         create_at: '2020-06-05 04:55:50',
@@ -377,6 +414,7 @@ const categories = [
       {
         id_cart: 9,
         id_product: 29,
+        quantity: 7,
         id_supermarket: 7,
         price: '9.31',
         create_at: '2020-06-10 14:42:47',
@@ -385,6 +423,7 @@ const categories = [
       {
         id_cart: 9,
         id_product: 22,
+        quantity: 6,
         id_supermarket: 6,
         price: '1.44',
         create_at: '2020-06-27 11:34:45',
@@ -393,6 +432,7 @@ const categories = [
       {
         id_cart: 9,
         id_product: 31,
+        quantity: 5,
         id_supermarket: 5,
         price: '2.93',
         create_at: '2020-06-25 16:56:30',
@@ -401,6 +441,7 @@ const categories = [
       {
         id_cart: 9,
         id_product: 28,
+        quantity: 4,
         id_supermarket: 4,
         price: '7.07',
         create_at: '2020-06-26 06:07:13',
@@ -409,6 +450,7 @@ const categories = [
       {
         id_cart: 9,
         id_product: 48,
+        quantity: 3,
         id_supermarket: 3,
         price: '9.69',
         create_at: '2020-05-28 13:52:06',
@@ -417,6 +459,7 @@ const categories = [
       {
         id_cart: 9,
         id_product: 43,
+        quantity: 4,
         id_supermarket: 4,
         price: '1.39',
         create_at: '2020-05-31 16:19:44',
@@ -425,6 +468,7 @@ const categories = [
       {
         id_cart: 9,
         id_product: 8,
+        quantity: 3,
         id_supermarket: 3,
         price: '2.95',
         create_at: '2020-06-25 00:54:32',
@@ -442,6 +486,7 @@ const categories = [
       {
         id_cart: 10,
         id_product: 43,
+        quantity: 7,
         id_supermarket: 7,
         price: '7.16',
         create_at: '2020-05-04 02:26:57',
@@ -450,6 +495,7 @@ const categories = [
       {
         id_cart: 10,
         id_product: 48,
+        quantity: 5,
         id_supermarket: 5,
         price: '5.43',
         create_at: '2020-05-23 12:22:56',
@@ -458,6 +504,7 @@ const categories = [
       {
         id_cart: 10,
         id_product: 35,
+        quantity: 1,
         id_supermarket: 1,
         price: '8.74',
         create_at: '2020-06-20 14:54:34',
@@ -466,6 +513,7 @@ const categories = [
       {
         id_cart: 10,
         id_product: 26,
+        quantity: 3,
         id_supermarket: 3,
         price: '7.35',
         create_at: '2020-06-05 01:49:43',
@@ -474,6 +522,7 @@ const categories = [
       {
         id_cart: 10,
         id_product: 15,
+        quantity: 6,
         id_supermarket: 6,
         price: '9.59',
         create_at: '2020-06-27 00:50:20',
@@ -482,6 +531,7 @@ const categories = [
       {
         id_cart: 10,
         id_product: 3,
+        quantity: 6,
         id_supermarket: 6,
         price: '9.99',
         create_at: '2020-05-21 15:19:58',

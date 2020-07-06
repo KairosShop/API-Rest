@@ -1,23 +1,23 @@
 const joi = require('@hapi/joi');
 
 const categoryIdSchema = joi.number().min(1).max(99999999999);
-const categorySchema = joi.string().min(3).max(50);
+const titleSchema = joi.string().min(3).max(50);
 const urlImageSchema = joi.string().uri().trim();
 const activeSchema = joi.number().min(0).max(1);
 const pageSchema =  joi.number().integer().min(1);
 
 const createCategorySchema = {
-  category: categorySchema.required(),
+  title: titleSchema.required(),
   url_image: urlImageSchema.required(),
   active: activeSchema,
 };
 const updateCategorySchema = {
-  category: categorySchema,
+  title: titleSchema,
   url_image: urlImageSchema,
   active: activeSchema,
 };
 const filterSchema = {
-  category: categorySchema,
+  title: titleSchema,
   active: activeSchema,
   order: joi.string().min(3).max(4),
   page: pageSchema,
