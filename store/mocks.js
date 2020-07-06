@@ -5,6 +5,7 @@ const users = require('../utils/mocks/users');
 const products = require('../utils/mocks/products');
 const supermarket =  require('../utils/mocks/supermarket');
 const price =  require('../utils/mocks/prices');
+const address =  require('../utils/mocks/address');
 
 const db = {
     categories,
@@ -13,7 +14,8 @@ const db = {
     users,
     products,
     supermarket,
-    price
+    price,
+    address,
 }
 
 async function getAll(table, filter={}) {
