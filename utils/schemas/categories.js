@@ -4,11 +4,11 @@ const {
   pageSchema,
   limitSchema,
   urlImageSchema,
+  activeSchema,
 } = require('./general');
 
 const categoryIdSchema = joi.number().min(1).max(99999999999);
 const categorySchema = joi.string().min(3).max(30);
-const activeSchema = joi.boolean();
 const allSchema = joi.boolean();
 
 const createCategorySchema = {

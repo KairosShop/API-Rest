@@ -1,32 +1,39 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const Category = sequelize.define(
-    'Category',
+  const Subcategory = sequelize.define(
+    'Subcategory',
     {
+      categoryId: DataTypes.INTEGER,
       active: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true,
       },
-      category: DataTypes.STRING(30),
+      title: DataTypes.STRING(30),
       urlImage: DataTypes.TEXT,
       deleted: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+      },
     },
     {}
   );
-  Category.associate = function (models) {
+  Subcategory.associate = function (models) {
     // associations can be defined here
-    Category.hasMany(models.Subcategory, {
-      as: 'subcategories',
+    Subcategory.belongsTo(models.Category, {
       foreignKey: 'categoryId',
+      as: 'category',
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE',
     });
   };
-  return Category;
+  return Subcategory;
 };

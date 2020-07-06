@@ -43,7 +43,7 @@ api-testing:
   image: node:10
   stage: test
   script:
-    - npm run test:coverage
+    - npm run test
   artifacts:
     paths:
         - test-report.xml

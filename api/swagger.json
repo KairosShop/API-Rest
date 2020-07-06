@@ -2732,37 +2732,37 @@
             "uniqueItems": true,
             "readOnly": true
           },
-          "id_category": {
+          "categoryId": {
             "type": "integer",
             "format": "int64"
           },
-          "subcategory": {
+          "title": {
             "type": "string"
           },
-          "url_image": {
+          "urlImage": {
             "type": "string"
           },
           "active": {
             "type": "integer",
-            "format": "int64"
+            "format": "boolean"
           },
-          "create_at": {
+          "createdAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           },
-          "update_at": {
+          "updatedAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           }
         },
-        "required": ["id_category", "subcategory", "url_image"],
+        "required": ["categoryId", "title", "urlImage"],
         "example": {
-          "id_category": 2,
-          "subcategory": "Condensed Milk",
-          "url_image": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
-          "active": 1
+          "categoryId": 2,
+          "title": "Condensed Milk",
+          "urlImage": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
+          "active": true
         }
       },
       "Measure": {
