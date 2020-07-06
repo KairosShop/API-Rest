@@ -6,5 +6,6 @@ env_variables:
 env_variables:
     PORT: 8080
     CORS: "*"
+    NODE_ENV: production
     SENTRY_DNS: "<% SENTRY_DNS %>"
     SENTRY_ID: <% SENTRY_ID %>

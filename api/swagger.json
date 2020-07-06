@@ -3,7 +3,7 @@
   "info": {
     "title": "Kairos Shop",
     "description": "API Kairos shop.",
-    "termsOfService": "https://api.kairosshop.xyz/",
+    "termsOfService": "https://staging.kairosshop.xyz/",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
@@ -12,7 +12,7 @@
   },
   "servers": [
     {
-      "url": "https://api.kairosshop.xyz/api"
+      "url": "https://staging.kairosshop.xyz/"
     }
   ],
   "tags": [
