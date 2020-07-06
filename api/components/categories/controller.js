@@ -13,6 +13,18 @@ module.exports = function (injectedStore) {
     return categories || [];
   }
 
+  async function getWithSubcategories(filter={}) {
+    const categories = await store.getAll(TABLE, filter);
+    Object.entries(categories).forEach(async([key, value]) =>{
+      if(value){
+        let subcategories = await store.getAll('subcategories', {id_category: value.id});
+        if (subcategories){
+          categories[key].subcategories = subcategories;
+        }
+      }
+    })
+    return categories || [];
+  }
   async function getCategory(id) {
     const category = await store.getById(TABLE, id);
     return category || [];
@@ -34,6 +46,7 @@ module.exports = function (injectedStore) {
   }
   return {
     getCategories,
+    getWithSubcategories,
     getCategory,
     createCategory,
     updateCategory,

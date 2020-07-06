@@ -544,6 +544,105 @@
         }
       }
     },
+    "/categories/subcategories": {
+      "get": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "get all categories with subcategories",
+        "description": "get all categories with subcategories, optional with params category",
+        "operationId": "getWithSubcategories",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Category values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Sort order values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The limit values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page values that optional to be considered for filter",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/categories/{idCategory}": {
       "get": {
         "tags": [
