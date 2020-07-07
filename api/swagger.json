@@ -3,7 +3,7 @@
   "info": {
     "title": "Kairos Shop",
     "description": "API Kairos shop.",
-    "termsOfService": "https://api.kairosshop.xyz/",
+    "termsOfService": "https://staging.kairosshop.xyz/",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
@@ -12,7 +12,7 @@
   },
   "servers": [
     {
-      "url": "https://api.kairosshop.xyz/api"
+      "url": "https://staging.kairosshop.xyz/"
     }
   ],
   "tags": [
@@ -52,9 +52,7 @@
   "paths": {
     "/products": {
       "post": {
-        "tags": [
-          "products"
-        ],
+        "tags": ["products"],
         "summary": "Add a new product to the store",
         "operationId": "createProduct",
         "requestBody": {
@@ -102,9 +100,7 @@
         }
       },
       "get": {
-        "tags": [
-          "products"
-        ],
+        "tags": ["products"],
         "summary": "get all products",
         "description": "get all products, optional with params",
         "operationId": "getProducts",
@@ -200,10 +196,7 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": [
-                  "asc",
-                  "desc"
-                ]
+                "enum": ["asc", "desc"]
               }
             }
           },
@@ -269,9 +262,7 @@
     },
     "/products/{idProduct}": {
       "get": {
-        "tags": [
-          "products"
-        ],
+        "tags": ["products"],
         "summary": "Find product by id",
         "description": "Returns a single product",
         "operationId": "getProduct",
@@ -321,9 +312,7 @@
         }
       },
       "put": {
-        "tags": [
-          "products"
-        ],
+        "tags": ["products"],
         "summary": "Update an existing product",
         "operationId": "updateProduct",
         "parameters": [
@@ -383,9 +372,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "products"
-        ],
+        "tags": ["products"],
         "summary": "Delete product",
         "operationId": "removeProduct",
         "parameters": [
@@ -436,9 +423,7 @@
     },
     "/categories": {
       "post": {
-        "tags": [
-          "categories"
-        ],
+        "tags": ["categories"],
         "summary": "Add a new category to the store",
         "operationId": "createCategory",
         "requestBody": {
@@ -486,15 +471,13 @@
         }
       },
       "get": {
-        "tags": [
-          "categories"
-        ],
+        "tags": ["categories"],
         "summary": "get all categories",
         "description": "get all categories, optional with params category",
         "operationId": "getCategories",
         "parameters": [
           {
-            "name": "category",
+            "name": "title",
             "in": "query",
             "description": "Category values that optional to be considered for filter",
             "required": false,
@@ -504,6 +487,37 @@
               "items": {
                 "type": "string"
               }
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Order category values",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["ASC", "DESC"],
+              "default": "ASC"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page of category values",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit category of page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 15
             }
           }
         ],
@@ -546,9 +560,7 @@
     },
     "/categories/subcategories": {
       "get": {
-        "tags": [
-          "categories"
-        ],
+        "tags": ["categories"],
         "summary": "get all categories with subcategories",
         "description": "get all categories with subcategories, optional with params category",
         "operationId": "getWithSubcategories",
@@ -576,10 +588,7 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": [
-                  "asc",
-                  "desc"
-                ]
+                "enum": ["asc", "desc"]
               }
             }
           },
@@ -645,9 +654,7 @@
     },
     "/categories/{idCategory}": {
       "get": {
-        "tags": [
-          "categories"
-        ],
+        "tags": ["categories"],
         "summary": "Find category by id",
         "description": "Returns a single category",
         "operationId": "getCategory",
@@ -697,9 +704,7 @@
         }
       },
       "put": {
-        "tags": [
-          "categories"
-        ],
+        "tags": ["categories"],
         "summary": "Update an existing category",
         "operationId": "updateCategory",
         "parameters": [
@@ -759,9 +764,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "categories"
-        ],
+        "tags": ["categories"],
         "summary": "Delete category",
         "operationId": "removeCategory",
         "parameters": [
@@ -812,9 +815,7 @@
     },
     "/subcategories": {
       "post": {
-        "tags": [
-          "subcategories"
-        ],
+        "tags": ["subcategories"],
         "summary": "Add a new subcategory to the store",
         "operationId": "createSubcategory",
         "requestBody": {
@@ -864,9 +865,7 @@
     },
     "/subcategories/{idSubcategory}": {
       "put": {
-        "tags": [
-          "subcategories"
-        ],
+        "tags": ["subcategories"],
         "summary": "Update an existing subcategory",
         "operationId": "updateSubcategory",
         "parameters": [
@@ -926,9 +925,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "subcategories"
-        ],
+        "tags": ["subcategories"],
         "summary": "Delete subcategory",
         "operationId": "removeSubcategory",
         "parameters": [
@@ -977,9 +974,7 @@
         }
       },
       "get": {
-        "tags": [
-          "subcategories"
-        ],
+        "tags": ["subcategories"],
         "summary": "Find subcategory by id",
         "description": "Returns a single subcategory",
         "operationId": "getSubcategory",
@@ -1031,9 +1026,7 @@
     },
     "/subcategories/category/{idCategory}": {
       "get": {
-        "tags": [
-          "subcategories"
-        ],
+        "tags": ["subcategories"],
         "summary": "get all subcategories by idCategory",
         "description": "get all subcategories by idCategory, optional with params subcategory",
         "operationId": "getSubcategories",
@@ -1101,9 +1094,7 @@
     },
     "/measures": {
       "get": {
-        "tags": [
-          "measures"
-        ],
+        "tags": ["measures"],
         "summary": "get all measures",
         "description": "get all measures, optional with params measure",
         "operationId": "getMeasures",
@@ -1161,9 +1152,7 @@
     },
     "/measures/{idMeasure}": {
       "get": {
-        "tags": [
-          "measures"
-        ],
+        "tags": ["measures"],
         "summary": "Find measures by id",
         "description": "Returns a single measure",
         "operationId": "getMeasure",
@@ -1215,9 +1204,7 @@
     },
     "/users": {
       "post": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Add a new user to the store",
         "operationId": "createUser",
         "requestBody": {
@@ -1265,9 +1252,7 @@
         }
       },
       "get": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "get all users",
         "description": "get all users, optional with params",
         "operationId": "getUsers",
@@ -1321,11 +1306,7 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": [
-                  "admin",
-                  "customer",
-                  "super market"
-                ]
+                "enum": ["admin", "customer", "super market"]
               }
             }
           },
@@ -1339,10 +1320,7 @@
               "type": "integer",
               "items": {
                 "type": "integer",
-                "enum": [
-                  1,
-                  0
-                ]
+                "enum": [1, 0]
               }
             }
           },
@@ -1356,10 +1334,7 @@
               "type": "integer",
               "items": {
                 "type": "integer",
-                "enum": [
-                  1,
-                  0
-                ]
+                "enum": [1, 0]
               }
             }
           }
@@ -1403,9 +1378,7 @@
     },
     "/users/{idUser}": {
       "get": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Find user by id",
         "description": "Returns a single user",
         "operationId": "getUser",
@@ -1455,9 +1428,7 @@
         }
       },
       "put": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Update an existing user",
         "operationId": "updateUser",
         "parameters": [
@@ -1517,9 +1488,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "users"
-        ],
+        "tags": ["users"],
         "summary": "Delete user",
         "operationId": "removeUser",
         "parameters": [
@@ -1570,9 +1539,7 @@
     },
     "/supermarket": {
       "post": {
-        "tags": [
-          "supermarket"
-        ],
+        "tags": ["supermarket"],
         "summary": "Add a new supermarket to the store",
         "operationId": "createSupermarket",
         "requestBody": {
@@ -1620,9 +1587,7 @@
         }
       },
       "get": {
-        "tags": [
-          "supermarket"
-        ],
+        "tags": ["supermarket"],
         "summary": "get all supermarkets",
         "description": "get all supermarkets, optional with params",
         "operationId": "getSupermarkets",
@@ -1675,10 +1640,7 @@
             "schema": {
               "type": "integer",
               "items": {
-                "enum": [
-                  1,
-                  0
-                ]
+                "enum": [1, 0]
               }
             }
           },
@@ -1692,10 +1654,7 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": [
-                  "asc",
-                  "desc"
-                ]
+                "enum": ["asc", "desc"]
               }
             }
           },
@@ -1761,9 +1720,7 @@
     },
     "/supermarket/{idSupermarket}": {
       "get": {
-        "tags": [
-          "supermarket"
-        ],
+        "tags": ["supermarket"],
         "summary": "Find supermarket by id",
         "description": "Returns a single supermarket",
         "operationId": "getSupermarket",
@@ -1813,9 +1770,7 @@
         }
       },
       "put": {
-        "tags": [
-          "supermarket"
-        ],
+        "tags": ["supermarket"],
         "summary": "Update an existing supermarket",
         "operationId": "updateSupermarket",
         "parameters": [
@@ -1875,9 +1830,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "supermarket"
-        ],
+        "tags": ["supermarket"],
         "summary": "Delete supermarket",
         "operationId": "removeSupermarket",
         "parameters": [
@@ -1928,9 +1881,7 @@
     },
     "/prices": {
       "post": {
-        "tags": [
-          "prices"
-        ],
+        "tags": ["prices"],
         "summary": "Add a new prices to the store",
         "operationId": "createPrice",
         "requestBody": {
@@ -1980,9 +1931,7 @@
     },
     "/prices/{idPrice}": {
       "put": {
-        "tags": [
-          "prices"
-        ],
+        "tags": ["prices"],
         "summary": "Update an existing price",
         "operationId": "updatePrice",
         "parameters": [
@@ -2044,9 +1993,7 @@
     },
     "/prices/supermarket/{idSupermarket}": {
       "get": {
-        "tags": [
-          "prices"
-        ],
+        "tags": ["prices"],
         "summary": "Find prices by id_supermarket",
         "description": "Returns all prices by supermarket",
         "operationId": "getPrices",
@@ -2091,10 +2038,7 @@
             "schema": {
               "type": "integer",
               "items": {
-                "enum": [
-                  1,
-                  0
-                ]
+                "enum": [1, 0]
               }
             }
           },
@@ -2108,10 +2052,7 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": [
-                  "asc",
-                  "desc"
-                ]
+                "enum": ["asc", "desc"]
               }
             }
           },
@@ -2177,9 +2118,7 @@
     },
     "/prices/product/{idProduct}": {
       "get": {
-        "tags": [
-          "prices"
-        ],
+        "tags": ["prices"],
         "summary": "Find prices by id_product",
         "description": "Returns all prices by product",
         "operationId": "getPrice",
@@ -2224,10 +2163,7 @@
             "schema": {
               "type": "integer",
               "items": {
-                "enum": [
-                  1,
-                  0
-                ]
+                "enum": [1, 0]
               }
             }
           },
@@ -2241,10 +2177,7 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": [
-                  "asc",
-                  "desc"
-                ]
+                "enum": ["asc", "desc"]
               }
             }
           },
@@ -2310,9 +2243,7 @@
     },
     "/address": {
       "post": {
-        "tags": [
-          "address"
-        ],
+        "tags": ["address"],
         "summary": "Add a new address to the store",
         "operationId": "createAddress",
         "requestBody": {
@@ -2360,9 +2291,7 @@
         }
       },
       "get": {
-        "tags": [
-          "address"
-        ],
+        "tags": ["address"],
         "summary": "get all address",
         "description": "get all address, optional with params address",
         "operationId": "getAddress",
@@ -2390,10 +2319,7 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": [
-                  "asc",
-                  "desc"
-                ]
+                "enum": ["asc", "desc"]
               }
             }
           },
@@ -2459,9 +2385,7 @@
     },
     "/address/{idAddress}": {
       "get": {
-        "tags": [
-          "address"
-        ],
+        "tags": ["address"],
         "summary": "Find address by id",
         "description": "Returns a single address",
         "operationId": "getById",
@@ -2511,9 +2435,7 @@
         }
       },
       "put": {
-        "tags": [
-          "address"
-        ],
+        "tags": ["address"],
         "summary": "Update an existing address",
         "operationId": "updateAddress",
         "parameters": [
@@ -2573,9 +2495,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "address"
-        ],
+        "tags": ["address"],
         "summary": "Delete address",
         "operationId": "removeAddress",
         "parameters": [
@@ -2774,36 +2694,34 @@
             "uniqueItems": true,
             "readOnly": true
           },
-          "cateory": {
+          "title": {
             "type": "string",
-            "uniqueItems": true
+            "uniqueItems": true,
+            "minimum": 1,
+            "maximum": 30
           },
-          "url_image": {
+          "urlImage": {
             "type": "string"
           },
           "active": {
-            "type": "integer",
-            "format": "int64"
+            "type": "boolean"
           },
-          "create_at": {
+          "createdAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           },
-          "update_at": {
+          "updatedAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           }
         },
-        "required": [
-          "cateory",
-          "url_image"
-        ],
+        "required": ["category", "urlImage"],
         "example": {
-          "cateory": "Milks",
-          "url_image": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
-          "active": 1
+          "category": "Milks",
+          "urlImage": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
+          "active": true
         }
       },
       "Subcategory": {
@@ -2814,41 +2732,37 @@
             "uniqueItems": true,
             "readOnly": true
           },
-          "id_category": {
+          "categoryId": {
             "type": "integer",
             "format": "int64"
           },
-          "subcategory": {
+          "title": {
             "type": "string"
           },
-          "url_image": {
+          "urlImage": {
             "type": "string"
           },
           "active": {
             "type": "integer",
-            "format": "int64"
+            "format": "boolean"
           },
-          "create_at": {
+          "createdAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           },
-          "update_at": {
+          "updatedAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           }
         },
-        "required": [
-          "id_category",
-          "subcategory",
-          "url_image"
-        ],
+        "required": ["categoryId", "title", "urlImage"],
         "example": {
-          "id_category": 2,
-          "subcategory": "Condensed Milk",
-          "url_image": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
-          "active": 1
+          "categoryId": 2,
+          "title": "Condensed Milk",
+          "urlImage": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
+          "active": true
         }
       },
       "Measure": {
@@ -2878,9 +2792,7 @@
             "readOnly": true
           }
         },
-        "required": [
-          "measure"
-        ]
+        "required": ["measure"]
       },
       "AddUser": {
         "type": "object",
@@ -2903,11 +2815,7 @@
           },
           "rol": {
             "type": "string",
-            "enum": [
-              "admin",
-              "customer",
-              "super market"
-            ]
+            "enum": ["admin", "customer", "super market"]
           },
           "password": {
             "type": "string",
@@ -2928,13 +2836,7 @@
             "readOnly": true
           }
         },
-        "required": [
-          "email",
-          "firstName",
-          "lastName",
-          "rol",
-          "password"
-        ],
+        "required": ["email", "firstName", "lastName", "rol", "password"],
         "example": {
           "email": "hola@carlosramirezflores.com",
           "firstName": "Carlos",
@@ -2959,11 +2861,7 @@
           },
           "rol": {
             "type": "string",
-            "enum": [
-              "admin",
-              "customer",
-              "super market"
-            ]
+            "enum": ["admin", "customer", "super market"]
           },
           "url_image": {
             "type": "string"
@@ -3076,12 +2974,7 @@
             "readOnly": true
           }
         },
-        "required": [
-          "id_supermarket",
-          "id_product",
-          "price",
-          "active"
-        ],
+        "required": ["id_supermarket", "id_product", "price", "active"],
         "example": {
           "id_supermarket": 1,
           "id_product": 2,
@@ -3138,11 +3031,7 @@
             "readOnly": true
           }
         },
-        "required": [
-          "address",
-          "latitude",
-          "longitude"
-        ],
+        "required": ["address", "latitude", "longitude"],
         "example": {
           "address": "7089 Weeping Birch Avenue",
           "latitude": -25.4426635,

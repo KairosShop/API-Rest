@@ -6,7 +6,7 @@ const Controller = controller(store);
 
 describe('controller - subcategories', () => {
   test('should return object subcategories', () => {
-    return Controller.getSubcategories({id_category: 3}).then((subcategories) => {
+    return Controller.getSubcategories({categoryId: 3}).then((subcategories) => {
       expect(subcategories[0]).toMatchObject(subcategoriesMock[0]);
     });
   });
@@ -19,9 +19,9 @@ describe('controller - subcategories', () => {
 
   test('should return object subcategory created', () => {
     const createSubcategory = {
-      id_category:1,
-      subcategory:"Huevo",
-      url_image:"https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg",
+      categoryId:1,
+      title:"Huevo",
+      urlImage:"https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg",
       active:1
     }
     return Controller.createSubcategory(createSubcategory).then((subcategory) => {
@@ -31,12 +31,12 @@ describe('controller - subcategories', () => {
   });
   test('should return object subcategory updated', () => {
     const updateSubcategory = {
-      id_category:3,
-      subcategory:"Yogurt",
-      url_image: "https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg"
+      categoryId:3,
+      title:"Yogurt",
+      urlImage: "https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg"
     }
     return Controller.updateSubcategory(updateSubcategory,1).then((subcategory) => {
-      expect(subcategory).toMatchObject({id:1, id_category: 3})
+      expect(subcategory).toMatchObject({id:1, categoryId: 3})
     });
   });
   test('should return object IdSubcategory', () => {

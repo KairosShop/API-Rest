@@ -6,6 +6,8 @@ const products = require('../utils/mocks/products');
 const supermarket =  require('../utils/mocks/supermarket');
 const price =  require('../utils/mocks/prices');
 const address =  require('../utils/mocks/address');
+const dateformat =  require('dateformat');
+const date = dateformat(new Date(), "yyyy-mm-dd h:MM:ss");
 
 const db = {
     categories,
@@ -47,6 +49,7 @@ async function getById(table, id) {
 }
 
 async function create(table, data) {
+    data.create_at= date;
     data.id = 5;
     return data;
 }
