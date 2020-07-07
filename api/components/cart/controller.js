@@ -17,20 +17,20 @@ module.exports = function (injectedStore) {
     return cart || [];
   }
   async function createCart(cartData) {
-    const { id_product, quantity } = cartData;
-    delete cartData.id_product;
+    const { productId, quantity } = cartData;
+    delete cartData.productId;
     delete cartData.quantity;
-    cartData.create_at = date;
+    cartData.createdAt = date;
     cartData.status = 'Stand by';
     const createdCart = await store.create(TABLE, cartData);
 
-    const createdDetail = await store.create(TABLE, {id_product, quantity, id_cart: createdCart.id, create_at: date });
+    const createdDetail = await store.create(TABLE, {productId, quantity, id_cart: createdCart.id, createdAt: date });
 
     return createdDetail ? createdCart : [];
   }
 
   async function updateCart(cartData, id) {
-    cartData.update_at= date;
+    cartData.updatedAt= date;
     const updated = await store.update(TABLE, cartData, id);
     return updated || [];
   }

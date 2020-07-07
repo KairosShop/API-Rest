@@ -21,11 +21,11 @@ describe('controller - products', () => {
     const createProduct = {
       "title":"Six de modelo especial",
       "description":"6 cervezas modelo especial de lata",
-      "url_image":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
+      "urlImage":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
       "quantity": 355,
-      "id_measure": 4,
+      "measureId": 4,
       "id_category": 7,
-      "id_subcategory": 31,
+      "subcategoryId": 31,
       "active":"1"
     }
     return Controller.createProduct(createProduct).then((product) => {
@@ -36,11 +36,11 @@ describe('controller - products', () => {
     const updateProduct = {
       "title":"Six de modelo especial",
       "description":"6 cervezas modelo especial de lata",
-      "url_image":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
+      "urlImage":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
       "quantity": 355,
-      "id_measure": 4,
+      "measureId": 4,
       "id_category": 7,
-      "id_subcategory": 31,
+      "subcategoryId": 31,
       "active":"1"
     }
     return Controller.updateProduct(updateProduct,1).then((product) => {
@@ -49,10 +49,10 @@ describe('controller - products', () => {
         title: expect.any(String),
         description: expect.any(String),
         quantity: expect.any(Number),
-        id_measure: expect.any(Number),
+        measureId: expect.any(Number),
         id_category: expect.any(Number),
-        id_subcategory: expect.any(Number),
-        url_image: expect.any(String),
+        subcategoryId: expect.any(Number),
+        urlImage: expect.any(String),
         active: expect.any(Number),
       });
     });

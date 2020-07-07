@@ -8,12 +8,12 @@ const priceSchema = joi.number().min(1).max(99999999999);
 const numberSchema =  joi.number().integer().min(1);
 
 const createCartSchema = {
-  id_product: productIdSchema.required(),
+  productId: productIdSchema.required(),
   quantity: numberSchema,
-  id_user: cartIdSchema
+  userId: cartIdSchema
 };
 const updateCartSchema = {
-  id_supermarket: supermarketIdSchema,
+  supermarketId: supermarketIdSchema,
   price: priceSchema,
   status: statusSchema,
   quantity: numberSchema,

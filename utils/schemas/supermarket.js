@@ -12,25 +12,25 @@ const activeSchema = joi.number().integer().min(0).max(1);
 const createSupermarketSchema = {
   supermarket: supermarketSchema.required(),
   address: addressSchema.required(),
-  url_logo: urlImageSchema.required(),
+  urlLogo: urlImageSchema.required(),
   latitude: latitudeSchema.required(),
   longitude: longitudeSchema.required(),
-  id_user: idUserSchema.required(),
+  userId: idUserSchema.required(),
   active: activeSchema,
 };
 const updateSupermarketSchema = {
   supermarket: supermarketSchema,
   address: addressSchema,
-  url_logo: urlImageSchema,
+  urlLogo: urlImageSchema,
   latitude: latitudeSchema,
   longitude: longitudeSchema,
-  id_user: idUserSchema,
+  userId: idUserSchema,
   active: activeSchema,
 };
 const filterSchema = {
   supermarket: supermarketSchema,
   address: joi.string().min(2),
-  id_user: idUserSchema,
+  userId: idUserSchema,
   active: activeSchema,
   order: joi.string().min(3).max(4),
   page: joi.number().integer().min(1),

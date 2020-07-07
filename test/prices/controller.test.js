@@ -13,8 +13,8 @@ describe('controller - prices', () => {
 
   test('should return object price created', () => {
     const createPrice = {
-      "id_product":"1",
-      "id_supermarket":"5",
+      "productId":"1",
+      "supermarketId":"5",
       "price":"45.34",
       "active":"1"
     }
@@ -31,8 +31,8 @@ describe('controller - prices', () => {
       expect(price).toMatchObject({
         id: expect.any(Number),
         price: expect.any(Number),
-        id_product: expect.any(Number),
-        id_supermarket: expect.any(Number),
+        productId: expect.any(Number),
+        supermarketId: expect.any(Number),
         active: expect.any(Number),
       });
     });

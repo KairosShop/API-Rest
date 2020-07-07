@@ -33,7 +33,7 @@ async function get(req, res, next) {
   let {
     id = '',
     status= '',
-    id_user = '',
+    userId = '',
     order = 'asc',
     page = '1',
     limit = '15',
@@ -42,7 +42,7 @@ async function get(req, res, next) {
     const carts = await Controller.getCarts({
       id,
       status,
-      id_user,
+      userId,
       order,
       page,
       limit
@@ -65,7 +65,7 @@ async function getById(req, res, next) {
 
 async function createCart(req, res, next) {
   const { body: cart } = req;
-  cart.id_user = 3;
+  cart.userId = 3;
   try {
     const createCart = await Controller.createCart(cart);
     responses.success(req, res, createCart, 201);

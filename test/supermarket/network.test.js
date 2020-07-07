@@ -21,8 +21,8 @@ describe('routes - supermarkets', function () {
             request.get('/api/?active=1').expect(200, done);
         });
 
-        test('should respond with status 200 - search by id_user', function (done) {
-            request.get('/api/?id_user=1').expect(200, done);
+        test('should respond with status 200 - search by userId', function (done) {
+            request.get('/api/?userId=1').expect(200, done);
         });
 
         test('should respond with status 200 - order supermarkets', function (done) {
@@ -43,9 +43,9 @@ describe('routes - supermarkets', function () {
                 "address": "Av México 44 colonia centro jalpa zacatecas",
                 "latitude": "3.7220621",
                 "longitude": "96.8297403",
-                "url_logo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
+                "urlLogo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
                 "active": 1,
-                "id_user": 2
+                "userId": 2
             }
             request.post("/api/").send(createSupermarket).end((err, res) => {
               expect(res.body).toMatchObject({error: false, status: 201, body: {} });
@@ -67,9 +67,9 @@ describe('routes - supermarkets', function () {
                 "address": "Calle arroyo seco 344-a colonia centro zapopan jalisco",
                 "latitude": "3.7220621",
                 "longitude": "96.8297403",
-                "url_logo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
+                "urlLogo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
                 "active": 1,
-                "id_user": 2
+                "userId": 2
             }
             request.put("/api/2").send(updateSupermarket).end((err, res) => {
               expect(res.body).toMatchObject({error:false, status:200, body:{}});

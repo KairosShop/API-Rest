@@ -23,9 +23,9 @@ describe('controller - supermaket', () => {
       "address": "Av México 44 colonia centro jalpa zacatecas",
       "latitude": "3.7220621",
       "longitude": "96.8297403",
-      "url_logo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
+      "urlLogo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
       "active": 1,
-      "id_user": 2
+      "userId": 2
     }
     return Controller.createSupermarket(createSupermarket).then((supermarket) => {
       expect(supermarket).toMatchObject({ id: expect.any(Number) });
@@ -37,9 +37,9 @@ describe('controller - supermaket', () => {
       "address": "Calle arroyo seco 344-a colonia centro zapopan jalisco",
       "latitude": "3.7220621",
       "longitude": "96.8297403",
-      "url_logo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
+      "urlLogo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
       "active": 1,
-      "id_user": 2
+      "userId": 2
     }
     return Controller.updateSupermarket(updateSupermarket,1).then((supermarket) => {
       expect(supermarket).toMatchObject({
@@ -48,9 +48,9 @@ describe('controller - supermaket', () => {
         address: expect.any(String),
         latitude: expect.any(Number),
         longitude: expect.any(Number),
-        url_logo: expect.any(String),
+        urlLogo: expect.any(String),
         active: expect.any(Number),
-        id_user: expect.any(Number),
+        userId: expect.any(Number),
       });
     });
   });

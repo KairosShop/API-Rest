@@ -10,7 +10,7 @@ const createAddressSchema = {
   address: addressSchema.required(),
   latitude: latitudeSchema.required(),
   longitude: longitudeSchema.required(),
-  id_user: idUserSchema,
+  userId: idUserSchema,
 };
 const updateAddressSchema = {
   address: addressSchema,

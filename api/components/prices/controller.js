@@ -14,12 +14,12 @@ module.exports = function (injectedStore) {
   }
 
   async function createPrice(priceData) {
-    priceData.create_at= date;
+    priceData.createdAt= date;
     const created = await store.create(TABLE, priceData);
     return created || [];
   }
   async function updatePrice(priceData, id) {
-    priceData.update_at= date;
+    priceData.updatedAt= date;
     const updated = await store.update(TABLE, priceData, id);
     return updated || [];
   }

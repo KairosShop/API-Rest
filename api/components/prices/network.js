@@ -43,8 +43,8 @@ async function get(req, res, next) {
   let {
     active = '',
     price = '',
-    id_product = '',
-    id_supermarket = '',
+    productId = '',
+    supermarketId = '',
     order = 'asc',
     page = '1',
     limit = '20',
@@ -52,15 +52,15 @@ async function get(req, res, next) {
 
   const { idProduct, idSupermarket } = req.params;
 
-  id_product = idProduct ? idProduct: id_product;
-  id_supermarket = idSupermarket ? idSupermarket: id_supermarket;
+  productId = idProduct ? idProduct: productId;
+  supermarketId = idSupermarket ? idSupermarket: supermarketId;
 
   try {
     const prices = await Controller.getPrices({
       active,
       price,
-      id_product,
-      id_supermarket,
+      productId,
+      supermarketId,
       order,
       page,
       limit,

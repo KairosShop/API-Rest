@@ -66,7 +66,7 @@ describe('routes - users', function () {
                 "firstName": "Carlos",
                 "lastName": "Ramírez",
                 "rol":"customer",
-                "url_image":"https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
+                "urlImage":"https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
                 "active": 0
             }
             request.put("/api/2").send(updateUser).end((err, res) => {

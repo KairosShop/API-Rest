@@ -32,7 +32,7 @@ router.delete(
 async function get(req, res, next) {
   let {
     address = '',
-    id_user = '3',
+    userId = '3',
     order = 'asc',
     page = '1',
     limit = '15',
@@ -40,7 +40,7 @@ async function get(req, res, next) {
   try {
     const resultAddress = await Controller.getAddress({
       address,
-      id_user,
+      userId,
       order,
       page,
       limit
@@ -53,9 +53,9 @@ async function get(req, res, next) {
 
 async function getById(req, res, next) {
   const { idAddress: id } = req.params;
-  const id_user = 3;
+  const userId = 3;
   try {
-    const address = await Controller.getAddress({ id, id_user });
+    const address = await Controller.getAddress({ id, userId });
     responses.success(req, res, address[0], 200);
   } catch (error) {
     next(error);
@@ -64,7 +64,7 @@ async function getById(req, res, next) {
 
 async function createAddress(req, res, next) {
   const { body: address } = req;
-  address.id_user = 3;
+  address.userId = 3;
   try {
     const createdAddress = await Controller.createAddress(address);
     responses.success(req, res, createdAddress, 201);

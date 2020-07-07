@@ -35,7 +35,7 @@ describe('controller - users', () => {
         "firstName": "Carlos",
         "lastName": "Ramírez",
         "rol":"customer",
-        "url_image":"https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
+        "urlImage":"https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
         "active": 0
     }
     return Controller.updateUser(updateUser,1).then((user) => {
@@ -45,7 +45,7 @@ describe('controller - users', () => {
         firstName: expect.any(String),
         lastName: expect.any(String),
         rol: expect.any(String),
-        url_image: expect.any(String),
+        urlImage: expect.any(String),
         active: expect.any(Number),
       });
     });

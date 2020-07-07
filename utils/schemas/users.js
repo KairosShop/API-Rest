@@ -18,7 +18,7 @@ const createUserSchema = {
   password: passwordSchema.required()
 };
 const updateUserSchema = {
-  url_image: urlImageSchema,
+  urlImage: urlImageSchema,
   email: emailSchema,
   firstName: firstNameSchema,
   lastName: lastNameSchema,

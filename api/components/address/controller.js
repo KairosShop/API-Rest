@@ -13,13 +13,13 @@ module.exports = function (injectedStore) {
   }
 
   async function createAddress(addressData) {
-    addressData.create_at= date;
+    addressData.createdAt= date;
     const created = await store.create(TABLE, addressData);
     return created || [];
   }
 
   async function updateAddress(addressData, id) {
-    addressData.update_at= date;
+    addressData.updatedAt= date;
     const updated = await store.update(TABLE, addressData, id);
     return updated || [];
   }
