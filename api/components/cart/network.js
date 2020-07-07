@@ -37,6 +37,7 @@ async function get(req, res, next) {
     order = 'asc',
     page = '1',
     limit = '15',
+    all = false,
   } = req.query;
   try {
     const carts = await Controller.getCarts({
@@ -45,7 +46,8 @@ async function get(req, res, next) {
       userId,
       order,
       page,
-      limit
+      limit,
+      all
     });
     responses.success(req, res, carts, 200);
   } catch (error) {

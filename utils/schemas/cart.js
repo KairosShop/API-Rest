@@ -16,6 +16,7 @@ const createCartSchema = {
   quantity: numberSchema
 };
 const updateCartSchema = {
+  productId: idSchema.required(),
   supermarketId: idSchema,
   price: priceSchema,
   status: statusSchema,

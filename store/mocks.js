@@ -22,10 +22,11 @@ const db = {
 
 async function getAll(table, filter={}) {
     let data = db[table];
-    let { order, limit, page } = filter;
+    let { order, limit, page, all } = filter;
     delete filter.order;
     delete filter.limit;
     delete filter.page;
+    delete filter.all;
     if ( Object.keys(filter).length ) {
         Object.entries(filter).forEach(([key, value]) =>{
             if(value){
@@ -36,7 +37,7 @@ async function getAll(table, filter={}) {
     if( order ) {
         data = order === 'asc' ? data.sort() : data.reverse();
     }
-    if( limit ) {
+    if( limit && !all ) {
         let init = limit * --page;
         limit = init ? Number(init) + Number(limit) : limit;
         data = data.length >= Number(limit) ? data.slice(init, limit) : data;
@@ -49,8 +50,8 @@ async function getById(table, id) {
 }
 
 async function create(table, data) {
-    data.id = 5;
-    return data;
+    await getAll(table, data);
+    return { id: 1 };
 }
 
 async function update(table, data, Id) {
