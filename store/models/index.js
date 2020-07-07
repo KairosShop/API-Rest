@@ -16,6 +16,7 @@ let sequelize = new Sequelize(
     host: config.host,
     dialect: config.dialect,
     operatorsAliases: 0,
+    logging: config.logging
   }
 );
 

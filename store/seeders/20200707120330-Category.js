@@ -34,12 +34,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          title: 'Hogar',
-          active: true,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
           title: 'Carnes, aves y peces',
           active: true,
           createdAt: new Date(),
@@ -65,6 +59,12 @@ module.exports = {
         },
         {
           title: 'Mascotas',
+          active: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          title: 'Hogar',
           active: true,
           createdAt: new Date(),
           updatedAt: new Date(),

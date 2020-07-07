@@ -74,13 +74,13 @@ async function getById(TABLE, id) {
       [and]: [{ deleted: false }, { active: true }],
     };
     return models.Category.findOne({
-      where: { [Op.and]: [{ id }, { deleted: false }] },
+      where: whereFilter,
       include: [
         {
           model: models.Subcategory,
           as: 'subcategories',
           where: filterSubcategories,
-          required:false
+          required: false,
         },
       ],
     });
@@ -92,6 +92,24 @@ async function getById(TABLE, id) {
     return models.Measure.findOne({
       where: whereFilter,
     });
+  } else if (TABLE == 'products') {
+    return models.Product.findOne({
+      where: whereFilter,
+      include: [
+        {
+          model: models.Subcategory,
+          as: 'subcategory',
+        },
+        {
+          model: models.Measure,
+          as: 'measure',
+        },
+        {
+          model: models.Category,
+          as: 'category',
+        },
+      ],
+    });
   }
 }
 
@@ -100,32 +118,30 @@ async function create(TABLE, data) {
     return models.Category.create(data);
   } else if (TABLE === 'subcategories') {
     return models.Subcategory.create(data);
+  } else if (TABLE === 'products') {
+    return models.Product.create(data);
   }
 }
 
 async function update(TABLE, data, id) {
+  const whereFilter = { [Op.and]: [{ id }, { deleted: false }] };
   if (TABLE == 'categories') {
-    return models.Category.update(data, {
-      where: { [Op.and]: [{ id }, { deleted: false }] },
-    });
+    return models.Category.update(data, { where: whereFilter });
   } else if (TABLE === 'subcategories') {
-    return models.Subcategory.update(data, {
-      where: { [Op.and]: [{ id }, { deleted: false }] },
-    });
+    return models.Subcategory.update(data, { where: whereFilter });
+  } else if (TABLE === 'products') {
+    return models.Product.update(data, { where: whereFilter });
   }
 }
 
 async function remove(TABLE, id) {
+  const updateData = { deleted: true, active: false };
   if (TABLE == 'categories') {
-    return models.Category.update(
-      { deleted: true, active: false },
-      { where: { id } }
-    );
+    return models.Category.update(updateData, { where: { id } });
   } else if (TABLE === 'subcategories') {
-    return models.Subcategory.update(
-      { deleted: true, active: false },
-      { where: { id } }
-    );
+    return models.Subcategory.update(updateData, { where: { id } });
+  } else if (TABLE === 'products') {
+    return models.Product.update(updateData, { where: { id } });
   }
 }
 
