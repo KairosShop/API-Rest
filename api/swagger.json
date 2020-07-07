@@ -213,8 +213,8 @@
               "items": {
                 "type": "string",
                 "enum": [
-                  "asc",
-                  "desc"
+                  "ASC",
+                  "DESC"
                 ]
               }
             }
@@ -623,8 +623,8 @@
               "items": {
                 "type": "string",
                 "enum": [
-                  "asc",
-                  "desc"
+                  "ASC",
+                  "DESC"
                 ]
               }
             }
@@ -1733,8 +1733,8 @@
               "items": {
                 "type": "string",
                 "enum": [
-                  "asc",
-                  "desc"
+                  "ASC",
+                  "DESC"
                 ]
               }
             }
@@ -2143,8 +2143,8 @@
               "items": {
                 "type": "string",
                 "enum": [
-                  "asc",
-                  "desc"
+                  "ASC",
+                  "DESC"
                 ]
               }
             }
@@ -2270,8 +2270,8 @@
               "items": {
                 "type": "string",
                 "enum": [
-                  "asc",
-                  "desc"
+                  "ASC",
+                  "DESC"
                 ]
               }
             }
@@ -2419,8 +2419,8 @@
               "items": {
                 "type": "string",
                 "enum": [
-                  "asc",
-                  "desc"
+                  "ASC",
+                  "DESC"
                 ]
               }
             }
