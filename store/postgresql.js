@@ -56,8 +56,19 @@ async function getAll(TABLE, filter) {
 
 async function getById(TABLE, id) {
   if (TABLE == 'categories') {
+    let filterSubcategories = {
+      [and]: [{ deleted: false }, { active: true }],
+    };
     return models.Category.findOne({
       where: { [Op.and]: [{ id }, { deleted: false }] },
+      include: [
+        {
+          model: models.Subcategory,
+          as: 'subcategories',
+          where: filterSubcategories,
+          required:false
+        },
+      ],
     });
   } else if (TABLE === 'subcategories') {
     return models.Subcategory.findOne({
