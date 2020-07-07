@@ -6,5 +6,13 @@ env_variables:
 env_variables:
     PORT: 8080
     CORS: "*"
+    NODE_ENV: production
     SENTRY_DNS: "<% SENTRY_DNS %>"
     SENTRY_ID: <% SENTRY_ID %>
+    DB_DIALECT: <% DB_DIALECT %>
+    DB_HOST: <% DB_HOST %>
+    DB_NAME: <% DB_NAME %>
+    DB_NAME_STAGING: <% DB_NAME_STAGING %>
+    DB_NAME_TEST: <% DB_NAME_TEST %>
+    DB_PASSWORD: <% DB_PASSWORD %>
+    DB_USER: <% DB_USER %>
