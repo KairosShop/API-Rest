@@ -53,8 +53,9 @@ async function create(table, data) {
     return data;
 }
 
-async function update(table, data, id) {
-    return getById(table, id)
+async function update(table, data, Id) {
+    const { id } = await getById(table, Id);
+    return { id };
 }
 
 async function remove(table, Id) {

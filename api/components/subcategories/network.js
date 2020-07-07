@@ -67,10 +67,10 @@ async function createSubcategory(req, res, next) {
 
 async function updateSubcategory(req, res, next) {
   const { idSubcategory } = req.params;
-  const { body: category } = req;
+  const { body: subcategoryData } = req;
   try {
     const subcategory = await Controller.updateSubcategory(
-      category,
+      subcategoryData,
       idSubcategory
     );
     responses.success(req, res, subcategory, 200);

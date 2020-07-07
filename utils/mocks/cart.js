@@ -1,4 +1,4 @@
-const categories = [
+const cart = [
   {
     id: 1,
     id_user: 4,
@@ -540,4 +540,4 @@ const categories = [
     ],
   },
 ];
-module.exports = categories;
+module.exports = cart;

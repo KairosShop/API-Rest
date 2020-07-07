@@ -17,27 +17,10 @@ describe('controller - categories', () => {
     });
   });
 
-  test('should return object category with subcategories', () => {
-    return Controller.getWithSubcategories().then((categoriesWithSubcategories) => {
-      expect(categoriesWithSubcategories[0]).toMatchObject({
-        id: expect.any(Number),
-        title: expect.any(String),
-        url_image: expect.any(String),
-        subcategories: expect.any(Array)
-      });
-      expect(categoriesWithSubcategories[0].subcategories[0]).toMatchObject({
-        id: expect.any(Number),
-        id_category: expect.any(Number),
-        subcategory: expect.any(String),
-        url_image: expect.any(String)
-      });
-    });
-  });
-
   test('should return object category created', () => {
     const createCategory = {
       title: 'Limpieza',
-      url_image:
+      urlImage:
         'https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg',
       active: 1,
     };
@@ -48,7 +31,7 @@ describe('controller - categories', () => {
   test('should return object category updated', () => {
     const updateCategory = {
       title: 'Lacteos',
-      url_image:
+      urlImage:
         'https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg',
     };
     return Controller.updateCategory(updateCategory, 1).then((category) => {
