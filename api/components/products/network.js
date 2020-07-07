@@ -34,7 +34,7 @@ async function get(req, res, next) {
   let {
     title = '',
     description = '',
-    id_category = '',
+    categoryId = '',
     subcategoryId = '',
     quantity = '',
     measureId = '',
@@ -47,7 +47,7 @@ async function get(req, res, next) {
     const products = await Controller.getProducts({
       title,
       description,
-      id_category,
+      categoryId,
       subcategoryId,
       quantity,
       measureId,

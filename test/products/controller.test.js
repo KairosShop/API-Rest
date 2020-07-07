@@ -24,9 +24,9 @@ describe('controller - products', () => {
       "urlImage":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
       "quantity": 355,
       "measureId": 4,
-      "id_category": 7,
+      "categoryId": 7,
       "subcategoryId": 31,
-      "active":"1"
+      "active": true
     }
     return Controller.createProduct(createProduct).then((product) => {
       expect(product).toMatchObject({ id: expect.any(Number) });
@@ -39,9 +39,9 @@ describe('controller - products', () => {
       "urlImage":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
       "quantity": 355,
       "measureId": 4,
-      "id_category": 7,
+      "categoryId": 7,
       "subcategoryId": 31,
-      "active":"1"
+      "active": true
     }
     return Controller.updateProduct(updateProduct,1).then((product) => {
       expect(product).toMatchObject({
@@ -50,7 +50,7 @@ describe('controller - products', () => {
         description: expect.any(String),
         quantity: expect.any(Number),
         measureId: expect.any(Number),
-        id_category: expect.any(Number),
+        categoryId: expect.any(Number),
         subcategoryId: expect.any(Number),
         urlImage: expect.any(String),
         active: expect.any(Number),

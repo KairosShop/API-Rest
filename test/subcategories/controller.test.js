@@ -22,7 +22,7 @@ describe('controller - subcategories', () => {
       categoryId:1,
       title:"Huevo",
       urlImage:"https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg",
-      active:1
+      active: true
     }
     return Controller.createSubcategory(createSubcategory).then((subcategory) => {
       expect(subcategory).toMatchObject(createSubcategory);

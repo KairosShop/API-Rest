@@ -22,10 +22,19 @@ describe('controller - categories', () => {
       title: 'Limpieza',
       urlImage:
         'https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg',
-      active: 1,
+      active: true,
     };
     return Controller.createCategory(createCategory).then((category) => {
-      expect(category).toMatchObject(createCategory);
+      expect(category).toMatchObject({
+        id: expect.any(Number),
+        title: expect.any(String),
+        urlImage: expect.any(String),
+        active: expect.any(Boolean),
+        userId: expect.any(Number),
+        createdAt: expect.any(String),
+        updatedAt: expect.any(String),
+        deleted: expect.any(Boolean)
+      });
     });
   });
   test('should return object category updated', () => {
@@ -40,7 +49,7 @@ describe('controller - categories', () => {
   });
   test('should return object IdCategory', () => {
     return Controller.removeCategory(3).then((category) => {
-      expect(category.id).toBe(3);
+      expect(typeof category.id).toBe('number');
     });
   });
 });

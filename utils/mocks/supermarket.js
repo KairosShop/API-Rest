@@ -6,7 +6,7 @@ const supermarket = [
     latitude: 45.2220415,
     longitude: 14.6312221,
     urlLogo: 'http://dummyimage.com/230x204.bmp/5fa2dd/ffffff',
-    active: 1,
+    active: true,
     userId: 4,
   },
   {
@@ -16,7 +16,7 @@ const supermarket = [
     latitude: -6.9918507,
     longitude: 106.5878723,
     urlLogo: 'http://dummyimage.com/209x125.jpg/ff4444/ffffff',
-    active: 1,
+    active: true,
     userId: 3,
   },
   {
@@ -26,7 +26,7 @@ const supermarket = [
     latitude: 49.665033,
     longitude: 30.9894691,
     urlLogo: 'http://dummyimage.com/229x104.png/dddddd/000000',
-    active: 1,
+    active: true,
     userId: 3,
   },
   {
@@ -36,7 +36,7 @@ const supermarket = [
     latitude: 3.7220621,
     longitude: 96.8297403,
     urlLogo: 'http://dummyimage.com/246x208.png/ff4444/ffffff',
-    active: 1,
+    active: true,
     userId: 2,
   },
   {
@@ -46,7 +46,7 @@ const supermarket = [
     latitude: 6.6101493,
     longitude: 0.4785495,
     urlLogo: 'http://dummyimage.com/118x135.png/cc0000/ffffff',
-    active: 1,
+    active: true,
     userId: 2,
   },
   {
@@ -56,7 +56,7 @@ const supermarket = [
     latitude: -25.4426635,
     longitude: -49.0628847,
     urlLogo: 'http://dummyimage.com/105x216.bmp/ff4444/ffffff',
-    active: 1,
+    active: true,
     userId: 2,
   },
   {
@@ -66,7 +66,7 @@ const supermarket = [
     latitude: 36.977145,
     longitude: 121.87093,
     urlLogo: 'http://dummyimage.com/197x216.bmp/cc0000/ffffff',
-    active: 1,
+    active: true,
     userId: 1,
   },
 ];

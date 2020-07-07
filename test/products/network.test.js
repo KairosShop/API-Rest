@@ -17,8 +17,8 @@ describe('routes - products', function () {
             request.get('/api/?description=Squirt el auténtico quitased sabor toronja, con más de 50 años en el mercado mexicano.').expect(200, done);
         });
 
-        test('should respond with status 200 - search by id_category', function (done) {
-            request.get('/api/?id_category=6').expect(200, done);
+        test('should respond with status 200 - search by categoryId', function (done) {
+            request.get('/api/?categoryId=6').expect(200, done);
         });
 
         test('should respond with status 200 - search by subcategoryId', function (done) {
@@ -34,7 +34,7 @@ describe('routes - products', function () {
         });
 
         test('should respond with status 200 - search by active', function (done) {
-            request.get('/api/?active=1').expect(200, done);
+            request.get('/api/?active=true').expect(200, done);
         });
 
         test('should respond with status 200 - order products', function (done) {
@@ -56,9 +56,8 @@ describe('routes - products', function () {
                 "urlImage":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
                 "quantity": 355,
                 "measureId": 4,
-                "id_category": 7,
+                "categoryId": 7,
                 "subcategoryId": 31,
-                "active":"1"
             }
             request.post("/api/").send(createProduct).end((err, res) => {
               expect(res.body).toMatchObject({error: false, status: 201, body: {} });
@@ -81,9 +80,9 @@ describe('routes - products', function () {
                 "urlImage":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
                 "quantity": 600,
                 "measureId": 4,
-                "id_category": 7,
+                "categoryId": 7,
                 "subcategoryId": 31,
-                "active":"0"
+                "active":false
             }
             request.put("/api/2").send(updateProduct).end((err, res) => {
               expect(res.body).toMatchObject({error:false, status:200, body:{}});
