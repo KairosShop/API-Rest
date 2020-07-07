@@ -4,6 +4,7 @@ const {
   orderSchema,
   pageSchema,
   limitSchema,
+  allSchema,
 } = require('./general');
 
 let statusSchema = joi.string().min(5);
@@ -26,6 +27,7 @@ const filterSchema = {
   order: orderSchema,
   page: pageSchema,
   limit: limitSchema,
+  all: allSchema,
 };
 
 module.exports = {

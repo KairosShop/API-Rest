@@ -6,6 +6,7 @@ const urlImageSchema = joi.string().uri().trim();
 const pageSchema = joi.number().integer().min(1);
 const limitSchema = joi.number().integer().min(1);
 const activeSchema = joi.boolean();
+const allSchema = joi.boolean();
 
 module.exports = {
   idSchema,
@@ -13,5 +14,6 @@ module.exports = {
   urlImageSchema,
   pageSchema,
   limitSchema,
-  activeSchema
+  activeSchema,
+  allSchema
 };

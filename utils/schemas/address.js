@@ -1,7 +1,6 @@
 const joi = require('@hapi/joi');
-const { orderSchema, activeSchema, limitSchema } = require('./general');
+const { idSchema, orderSchema, activeSchema, limitSchema, allSchema } = require('./general');
 
-const addressIdSchema = joi.number().integer().min(1).max(99999999999);
 const addressSchema = joi.string().min(5);
 const latitudeSchema = joi
   .string()
@@ -25,9 +24,10 @@ const filterSchema = {
   order: orderSchema,
   page: activeSchema,
   limit: limitSchema,
+  all: allSchema,
 };
 module.exports = {
-  addressIdSchema,
+  addressIdSchema: idSchema.required(),
   createAddressSchema,
   updateAddressSchema,
   filterSchema,
