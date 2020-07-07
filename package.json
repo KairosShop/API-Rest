@@ -7,7 +7,7 @@
     "dev": "DEBUG=app:* nodemon api/index",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "start": "NODE_ENV=production node api/index.js",
+    "start": "node api/index.js",
     "migrate": "npx sequelize-cli db:migrate",
     "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
     "test": "cross-env NODE_ENV=test jest --coverage --testTimeout=10000",
