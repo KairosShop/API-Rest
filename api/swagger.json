@@ -132,7 +132,7 @@
             }
           },
           {
-            "name": "id_category",
+            "name": "categoryId",
             "in": "query",
             "description": "The id_category values that optional to be considered for filter",
             "required": false,
@@ -143,7 +143,7 @@
             }
           },
           {
-            "name": "id_subcategory",
+            "name": "subcategoryId",
             "in": "query",
             "description": "The id_subcategory values that optional to be considered for filter",
             "required": false,
@@ -165,7 +165,7 @@
             }
           },
           {
-            "name": "id_measure",
+            "name": "measureId",
             "in": "query",
             "description": "The id_measure values that optional to be considered for filter",
             "required": false,

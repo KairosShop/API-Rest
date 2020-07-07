@@ -64,6 +64,40 @@ async function getAll(TABLE, filter) {
       where: whereFilter,
       order: orderFilter,
     });
+  } else if (TABLE == 'products') {
+    let newFilter = {
+      [and]: [{ deleted: false }],
+    };
+
+    let { title, all, order, page, limit, categoryId } = filter;
+
+    if (!all) {
+      newFilter[and] = [{ active: true }, ...newFilter[and]];
+    }
+
+    if (title) {
+      newFilter[and] = [{ title }, ...newFilter[and]];
+    }
+
+    if (categoryId) {
+      newFilter[and] = [{ categoryId }, ...newFilter[and]];
+    }
+
+    const orderFilter = [['title', order]];
+    const offset = (page - 1) * limit;
+
+    return models.Product.findAll({
+      where: newFilter,
+      order: orderFilter,
+      offset,
+      limit,
+      include: [
+        {
+          model: models.Measure,
+          as: 'measure',
+        },
+      ],
+    });
   }
 }
 
