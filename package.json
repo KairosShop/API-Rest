@@ -72,9 +72,9 @@
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/test/",
-      "/store/migrations",
-      "/store/models",
-      "/store/seeders"
+      "/store/migrations/",
+      "/store/models/",
+      "/store/seeders/"
     ]
   }
 }
