@@ -18,7 +18,7 @@ describe('routes - supermarkets', function () {
         });
 
         test('should respond with status 200 - search by active', function (done) {
-            request.get('/api/?active=1').expect(200, done);
+            request.get('/api/?active=true').expect(200, done);
         });
 
         test('should respond with status 200 - search by userId', function (done) {
@@ -44,8 +44,7 @@ describe('routes - supermarkets', function () {
                 "latitude": "3.7220621",
                 "longitude": "96.8297403",
                 "urlLogo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
-                "active": 1,
-                "userId": 2
+                "active": true
             }
             request.post("/api/").send(createSupermarket).end((err, res) => {
               expect(res.body).toMatchObject({error: false, status: 201, body: {} });
@@ -68,18 +67,17 @@ describe('routes - supermarkets', function () {
                 "latitude": "3.7220621",
                 "longitude": "96.8297403",
                 "urlLogo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
-                "active": 1,
-                "userId": 2
+                "active": true,
             }
             request.put("/api/2").send(updateSupermarket).end((err, res) => {
-              expect(res.body).toMatchObject({error:false, status:200, body:{}});
+              expect(res.body).toMatchObject({error:false, status:200, body:[1]});
               done();
             });
         });
 
         it("should respond with status 200 - disabled supermarket", function(done) {
             const disabledSupermarket = {
-                "active": 0,
+                "active": false,
             }
             request.put("/api/3").send(disabledSupermarket).end((err, res) => {
                 expect(res.statusCode).toBe(200);

@@ -30,7 +30,7 @@ describe('routes - users', function () {
         });
 
         test('should respond with status 200 - search by active', function (done) {
-            request.get('/api/?active=1').expect(200, done);
+            request.get('/api/?active=true').expect(200, done);
         });
 
         test('should respond with status 200 - get user by id', function (done) {
@@ -67,10 +67,10 @@ describe('routes - users', function () {
                 "lastName": "Ramírez",
                 "rol":"customer",
                 "urlImage":"https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
-                "active": 0
+                "active": false
             }
             request.put("/api/2").send(updateUser).end((err, res) => {
-              expect(res.body).toMatchObject({error:false, status:200, body:{}});
+              expect(res.body).toMatchObject({error:false, status:200, body:[1]});
               done();
             });
         });

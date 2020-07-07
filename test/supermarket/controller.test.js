@@ -24,7 +24,7 @@ describe('controller - supermaket', () => {
       "latitude": "3.7220621",
       "longitude": "96.8297403",
       "urlLogo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
-      "active": 1,
+      "active": true,
       "userId": 2
     }
     return Controller.createSupermarket(createSupermarket).then((supermarket) => {
@@ -38,20 +38,11 @@ describe('controller - supermaket', () => {
       "latitude": "3.7220621",
       "longitude": "96.8297403",
       "urlLogo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
-      "active": 1,
+      "active": true,
       "userId": 2
     }
     return Controller.updateSupermarket(updateSupermarket,1).then((supermarket) => {
-      expect(supermarket).toMatchObject({
-        id: expect.any(Number),
-        supermarket: expect.any(String),
-        address: expect.any(String),
-        latitude: expect.any(Number),
-        longitude: expect.any(Number),
-        urlLogo: expect.any(String),
-        active: expect.any(Number),
-        userId: expect.any(Number),
-      });
+      expect(supermarket[0]).toBe(1);
     });
   });
   test('should return object IdSupermarket', () => {

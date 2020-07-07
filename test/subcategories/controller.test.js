@@ -21,11 +21,15 @@ describe('controller - subcategories', () => {
     const createSubcategory = {
       categoryId:1,
       title:"Huevo",
-      urlImage:"https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg",
-      active: true
+      urlImage:"https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg"
     }
     return Controller.createSubcategory(createSubcategory).then((subcategory) => {
-      expect(subcategory).toMatchObject(createSubcategory);
+      expect(subcategory).toMatchObject({
+        id: expect.any(Number),
+        categoryId: expect.any(Number),
+        title: expect.any(String),
+        urlImage: expect.any(String)
+      });
       expect(subcategory).toHaveProperty('id');
     });
   });
@@ -36,7 +40,7 @@ describe('controller - subcategories', () => {
       urlImage: "https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg"
     }
     return Controller.updateSubcategory(updateSubcategory,1).then((subcategory) => {
-      expect(subcategory).toMatchObject({id:1, categoryId: 3})
+      expect(subcategory[0]).toBe(1);
     });
   });
   test('should return object IdSubcategory', () => {

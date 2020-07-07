@@ -12,8 +12,8 @@ describe('controller - cart', () => {
   });
 
   test('should return object one cart', () => {
-    return Controller.getCart({ id: 1 }).then((cart) => {
-      expect(cart[0]).toStrictEqual(cartMock[0]);
+    return Controller.getCart(1).then((cart) => {
+      expect(cart).toStrictEqual(cartMock[0]);
     });
   });
 
@@ -32,7 +32,7 @@ describe('controller - cart', () => {
       quantity: "19",
     }
     return Controller.updateCart(updateCart, 1).then((cart) => {
-      expect(cart).toMatchObject({ id: 1 });
+      expect(cart[0]).toBe(1);
     });
   });
   test('should return object Idcart', () => {

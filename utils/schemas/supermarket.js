@@ -14,7 +14,7 @@ const latitudeSchema = joi.string().min(8).max(13).pattern(new RegExp('^(-?\\d+(
 const longitudeSchema = latitudeSchema;
 
 const createSupermarketSchema = {
-  supermarket: idSchema.required(),
+  supermarket: supermarketSchema.required(),
   address: addressSchema.required(),
   urlLogo: urlImageSchema.required(),
   latitude: latitudeSchema.required(),
@@ -22,7 +22,7 @@ const createSupermarketSchema = {
   active: activeSchema,
 };
 const updateSupermarketSchema = {
-  supermarket: idSchema,
+  supermarket: supermarketSchema,
   address: addressSchema,
   urlLogo: urlImageSchema,
   latitude: latitudeSchema,
@@ -32,6 +32,7 @@ const updateSupermarketSchema = {
 const filterSchema = {
   supermarket: supermarketSchema,
   address: joi.string().min(2),
+  userId: idSchema,
   active: activeSchema,
   order: orderSchema,
   page: pageSchema,

@@ -36,18 +36,10 @@ describe('controller - users', () => {
         "lastName": "Ramírez",
         "rol":"customer",
         "urlImage":"https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
-        "active": 0
+        "active": false
     }
     return Controller.updateUser(updateUser,1).then((user) => {
-      expect(user).toMatchObject({
-        id: expect.any(Number),
-        email: expect.any(String),
-        firstName: expect.any(String),
-        lastName: expect.any(String),
-        rol: expect.any(String),
-        urlImage: expect.any(String),
-        active: expect.any(Number),
-      });
+      expect(user[0]).toBe(1);
     });
   });
   test('should return object IdUser', () => {

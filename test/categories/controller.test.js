@@ -30,7 +30,6 @@ describe('controller - categories', () => {
         title: expect.any(String),
         urlImage: expect.any(String),
         active: expect.any(Boolean),
-        userId: expect.any(Number),
         createdAt: expect.any(String),
         updatedAt: expect.any(String),
         deleted: expect.any(Boolean)
@@ -44,7 +43,7 @@ describe('controller - categories', () => {
         'https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg',
     };
     return Controller.updateCategory(updateCategory, 1).then((category) => {
-      expect(category).toMatchObject({ id: 1 });
+      expect(category[0]).toBe(1);
     });
   });
   test('should return object IdCategory', () => {

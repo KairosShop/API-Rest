@@ -1,5 +1,5 @@
 const joi = require('@hapi/joi');
-const { idSchema, orderSchema, activeSchema, limitSchema, allSchema } = require('./general');
+const { idSchema, orderSchema, limitSchema, allSchema, pageSchema } = require('./general');
 
 const addressSchema = joi.string().min(5);
 const latitudeSchema = joi
@@ -22,7 +22,7 @@ const updateAddressSchema = {
 const filterSchema = {
   address: joi.string().min(2),
   order: orderSchema,
-  page: activeSchema,
+  page: pageSchema,
   limit: limitSchema,
   all: allSchema,
 };

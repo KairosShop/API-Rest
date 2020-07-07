@@ -56,7 +56,7 @@ describe('routes - address', function () {
                 "address": "2s Nelson Street",
             }
             request.put("/api/2").send(updateAddress).end((err, res) => {
-              expect(res.body).toMatchObject({error:false, status:200, body:{}});
+              expect(res.body).toMatchObject({error:false, status:200, body:[1]});
               done();
             });
         });

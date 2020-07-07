@@ -50,13 +50,13 @@ async function getById(table, id) {
 }
 
 async function create(table, data) {
-    await getAll(table, data);
-    return { id: 1 };
+    data = await getById(table, 1);
+    return data;
 }
 
 async function update(table, data, Id) {
     const { id } = await getById(table, Id);
-    return { id };
+    return id ? [1] : [0];
 }
 
 async function remove(table, Id) {

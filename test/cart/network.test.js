@@ -34,7 +34,7 @@ describe('routes - cart', function () {
                 quantity: "9",
             }
             request.post("/api/").send(createcart).end((err, res) => {
-              expect(res.body).toMatchObject({error: false, status: 201, body: {} });
+              expect(res.body).toMatchObject({error: false, status: 201, body: expect.any(Object) });
               done();
             });
         });

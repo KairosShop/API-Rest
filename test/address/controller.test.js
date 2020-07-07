@@ -32,7 +32,7 @@ describe('controller - address', () => {
       address: "1794 Nelson Street"
     }
     return Controller.updateAddress(updateAddress, 1).then((address) => {
-      expect(address).toMatchObject({ id: 1 });
+      expect(address[0]).toBe(1);
     });
   });
   test('should return object IdAddress', () => {

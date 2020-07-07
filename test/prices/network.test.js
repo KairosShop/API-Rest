@@ -99,7 +99,7 @@ describe('routes - prices', function () {
                 "price":"45.34",
             }
             request.put("/api/2").send(updatePrice).end((err, res) => {
-              expect(res.body).toMatchObject({error:false, status:200, body:{}});
+              expect(res.body).toMatchObject({error:false, status:200, body:[1]});
               done();
             });
         });

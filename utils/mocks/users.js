@@ -6,7 +6,7 @@ const users = [{
   "lastName": "Birtwistle",
   "rol": "admin",
   "verified": 0,
-  "active": 1
+  "active": true
 }, {
   "id": 2,
   "urlImage": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
@@ -15,7 +15,7 @@ const users = [{
   "lastName": "Burnes",
   "rol": "admin",
   "verified": 1,
-  "active": 1
+  "active": true
 }, {
   "id": 3,
   "urlImage": "",
@@ -24,7 +24,7 @@ const users = [{
   "lastName": "Froschauer",
   "rol": "super market",
   "verified": 1,
-  "active": 1
+  "active": true
 }, {
   "id": 4,
   "urlImage": "",
@@ -33,7 +33,7 @@ const users = [{
   "lastName": "Eggers",
   "rol": "customer",
   "verified": 0,
-  "active": 1
+  "active": true
 }, {
   "id": 5,
   "urlImage": "",
@@ -42,7 +42,7 @@ const users = [{
   "lastName": "Ossipenko",
   "rol": "customer",
   "verified": 1,
-  "active": 1
+  "active": true
 }, {
   "id": 6,
   "urlImage": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
@@ -51,7 +51,7 @@ const users = [{
   "lastName": "Witcomb",
   "rol": "super market",
   "verified": 0,
-  "active": 1
+  "active": true
 }, {
   "id": 7,
   "urlImage": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
@@ -60,7 +60,7 @@ const users = [{
   "lastName": "Poulter",
   "rol": "customer",
   "verified": 0,
-  "active": 1
+  "active": true
 }, {
   "id": 8,
   "urlImage": "",
@@ -69,7 +69,7 @@ const users = [{
   "lastName": "Cabena",
   "rol": "customer",
   "verified": 0,
-  "active": 1
+  "active": true
 }, {
   "id": 9,
   "urlImage": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
@@ -78,7 +78,7 @@ const users = [{
   "lastName": "Gascard",
   "rol": "super market",
   "verified": 0,
-  "active": 1
+  "active": true
 }, {
   "id": 10,
   "urlImage": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
@@ -87,6 +87,6 @@ const users = [{
   "lastName": "Humble",
   "rol": "super market",
   "verified": 0,
-  "active": 1
+  "active": true
 }]
 module.exports = users;

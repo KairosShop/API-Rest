@@ -22,7 +22,7 @@ describe('routes - subcategories', function () {
         categoryId: 1,
         title: 'Leche',
         urlImage:
-          'https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg',
+          'https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg'
       };
       request
         .post('/api/')
@@ -47,7 +47,7 @@ describe('routes - subcategories', function () {
           expect(res.body).toMatchObject({
             error: false,
             status: 200,
-            body: {},
+            body: [1],
           });
           done();
         });
