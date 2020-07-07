@@ -35,7 +35,7 @@ async function getAll(TABLE, filter) {
           model: models.Subcategory,
           as: 'subcategories',
           where: filterSubcategories,
-          required:false
+          required: false,
         },
       ],
     });
@@ -51,17 +51,46 @@ async function getAll(TABLE, filter) {
       order: orderFilter,
       include: [{ model: models.Category, as: 'category' }],
     });
+  } else if (TABLE === 'measures') {
+    let { measure } = filter;
+    let whereFilter = { [and]: [{ active: true }, { deleted: false }] };
+    const orderFilter = [['measure', 'ASC']];
+
+    if (measure) {
+      whereFilter[and] = [{ measure }, ...whereFilter[and]];
+    }
+
+    return models.Measure.findAll({
+      where: whereFilter,
+      order: orderFilter,
+    });
   }
 }
 
 async function getById(TABLE, id) {
+  const whereFilter = { [and]: [{ id }, { deleted: false }] };
   if (TABLE == 'categories') {
+    let filterSubcategories = {
+      [and]: [{ deleted: false }, { active: true }],
+    };
     return models.Category.findOne({
       where: { [Op.and]: [{ id }, { deleted: false }] },
+      include: [
+        {
+          model: models.Subcategory,
+          as: 'subcategories',
+          where: filterSubcategories,
+          required:false
+        },
+      ],
     });
   } else if (TABLE === 'subcategories') {
     return models.Subcategory.findOne({
-      where: { [Op.and]: [{ id }, { deleted: false }] },
+      where: whereFilter,
+    });
+  } else if (TABLE === 'measures') {
+    return models.Measure.findOne({
+      where: whereFilter,
     });
   }
 }
