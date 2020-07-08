@@ -31,6 +31,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      quantity: {
+        type: Sequelize.DECIMAL,
+        allowNull: false,
+      },
       measureId: {
         type: Sequelize.INTEGER,
         allowNull: false,

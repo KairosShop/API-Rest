@@ -48,6 +48,10 @@ module.exports = (sequelize, DataTypes) => {
       measureId: { type: DataTypes.INTEGER, allowNull: false },
       categoryId: { type: DataTypes.INTEGER, allowNull: false },
       subcategoryId: { type: DataTypes.INTEGER, allowNull: false },
+      quantity: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+      },
     },
     {
       sequelize,

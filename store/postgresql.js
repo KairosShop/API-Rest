@@ -5,25 +5,23 @@ let and = Op.and;
 
 async function getAll(TABLE, filter) {
   if (TABLE == 'categories') {
-    let newFilter = {
-      [and]: [{ deleted: false }],
-    };
-    let filterSubcategories = {
-      [and]: [{ deleted: false }, { active: true }],
-    };
+    let newFilter = { deleted: false };
+    let filterSubcategories = { deleted: false, active: true };
 
     let { title, all, order, page, limit } = filter;
 
     if (!all) {
-      newFilter[and] = [{ active: true }, ...newFilter[and]];
+      newFilter = { active: true, ...newFilter };
     }
 
     if (title) {
-      newFilter[and] = [{ title }, ...newFilter[and]];
+      newFilter = { title, ...newFilter };
     }
 
     const orderFilter = [['title', order]];
     const offset = (page - 1) * limit;
+
+    console.log(newFilter);
 
     return models.Category.findAll({
       where: newFilter,
