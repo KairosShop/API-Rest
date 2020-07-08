@@ -1,10 +1,7 @@
 const joi = require('@hapi/joi');
 const {
   idSchema,
-  orderSchema,
-  pageSchema,
-  limitSchema,
-  allSchema,
+
 } = require('./general');
 
 const statusSchema = joi
@@ -26,12 +23,6 @@ const updateCartSchema = {
   quantity: numberSchema,
 };
 const filterSchema = {
-  id: idSchema,
-  status: statusSchema,
-  order: orderSchema,
-  page: pageSchema,
-  limit: limitSchema,
-  all: allSchema,
 };
 
 module.exports = {

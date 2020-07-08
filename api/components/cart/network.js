@@ -31,25 +31,10 @@ router.delete(
   removeProduct
 );
 async function get(req, res, next) {
-  let {
-    id = '',
-    status= '',
-    userId = '',
-    order = 'asc',
-    page = '1',
-    limit = '15',
-    all = false,
-  } = req.query;
+  const userId = 4,
+  status = 'Stand by';
   try {
-    const carts = await Controller.getCarts({
-      id,
-      status,
-      userId,
-      order,
-      page,
-      limit,
-      all
-    });
+    const carts = await Controller.getCarts({userId, status});
     responses.success(req, res, carts, 200);
   } catch (error) {
     next(error);
