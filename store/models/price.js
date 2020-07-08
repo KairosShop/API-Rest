@@ -1,26 +1,47 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Price extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate() {
-      // define association here
+    static associate(models) {
+      Price.belongsTo(models.Product, {
+        foreignKey: 'productId',
+        as: 'product',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
+
+      Price.belongsTo(models.Supermarket, {
+        foreignKey: 'supermarketId',
+        as: 'supermarket',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
     }
-  };
-  Price.init({
-    productId: DataTypes.INTEGER,
-    supermarketId: DataTypes.INTEGER,
-    price: DataTypes.NUMBER,
-    active: DataTypes.BOOLEAN
-  }, {
-    sequelize,
-    modelName: 'Price',
-  });
+  }
+  Price.init(
+    {
+      productId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      supermarketId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      price: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+      },
+      active: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        efaultValue: true,
+      },
+    },
+    {
+      sequelize,
+      modelName: 'Price',
+    }
+  );
   return Price;
 };
