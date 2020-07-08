@@ -17,21 +17,33 @@ module.exports = function (injectedStore) {
     const { productId, quantity } = cartData;
     delete cartData.productId;
     delete cartData.quantity;
+
     cartData.status = 'Stand by';
-    const createdCart = await store.create(TABLE, cartData);
 
-    const createdDetail = await store.create(TABLE, {productId, quantity, id_cart: createdCart});
+    let { id: cartId } = await validOpenCart(cartData);
 
-    return createdDetail ? createdCart : [];
+    if (cartId === 0) {
+      const { id } = await store.create(TABLE, cartData);
+      cartId = id;
+    }
+
+    const createdDetail = await store.create('details', { productId, quantity, cartId });
+
+    return createdDetail ? { cartId } : [];
   }
 
+  async function  validOpenCart(cartData) {
+    const data = await store.getAll(TABLE, cartData);
+    return data[0] || { id: 0 };
+  }
   async function updateCart(cartData, id) {
-    const updated = await store.update(TABLE, cartData, id);
+    const updated = await store.update('detail', cartData, id);
     return updated || [];
   }
 
-  async function removeCart(id) {
-    const deleted = await store.remove(TABLE, id);
+  async function deleteProduct(dataProduct) {
+    dataProduct.cartId = 1;
+    const deleted = await store.deleted('details',  dataProduct);
     return deleted || [];
   }
 
@@ -40,6 +52,6 @@ module.exports = function (injectedStore) {
     getCart,
     createCart,
     updateCart,
-    removeCart,
+    deleteProduct,
   }
 }

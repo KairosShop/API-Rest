@@ -5,6 +5,7 @@ const router = express.Router();
 
 const {
   cartIdSchema,
+  productIdSchema,
   createCartSchema,
   updateCartSchema,
   filterSchema
@@ -25,9 +26,9 @@ router.put(
   updateCart
 );
 router.delete(
-  '/:idCart',
-  validationHandler({ idCart: cartIdSchema }, 'params'),
-  removeCart
+  'product/:idProduct',
+  validationHandler({ idProduct: productIdSchema }, 'params'),
+  removeProduct
 );
 async function get(req, res, next) {
   let {
@@ -87,11 +88,11 @@ async function updateCart(req, res, next) {
   }
 }
 
-async function removeCart(req, res, next) {
-  const { idCart } = req.params;
+async function removeProduct(req, res, next) {
+  const { idProduct } = req.params;
   try {
-    const deletedCart = await Controller.removeCart(idCart);
-    responses.success(req, res, deletedCart, 200);
+    const deletedProduct = await Controller.deleteProduct({ productId: idProduct });
+    responses.success(req, res, deletedProduct, 200);
   } catch (error) {
     next(error);
   }

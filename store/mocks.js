@@ -7,6 +7,7 @@ const supermarket =  require('../utils/mocks/supermarket');
 const price =  require('../utils/mocks/prices');
 const address =  require('../utils/mocks/address');
 const cart =  require('../utils/mocks/cart');
+const details =  require('../utils/mocks/details');
 
 const db = {
     categories,
@@ -18,6 +19,7 @@ const db = {
     price,
     address,
     cart,
+    details
 }
 
 async function getAll(table, filter={}) {
@@ -50,7 +52,11 @@ async function getById(table, id) {
 }
 
 async function create(table, data) {
-    data = await getById(table, 1);
+    if(table == 'details'){
+        data = await getAll(table, data);
+    } else {
+        data = await getById(table, 1);
+    }
     return data;
 }
 
@@ -63,10 +69,16 @@ async function remove(table, Id) {
     const { id } = await getById(table, Id);
     return { id };
 }
+
+async function deleted(table, data) {
+    const { id } = await getAll(table, data)[0];
+    return { id };
+}
 module.exports={
     getAll,
     getById,
     create,
     update,
     remove,
+    deleted
 }
