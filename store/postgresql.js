@@ -1,25 +1,18 @@
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
 const models = require('./models');
-let and = Op.and;
 
 async function getAll(TABLE, filter) {
   if (TABLE == 'categories') {
-    let newFilter = {
-      [and]: [{ deleted: false }],
-    };
-    let filterSubcategories = {
-      [and]: [{ deleted: false }, { active: true }],
-    };
+    let newFilter = { deleted: false };
+    let filterSubcategories = { deleted: false, active: true };
 
     let { title, all, order, page, limit } = filter;
 
     if (!all) {
-      newFilter[and] = [{ active: true }, ...newFilter[and]];
+      newFilter = { active: true, ...newFilter };
     }
 
     if (title) {
-      newFilter[and] = [{ title }, ...newFilter[and]];
+      newFilter = { title, ...newFilter };
     }
 
     const orderFilter = [['title', order]];
@@ -40,9 +33,7 @@ async function getAll(TABLE, filter) {
       ],
     });
   } else if (TABLE === 'subcategories') {
-    let newFilter = {
-      [and]: [{ deleted: false }],
-    };
+    let newFilter = { deleted: false };
 
     const orderFilter = [['title', 'ASC']];
 
@@ -53,34 +44,65 @@ async function getAll(TABLE, filter) {
     });
   } else if (TABLE === 'measures') {
     let { measure } = filter;
-    let whereFilter = { [and]: [{ active: true }, { deleted: false }] };
+    let whereFilter = { active: true, deleted: false };
     const orderFilter = [['measure', 'ASC']];
 
     if (measure) {
-      whereFilter[and] = [{ measure }, ...whereFilter[and]];
+      whereFilter = { measure, ...whereFilter };
     }
 
     return models.Measure.findAll({
       where: whereFilter,
       order: orderFilter,
     });
+  } else if (TABLE == 'products') {
+    let newFilter = { deleted: false };
+
+    let { title, all, order, page, limit, categoryId } = filter;
+
+    if (!all) {
+      newFilter = { active: true, ...newFilter };
+    }
+
+    if (title) {
+      newFilter = { title, ...newFilter };
+    }
+
+    if (categoryId) {
+      newFilter = { categoryId, ...newFilter };
+    }
+
+    const orderFilter = [['title', order]];
+    const offset = (page - 1) * limit;
+
+    return models.Product.findAll({
+      where: newFilter,
+      order: orderFilter,
+      offset,
+      limit,
+      include: [
+        {
+          model: models.Measure,
+          as: 'measure',
+        },
+      ],
+    });
   }
 }
 
 async function getById(TABLE, id) {
-  const whereFilter = { [and]: [{ id }, { deleted: false }] };
+  const whereFilter = { id, deleted: false };
   if (TABLE == 'categories') {
-    let filterSubcategories = {
-      [and]: [{ deleted: false }, { active: true }],
-    };
+    let filterSubcategories = { deleted: false, active: true };
+
     return models.Category.findOne({
-      where: { [Op.and]: [{ id }, { deleted: false }] },
+      where: whereFilter,
       include: [
         {
           model: models.Subcategory,
           as: 'subcategories',
           where: filterSubcategories,
-          required:false
+          required: false,
         },
       ],
     });
@@ -92,6 +114,24 @@ async function getById(TABLE, id) {
     return models.Measure.findOne({
       where: whereFilter,
     });
+  } else if (TABLE == 'products') {
+    return models.Product.findOne({
+      where: whereFilter,
+      include: [
+        {
+          model: models.Subcategory,
+          as: 'subcategory',
+        },
+        {
+          model: models.Measure,
+          as: 'measure',
+        },
+        {
+          model: models.Category,
+          as: 'category',
+        },
+      ],
+    });
   }
 }
 
@@ -100,32 +140,30 @@ async function create(TABLE, data) {
     return models.Category.create(data);
   } else if (TABLE === 'subcategories') {
     return models.Subcategory.create(data);
+  } else if (TABLE === 'products') {
+    return models.Product.create(data);
   }
 }
 
 async function update(TABLE, data, id) {
+  const whereFilter = { id, deleted: false };
   if (TABLE == 'categories') {
-    return models.Category.update(data, {
-      where: { [Op.and]: [{ id }, { deleted: false }] },
-    });
+    return models.Category.update(data, { where: whereFilter });
   } else if (TABLE === 'subcategories') {
-    return models.Subcategory.update(data, {
-      where: { [Op.and]: [{ id }, { deleted: false }] },
-    });
+    return models.Subcategory.update(data, { where: whereFilter });
+  } else if (TABLE === 'products') {
+    return models.Product.update(data, { where: whereFilter });
   }
 }
 
 async function remove(TABLE, id) {
+  const updateData = { deleted: true, active: false };
   if (TABLE == 'categories') {
-    return models.Category.update(
-      { deleted: true, active: false },
-      { where: { id } }
-    );
+    return models.Category.update(updateData, { where: { id } });
   } else if (TABLE === 'subcategories') {
-    return models.Subcategory.update(
-      { deleted: true, active: false },
-      { where: { id } }
-    );
+    return models.Subcategory.update(updateData, { where: { id } });
+  } else if (TABLE === 'products') {
+    return models.Product.update(updateData, { where: { id } });
   }
 }
 

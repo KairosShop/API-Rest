@@ -2987,7 +2987,7 @@
           "quantity": 90,
           "measureId": 4,
           "urlImage": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
-          "active": true
+          "active": 1
         }
       },
       "Category": {

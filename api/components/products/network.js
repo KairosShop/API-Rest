@@ -39,10 +39,11 @@ async function get(req, res, next) {
     quantity = '',
     measureId = '',
     active = '',
-    order = 'asc',
+    order = 'ASC',
     page = '1',
     limit = '5',
   } = req.query;
+
   try {
     const products = await Controller.getProducts({
       title,

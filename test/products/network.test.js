@@ -33,10 +33,6 @@ describe('routes - products', function () {
             request.get('/api/?measureId=3').expect(200, done);
         });
 
-        test('should respond with status 200 - search by active', function (done) {
-            request.get('/api/?active=true').expect(200, done);
-        });
-
         test('should respond with status 200 - order products', function (done) {
             request.get('/api/?order=desc').expect(200, done);
         });
@@ -51,13 +47,14 @@ describe('routes - products', function () {
 
         it("should respond with status 201 - create product", function(done) {
             const createProduct = {
-                "title":"Six de modelo especial",
+                "title":"Six de modelo especial 12",
                 "description":"6 cervezas modelo especial de lata",
                 "urlImage":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
                 "quantity": 355,
-                "measureId": 4,
-                "categoryId": 7,
-                "subcategoryId": 31,
+                "measureId": 1,
+                "categoryId": 1,
+                "subcategoryId": 1,
+                "active":true
             }
             request.post("/api/").send(createProduct).end((err, res) => {
               expect(res.body).toMatchObject({error: false, status: 201, body: {} });
@@ -79,9 +76,9 @@ describe('routes - products', function () {
                 "description":"6 cervezas modelo negra especial de lata",
                 "urlImage":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
                 "quantity": 600,
-                "measureId": 4,
-                "categoryId": 7,
-                "subcategoryId": 31,
+                "measureId": 1,
+                "categoryId": 1,
+                "subcategoryId": 1,
                 "active":false
             }
             request.put("/api/2").send(updateProduct).end((err, res) => {
