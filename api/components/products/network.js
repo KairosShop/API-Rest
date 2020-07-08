@@ -43,6 +43,7 @@ async function get(req, res, next) {
     page = '1',
     limit = '5',
   } = req.query;
+
   try {
     const products = await Controller.getProducts({
       title,

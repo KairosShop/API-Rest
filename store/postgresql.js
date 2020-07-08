@@ -1,7 +1,4 @@
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
 const models = require('./models');
-let and = Op.and;
 
 async function getAll(TABLE, filter) {
   if (TABLE == 'categories') {
@@ -21,8 +18,6 @@ async function getAll(TABLE, filter) {
     const orderFilter = [['title', order]];
     const offset = (page - 1) * limit;
 
-    console.log(newFilter);
-
     return models.Category.findAll({
       where: newFilter,
       order: orderFilter,
@@ -38,9 +33,7 @@ async function getAll(TABLE, filter) {
       ],
     });
   } else if (TABLE === 'subcategories') {
-    let newFilter = {
-      [and]: [{ deleted: false }],
-    };
+    let newFilter = { deleted: false };
 
     const orderFilter = [['title', 'ASC']];
 
@@ -51,11 +44,11 @@ async function getAll(TABLE, filter) {
     });
   } else if (TABLE === 'measures') {
     let { measure } = filter;
-    let whereFilter = { [and]: [{ active: true }, { deleted: false }] };
+    let whereFilter = { active: true, deleted: false };
     const orderFilter = [['measure', 'ASC']];
 
     if (measure) {
-      whereFilter[and] = [{ measure }, ...whereFilter[and]];
+      whereFilter = { measure, ...whereFilter };
     }
 
     return models.Measure.findAll({
@@ -63,27 +56,27 @@ async function getAll(TABLE, filter) {
       order: orderFilter,
     });
   } else if (TABLE == 'products') {
-    let newFilter = {
-      [and]: [{ deleted: false }],
-    };
+    let newFilter = { deleted: false };
 
     let { title, all, order, page, limit, categoryId } = filter;
 
     if (!all) {
-      newFilter[and] = [{ active: true }, ...newFilter[and]];
+      newFilter = { active: true, ...newFilter };
     }
 
     if (title) {
-      newFilter[and] = [{ title }, ...newFilter[and]];
+      newFilter = { title, ...newFilter };
     }
 
     if (categoryId) {
-      newFilter[and] = [{ categoryId }, ...newFilter[and]];
+      newFilter = { categoryId, ...newFilter };
     }
 
     const orderFilter = [['title', order]];
     const offset = (page - 1) * limit;
 
+    console.log(limit);
+    
     return models.Product.findAll({
       where: newFilter,
       order: orderFilter,
@@ -100,11 +93,10 @@ async function getAll(TABLE, filter) {
 }
 
 async function getById(TABLE, id) {
-  const whereFilter = { [and]: [{ id }, { deleted: false }] };
+  const whereFilter = { id, deleted: false };
   if (TABLE == 'categories') {
-    let filterSubcategories = {
-      [and]: [{ deleted: false }, { active: true }],
-    };
+    let filterSubcategories = { deleted: false, active: true };
+
     return models.Category.findOne({
       where: whereFilter,
       include: [
@@ -156,7 +148,7 @@ async function create(TABLE, data) {
 }
 
 async function update(TABLE, data, id) {
-  const whereFilter = { [Op.and]: [{ id }, { deleted: false }] };
+  const whereFilter = { id, deleted: false };
   if (TABLE == 'categories') {
     return models.Category.update(data, { where: whereFilter });
   } else if (TABLE === 'subcategories') {
