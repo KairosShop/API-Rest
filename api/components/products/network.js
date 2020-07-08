@@ -34,23 +34,24 @@ async function get(req, res, next) {
   let {
     title = '',
     description = '',
-    id_category = '',
-    id_subcategory = '',
+    categoryId = '',
+    subcategoryId = '',
     quantity = '',
-    id_measure = '',
+    measureId = '',
     active = '',
-    order = 'asc',
+    order = 'ASC',
     page = '1',
     limit = '5',
   } = req.query;
+
   try {
     const products = await Controller.getProducts({
       title,
       description,
-      id_category,
-      id_subcategory,
+      categoryId,
+      subcategoryId,
       quantity,
-      id_measure,
+      measureId,
       active,
       order,
       page,
