@@ -19,6 +19,10 @@ api-dependencies:
   stage: build
   script:
     - npm install
+  only:
+    - merge_requests
+    - master
+    - staging
   artifacts:
     paths:
         - node_modules/
@@ -29,9 +33,9 @@ config-compile:
   script:
     - node utils/config-compile.js
   only:
-    refs:
-      - master
-      - staging
+    - merge_requests
+    - master
+    - staging
   artifacts:
     paths:
       - app.yaml
@@ -44,6 +48,10 @@ api-testing:
   stage: test
   script:
     - npm run test
+  only:
+    - merge_requests
+    - master
+    - staging
   artifacts:
     paths:
         - test-report.xml
@@ -86,6 +94,10 @@ sonarcloud-check:
       - .sonar/cache
   script:
     - sonar-scanner
+  only:
+    - merge_requests
+    - master
+    - staging
   needs:
     - api-testing
 

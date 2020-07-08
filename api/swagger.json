@@ -132,7 +132,7 @@
             }
           },
           {
-            "name": "id_category",
+            "name": "categoryId",
             "in": "query",
             "description": "The id_category values that optional to be considered for filter",
             "required": false,
@@ -143,7 +143,7 @@
             }
           },
           {
-            "name": "id_subcategory",
+            "name": "subcategoryId",
             "in": "query",
             "description": "The id_subcategory values that optional to be considered for filter",
             "required": false,
@@ -165,7 +165,7 @@
             }
           },
           {
-            "name": "id_measure",
+            "name": "measureId",
             "in": "query",
             "description": "The id_measure values that optional to be considered for filter",
             "required": false,
@@ -2632,11 +2632,11 @@
           "description": {
             "type": "string"
           },
-          "id_category": {
+          "categoryId": {
             "type": "integer",
             "format": "int64"
           },
-          "id_subcategory": {
+          "subcategoryId": {
             "type": "integer",
             "format": "int64"
           },
@@ -2644,23 +2644,23 @@
             "type": "number",
             "multipleOf": 0.1
           },
-          "id_measure": {
+          "measureId": {
             "type": "integer",
             "format": "int64"
           },
-          "url_image": {
+          "urlImage": {
             "type": "string"
           },
           "active": {
             "type": "integer",
             "format": "int64"
           },
-          "create_at": {
+          "createdAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           },
-          "update_at": {
+          "updatedAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
@@ -2669,20 +2669,20 @@
         "required": [
           "title",
           "description",
-          "id_category",
-          "id_subcategory",
-          "id_measure",
+          "categoryId",
+          "subcategoryId",
+          "measureId",
           "quantity",
-          "url_image"
+          "urlImage"
         ],
         "example": {
           "title": "Nestle Condensed Milk",
           "description": "Pack 2 cans of Nestle Condensed Milk.",
-          "id_category": 1,
-          "id_subcategory": 2,
+          "categoryId": 1,
+          "subcategoryId": 2,
           "quantity": 90,
-          "id_measure": 4,
-          "url_image": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
+          "measureId": 4,
+          "urlImage": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
           "active": 1
         }
       },

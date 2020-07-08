@@ -20,6 +20,7 @@ const config = {
     database: process.env.DB_NAME_STAGING,
     dbDialect: process.env.DB_DIALECT,
     dialect: 'postgres',
+    logging: true
   },
   test: {
     username: process.env.DB_USER,
@@ -28,6 +29,7 @@ const config = {
     database: process.env.DB_NAME_TEST,
     dbDialect: process.env.DB_DIALECT,
     dialect: 'postgres',
+    logging: false
   },
   production: {
     username: process.env.DB_USER,
@@ -36,6 +38,7 @@ const config = {
     database: process.env.DB_NAME,
     dbDialect: process.env.DB_DIALECT,
     dialect: 'postgres',
+    logging: true
   },
 };
 

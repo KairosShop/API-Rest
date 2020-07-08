@@ -34,6 +34,13 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'RESTRICT',
       onUpdate: 'CASCADE',
     });
+
+    Subcategory.hasMany(models.Product, {
+      as: 'products',
+      foreignKey: 'subcategoryId',
+      onDelete: 'RESTRICT',
+      onUpdate: 'CASCADE',
+    });
   };
   return Subcategory;
 };
