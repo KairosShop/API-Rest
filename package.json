@@ -38,6 +38,9 @@
     "express": "^4.17.1",
     "helmet": "^3.23.3",
     "jsonwebtoken": "^8.5.1",
+    "passport": "^0.4.1",
+    "passport-http": "^0.3.0",
+    "passport-jwt": "^4.0.0",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.0",
@@ -45,6 +48,7 @@
     "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
+    "chalk": "^4.1.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.3.1",
     "eslint-config-prettier": "^6.11.0",

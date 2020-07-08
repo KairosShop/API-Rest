@@ -1,6 +1,5 @@
-const dateformat =  require('dateformat');
 
-const date = dateformat(new Date(), "yyyy-mm-dd h:MM:ss");
+const bcrypt =  require('bcrypt');
 const TABLE = 'users';
 module.exports = function (injectedStore) {
   let store = injectedStore;
@@ -18,13 +17,19 @@ module.exports = function (injectedStore) {
   }
 
   async function createUser(userData) {
-    userData.createdAt= date;
-    const created = await store.create(TABLE, userData);
-    return created || [];
+    const { password } =  userData;
+    delete userData.password;
+    
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const { userId }  = await store.create(TABLE, userData);
+
+    await store.create('authentication', { userId, password: hashedPassword});
+
+    return userId || [];
   }
 
   async function updateUser(userData, id) {
-    userData.updatedAt= date;
     const updated = await store.update(TABLE, userData, id);
     return updated || [];
   }
