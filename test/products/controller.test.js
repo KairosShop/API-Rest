@@ -44,17 +44,7 @@ describe('controller - products', () => {
       "active":true
     }
     return Controller.updateProduct(updateProduct,1).then((product) => {
-      expect(product).toMatchObject({
-        id: expect.any(Number),
-        title: expect.any(String),
-        description: expect.any(String),
-        quantity: expect.any(Number),
-        measureId: expect.any(Number),
-        categoryId: expect.any(Number),
-        subcategoryId: expect.any(Number),
-        urlImage: expect.any(String),
-        active: expect.any(Boolean),
-      });
+      expect(product).toMatchObject([1]);
     });
   });
   test('should return object IdProduct', () => {

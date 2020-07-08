@@ -72,7 +72,7 @@ describe('routes - products', function () {
         });
         it("should respond with status 200 - update product", function(done) {
             const updateProduct = {
-                "title":"Six de modelo negra especial",
+                "title":"Six de modelo negra especial otro",
                 "description":"6 cervezas modelo negra especial de lata",
                 "urlImage":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
                 "quantity": 600,
@@ -82,7 +82,7 @@ describe('routes - products', function () {
                 "active":false
             }
             request.put("/api/2").send(updateProduct).end((err, res) => {
-              expect(res.body).toMatchObject({error:false, status:200, body:[1] });
+              expect(res.body).toMatchObject({error:false, status:200, body:{} });
               done();
             });
         });

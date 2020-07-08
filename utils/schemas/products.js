@@ -54,7 +54,7 @@ const filterSchema = {
   limit: limitSchema,
 };
 module.exports = {
-  productIdSchema: idSchema.required(),
+  productIdSchema: productIdSchema,
   createProductSchema,
   updateProductSchema,
   filterSchema,
