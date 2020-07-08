@@ -1,10 +1,7 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Supermarket extends Model {
-
     static associate(models) {
       Supermarket.belongsTo(models.User, {
         foreignKey: 'userId',
@@ -12,27 +9,48 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'RESTRICT',
         onUpdate: 'CASCADE',
       });
+
+      Supermarket.hasMany(models.Price, {
+        as: 'prices',
+        foreignKey: 'priceId',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
     }
-  };
-  Supermarket.init({
-    userId: DataTypes.INTEGER,
-    address: {
-      type: DataTypes.STRING,
-      allowNull: false,
+  }
+
+  Supermarket.init(
+    {
+      userId: DataTypes.INTEGER,
+      address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      latitude: { type: DataTypes.NUMBER, allowNull: false },
+      longitude: { type: DataTypes.NUMBER, allowNull: false },
+      urlImage: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      supermarket: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      active: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        efaultValue: true,
+      },
+      deleted: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        efaultValue: true,
+      },
     },
-    latitude: { type: DataTypes.NUMBER, allowNull: false },
-    longitude: { type: DataTypes.NUMBER, allowNull: false },
-    urlImage: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    supermarket: {
-      type: DataTypes.STRING,
-      allowNull: false
+    {
+      sequelize,
+      modelName: 'Supermarket',
     }
-  }, {
-    sequelize,
-    modelName: 'Supermarket',
-  });
+  );
   return Supermarket;
 };
