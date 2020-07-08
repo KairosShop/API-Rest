@@ -13,10 +13,10 @@ describe('controller - prices', () => {
 
   test('should return object price created', () => {
     const createPrice = {
-      "id_product":"1",
-      "id_supermarket":"5",
+      "productId":"1",
+      "supermarketId":"5",
       "price":"45.34",
-      "active":"1"
+      "active":true
     }
     return Controller.createPrice(createPrice).then((price) => {
       expect(price).toMatchObject({ id: expect.any(Number) });
@@ -25,16 +25,10 @@ describe('controller - prices', () => {
   test('should return object price updated', () => {
     const updatePrice = {
       "price":"45.34",
-      "active":"0"
+      "active":false
     }
     return Controller.updatePrice(updatePrice,1).then((price) => {
-      expect(price).toMatchObject({
-        id: expect.any(Number),
-        price: expect.any(Number),
-        id_product: expect.any(Number),
-        id_supermarket: expect.any(Number),
-        active: expect.any(Number),
-      });
+      expect(price[0]).toBe(1);
     });
   });
 

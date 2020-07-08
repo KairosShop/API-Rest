@@ -35,19 +35,19 @@ describe('routes - subcategories', function () {
 
     it('should respond with status 200', function (done) {
       const updateSubcategory = {
-        categoryId: 3,
-        title: 'Huevo',
+        categoryId: '1',
+        title: 'Cervezas frias',
         urlImage:
-          'https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg',
+          'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750102055817L.jpg',
       };
       request
-        .put('/api/2')
+        .put('/api/1')
         .send(updateSubcategory)
         .end((err, res) => {
           expect(res.body).toMatchObject({
             error: false,
             status: 200,
-            body: {},
+            body: [1],
           });
           done();
         });

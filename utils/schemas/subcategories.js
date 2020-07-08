@@ -1,27 +1,33 @@
 
 const joi = require('@hapi/joi');
-const {urlImageSchema, activeSchema} = require('./general')
+const { idSchema, urlImageSchema, activeSchema, orderSchema, limitSchema, pageSchema, allSchema} = require('./general')
 
-const subcategoryIdSchema = joi.number().min(1).max(99999999999);
 const subcategorySchema = joi.string().min(3).max(50)
-const categoryIdSchema = subcategoryIdSchema;
 
 const createSubcategorySchema = {
   title: subcategorySchema.required(),
-  categoryId: categoryIdSchema.required(),
+  categoryId: idSchema.required(),
   urlImage: urlImageSchema,
   active: activeSchema,
 };
 const updateSubcategorySchema = {
   title: subcategorySchema,
-  categoryId:categoryIdSchema,
+  categoryId:idSchema,
   urlImage: urlImageSchema,
   active: activeSchema,
 };
-
+const filterSchema = {
+  title: subcategorySchema,
+  active: activeSchema,
+  order: orderSchema,
+  page: limitSchema,
+  limit: pageSchema,
+  all: allSchema,
+};
 module.exports = {
-  subcategoryIdSchema,
-  categoryIdSchema,
+  subcategoryIdSchema: idSchema,
+  categoryIdSchema: idSchema,
   createSubcategorySchema,
   updateSubcategorySchema,
+  filterSchema,
 };

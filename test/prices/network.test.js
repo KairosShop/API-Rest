@@ -5,16 +5,16 @@ describe('routes - prices', function () {
 
     const request = testServer(route);
     describe('GET /prices/supermarket', function () {
-        test('should respond with status 200 - get all prices by id_supermarket', function (done) {
+        test('should respond with status 200 - get all prices by supermarketId', function (done) {
             request.get('/api/supermarket/2').expect(200, done);
         });
 
-        test('should respond with status 200 -  search by id_product', function (done) {
-            request.get('/api/supermarket/4/?id_product=109').expect(200, done);
+        test('should respond with status 200 -  search by productId', function (done) {
+            request.get('/api/supermarket/4/?productId=109').expect(200, done);
         });
 
-        test('should respond with status 200 -  search by id_supermarket', function (done) {
-            request.get('/api/supermarket/4/?id_supermarket=1').expect(200, done);
+        test('should respond with status 200 -  search by supermarketId', function (done) {
+            request.get('/api/supermarket/4/?supermarketId=1').expect(200, done);
         });
 
         test('should respond with status 200 -  search by price', function (done) {
@@ -22,7 +22,7 @@ describe('routes - prices', function () {
         });
 
         test('should respond with status 200 -  search by active', function (done) {
-            request.get('/api/supermarket/4/?active=1').expect(200, done);
+            request.get('/api/supermarket/4/?active=true').expect(200, done);
         });
 
         test('should respond with status 200 - sort asc order prices', function (done) {
@@ -38,16 +38,16 @@ describe('routes - prices', function () {
         });
     });
     describe('GET /prices/products', function () {
-        test('should respond with status 200 - get all prices by id_product', function (done) {
+        test('should respond with status 200 - get all prices by productId', function (done) {
             request.get('/api/product/2').expect(200, done);
         });
 
-        test('should respond with status 200 -  search by id_product', function (done) {
-            request.get('/api/product/2/?id_product=109').expect(200, done);
+        test('should respond with status 200 -  search by productId', function (done) {
+            request.get('/api/product/2/?productId=109').expect(200, done);
         });
 
-        test('should respond with status 200 -  search by id_supermarket', function (done) {
-            request.get('/api/product/2/?id_supermarket=1').expect(200, done);
+        test('should respond with status 200 -  search by supermarketId', function (done) {
+            request.get('/api/product/2/?supermarketId=1').expect(200, done);
         });
 
         test('should respond with status 200 -  search by price', function (done) {
@@ -55,7 +55,7 @@ describe('routes - prices', function () {
         });
 
         test('should respond with status 200 -  search by active', function (done) {
-            request.get('/api/product/2/?active=1').expect(200, done);
+            request.get('/api/product/2/?active=true').expect(200, done);
         });
 
         test('should respond with status 200 - sort asc order prices', function (done) {
@@ -73,10 +73,10 @@ describe('routes - prices', function () {
     describe('POST /prices', function () {
         it("should respond with status 201 - create price", function(done) {
             const createPrice = {
-                "id_product":"1",
-                "id_supermarket":"5",
+                "productId":"1",
+                "supermarketId":"5",
                 "price":"45.34",
-                "active":"1"
+                "active":true
             }
             request.post("/api/").send(createPrice).end((err, res) => {
               expect(res.body).toMatchObject({error: false, status: 201, body: {} });
@@ -99,13 +99,13 @@ describe('routes - prices', function () {
                 "price":"45.34",
             }
             request.put("/api/2").send(updatePrice).end((err, res) => {
-              expect(res.body).toMatchObject({error:false, status:200, body:{}});
+              expect(res.body).toMatchObject({error:false, status:200, body:[1]});
               done();
             });
         });
         it("should respond with status 200 - disabled price", function(done) {
             const updatePrice = {
-                "active":"0"
+                "active":false
             }
             request.put("/api/2").send(updatePrice).end((err, res) => {
               expect(res.body).toMatchObject({error:false, status:200, body:{}});

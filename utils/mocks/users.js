@@ -1,92 +1,92 @@
 const users = [{
   "id": 1,
-  "url_image": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
+  "urlImage": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
   "email": "cbirtwistle0@blog.com",
   "firstName": "Clayborne",
   "lastName": "Birtwistle",
   "rol": "admin",
   "verified": 0,
-  "active": 1
+  "active": true
 }, {
   "id": 2,
-  "url_image": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
+  "urlImage": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
   "email": "mburnes1@blogs.com",
   "firstName": "Mickey",
   "lastName": "Burnes",
   "rol": "admin",
   "verified": 1,
-  "active": 1
+  "active": true
 }, {
   "id": 3,
-  "url_image": "",
+  "urlImage": "",
   "email": "bfroschauer2@freewebs.com",
   "firstName": "Berrie",
   "lastName": "Froschauer",
   "rol": "super market",
   "verified": 1,
-  "active": 1
+  "active": true
 }, {
   "id": 4,
-  "url_image": "",
+  "urlImage": "",
   "email": "seggers3@youtube.com",
   "firstName": "Shanan",
   "lastName": "Eggers",
   "rol": "customer",
   "verified": 0,
-  "active": 1
+  "active": true
 }, {
   "id": 5,
-  "url_image": "",
+  "urlImage": "",
   "email": "rossipenko4@mapquest.com",
   "firstName": "Rube",
   "lastName": "Ossipenko",
   "rol": "customer",
   "verified": 1,
-  "active": 1
+  "active": true
 }, {
   "id": 6,
-  "url_image": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
+  "urlImage": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
   "email": "rwitcomb5@about.com",
   "firstName": "Rozalie",
   "lastName": "Witcomb",
   "rol": "super market",
   "verified": 0,
-  "active": 1
+  "active": true
 }, {
   "id": 7,
-  "url_image": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
+  "urlImage": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
   "email": "jpoulter6@clickbank.net",
   "firstName": "Jonah",
   "lastName": "Poulter",
   "rol": "customer",
   "verified": 0,
-  "active": 1
+  "active": true
 }, {
   "id": 8,
-  "url_image": "",
+  "urlImage": "",
   "email": "acabena7@biblegateway.com",
   "firstName": "Alexei",
   "lastName": "Cabena",
   "rol": "customer",
   "verified": 0,
-  "active": 1
+  "active": true
 }, {
   "id": 9,
-  "url_image": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
+  "urlImage": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
   "email": "fgascard8@domainmarket.com",
   "firstName": "Fanchon",
   "lastName": "Gascard",
   "rol": "super market",
   "verified": 0,
-  "active": 1
+  "active": true
 }, {
   "id": 10,
-  "url_image": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
+  "urlImage": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
   "email": "chumble9@reddit.com",
   "firstName": "Connie",
   "lastName": "Humble",
   "rol": "super market",
   "verified": 0,
-  "active": 1
+  "active": true
 }]
 module.exports = users;

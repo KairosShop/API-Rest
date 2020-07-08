@@ -41,6 +41,7 @@ const updateProductSchema = {
   active: activeSchema,
 };
 const filterSchema = {
+  q: descriptionSchema,
   title: titleSchema,
   description: joi.string().min(2),
   quantity: quantitySchema,
@@ -53,7 +54,7 @@ const filterSchema = {
   limit: limitSchema,
 };
 module.exports = {
-  productIdSchema,
+  productIdSchema: productIdSchema,
   createProductSchema,
   updateProductSchema,
   filterSchema,

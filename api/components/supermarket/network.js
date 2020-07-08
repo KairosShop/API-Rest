@@ -34,7 +34,7 @@ async function get(req, res, next) {
   let {
     supermarket = '',
     address = '',
-    id_user = '',
+    userId = '',
     active = '',
     order = 'asc',
     page = '1',
@@ -44,7 +44,7 @@ async function get(req, res, next) {
     const supermarkets = await Controller.getSupermarkets({
       supermarket,
       address,
-      id_user,
+      userId,
       active,
       order,
       page,
