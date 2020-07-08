@@ -26,7 +26,7 @@ router.put(
   updateCart
 );
 router.delete(
-  'product/:idProduct',
+  '/product/:idProduct',
   validationHandler({ idProduct: productIdSchema }, 'params'),
   removeProduct
 );
@@ -68,9 +68,9 @@ async function getById(req, res, next) {
 
 async function createCart(req, res, next) {
   const { body: cart } = req;
-  cart.userId = 3;
+  cart.userId = 4;
   try {
-    const createCart = await Controller.createCart(cart);
+    const createCart = await Controller.upsertCart(cart);
     responses.success(req, res, createCart, 201);
   } catch (error) {
     next(error);
@@ -78,20 +78,20 @@ async function createCart(req, res, next) {
 }
 
 async function updateCart(req, res, next) {
-  const { idCart } = req.params;
   const { body: cart } = req;
+  cart.userId = 4;
   try {
-    const updatedCart = await Controller.updateCart(cart, idCart);
+    const updatedCart = await Controller.upsertCart(cart);
     responses.success(req, res, updatedCart, 200);
   } catch (error) {
     next(error);
   }
 }
-
 async function removeProduct(req, res, next) {
   const { idProduct } = req.params;
+  const userId = 4;
   try {
-    const deletedProduct = await Controller.deleteProduct({ productId: idProduct });
+    const deletedProduct = await Controller.deleteProduct(idProduct, userId );
     responses.success(req, res, deletedProduct, 200);
   } catch (error) {
     next(error);

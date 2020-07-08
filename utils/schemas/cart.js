@@ -16,7 +16,7 @@ const numberSchema = joi.number().integer().min(1);
 
 const createCartSchema = {
   productId: idSchema.required(),
-  quantity: numberSchema,
+  quantity: numberSchema.required(),
 };
 const updateCartSchema = {
   productId: idSchema.required(),

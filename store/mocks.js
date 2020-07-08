@@ -64,6 +64,10 @@ async function update(table, data, Id) {
     const { id } = await getById(table, Id);
     return id ? [1] : [0];
 }
+async function upsert(table, data, Id) {
+    const { id } = await getById(table, Id);
+    return id ? [1] : [0];
+}
 
 async function remove(table, Id) {
     const { id } = await getById(table, Id);
@@ -71,14 +75,15 @@ async function remove(table, Id) {
 }
 
 async function deleted(table, data) {
-    const { id } = await getAll(table, data)[0];
-    return { id };
+    const deletedData = await getAll(table, data);
+    return deletedData;
 }
 module.exports={
     getAll,
     getById,
     create,
     update,
+    upsert,
     remove,
     deleted
 }
