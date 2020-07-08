@@ -10,19 +10,6 @@ describe('routes - cart', function () {
         });
 
         test('should respond with status 200', function (done) {
-            request.get('/api/?status=stand by').expect(200, done);
-        });
-        test('should respond with status 200', function (done) {
-            request.get('/api/?order=DESC').expect(200, done);
-        });
-        test('should respond with status 200', function (done) {
-            request.get('/api/?page=1&limit=3').expect(200, done);
-        });
-        test('should respond with status 200', function (done) {
-            request.get('/api/?all=true').expect(200, done);
-        });
-
-        test('should respond with status 200', function (done) {
             request.get('/api/2').expect(200, done);
         });
 
@@ -35,6 +22,7 @@ describe('routes - cart', function () {
             }
             request.post("/api/").send(createcart).end((err, res) => {
               expect(res.body).toMatchObject({error: false, status: 201, body: expect.any(Object) });
+              expect(typeof res.body.body.cartId).toBe('number');
               done();
             });
         });
@@ -56,6 +44,7 @@ describe('routes - cart', function () {
             }
             request.put("/api/2").send(updatecart).end((err, res) => {
               expect(res.body).toMatchObject({error:false, status:200, body:{}});
+              expect(typeof res.body.body.cartId).toBe('number');
               done();
             });
         });
@@ -63,7 +52,7 @@ describe('routes - cart', function () {
 
     describe('DELETE /cart', function () {
         test('should respond with status 200', function (done) {
-            request.delete('/api/2').expect(200, done);
+            request.delete('/api/product/24').expect(200, done);
         });
     });
 });

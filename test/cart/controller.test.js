@@ -19,24 +19,24 @@ describe('controller - cart', () => {
 
   test('should return object cart created', () => {
     const createCart = {
-      productId: "1",
+      productId: "24",
       quantity: "9",
     }
-    return Controller.createCart(createCart).then((cart) => {
-      expect(cart).toMatchObject({ id: expect.any(Number) });
+    return Controller.upsertCart(createCart).then((cart) => {
+      expect(cart).toMatchObject({ cartId: expect.any(Number) });
     });
   });
   test('should return object cart updated', () => {
     const updateCart = {
-      productId: "1",
-      quantity: "19",
+      productId: "24",
+      quantity: "2",
     }
-    return Controller.updateCart(updateCart, 1).then((cart) => {
-      expect(cart[0]).toBe(1);
+    return Controller.upsertCart(updateCart, 1).then((cart) => {
+      expect(typeof cart.cartId).toBe('number');
     });
   });
   test('should return object Idcart', () => {
-    return Controller.removeCart(3).then((cart) => {
+    return Controller.deleteProduct(24,4).then((cart) => {
       expect(typeof cart.id).toBe('number');
     });
   });
