@@ -9,7 +9,7 @@ const categories = [
     subcategoryId: 1,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750101113388L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const categories = [
     subcategoryId: 2,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750100804295L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const categories = [
     subcategoryId: 3,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00807680951520L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 4,
@@ -45,7 +45,7 @@ const categories = [
     subcategoryId: 4,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00841001027252L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ const categories = [
     subcategoryId: 5,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 6,
@@ -69,7 +69,7 @@ const categories = [
     subcategoryId: 6,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750109620132L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 7,
@@ -82,7 +82,7 @@ const categories = [
     subcategoryId: 7,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00075677401172L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 8,
@@ -94,7 +94,7 @@ const categories = [
     subcategoryId: 8,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861770L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 9,
@@ -106,7 +106,7 @@ const categories = [
     subcategoryId: 9,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00020533500000L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 10,
@@ -118,7 +118,7 @@ const categories = [
     subcategoryId: 10,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750104009736L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 11,
@@ -130,7 +130,7 @@ const categories = [
     subcategoryId: 11,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750102055817L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 12,
@@ -142,7 +142,7 @@ const categories = [
     subcategoryId: 12,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750300055517L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 13,
@@ -154,7 +154,7 @@ const categories = [
     subcategoryId: 25,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00000007500761L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 14,
@@ -167,7 +167,7 @@ const categories = [
     subcategoryId: 26,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750104007015L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 15,
@@ -179,7 +179,7 @@ const categories = [
     subcategoryId: 27,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00003673132100L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 16,
@@ -191,7 +191,7 @@ const categories = [
     subcategoryId: 28,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750108680107L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 17,
@@ -203,7 +203,7 @@ const categories = [
     subcategoryId: 26,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750101312202L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 18,
@@ -216,7 +216,7 @@ const categories = [
     subcategoryId: 13,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750194341712L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 19,
@@ -229,7 +229,7 @@ const categories = [
     subcategoryId: 14,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750904838321L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 20,
@@ -242,7 +242,7 @@ const categories = [
     subcategoryId: 15,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750954603973L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 21,
@@ -255,7 +255,7 @@ const categories = [
     subcategoryId: 16,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00067341930309L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 22,
@@ -268,7 +268,7 @@ const categories = [
     subcategoryId: 29,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00000007500761L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 23,
@@ -281,7 +281,7 @@ const categories = [
     subcategoryId: 30,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00800057043540L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 24,
@@ -293,7 +293,7 @@ const categories = [
     subcategoryId: 31,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750106411254L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 25,
@@ -306,7 +306,7 @@ const categories = [
     subcategoryId: 19,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750301238307L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 26,
@@ -319,7 +319,7 @@ const categories = [
     subcategoryId: 19,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750179166766L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 27,
@@ -331,7 +331,7 @@ const categories = [
     subcategoryId: 17,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00000000004038L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 28,
@@ -343,7 +343,7 @@ const categories = [
     subcategoryId: 17,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00000000004130L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 29,
@@ -356,7 +356,7 @@ const categories = [
     subcategoryId: 18,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750225433586L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 30,
@@ -368,7 +368,7 @@ const categories = [
     subcategoryId: 17,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00068113116061L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 31,
@@ -381,7 +381,7 @@ const categories = [
     subcategoryId: 19,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750223617208L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 32,
@@ -394,7 +394,7 @@ const categories = [
     subcategoryId: 20,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750103292366L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 33,
@@ -408,7 +408,7 @@ const categories = [
     subcategoryId: 21,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00001780014273L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 34,
@@ -421,7 +421,7 @@ const categories = [
     subcategoryId: 21,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00070646002937L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 35,
@@ -434,7 +434,7 @@ const categories = [
     subcategoryId: 22,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750179162001L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 36,
@@ -447,7 +447,7 @@ const categories = [
     subcategoryId: 23,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750103590323L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 37,
@@ -460,7 +460,7 @@ const categories = [
     subcategoryId: 24,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750102311057L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 38,
@@ -473,7 +473,7 @@ const categories = [
     subcategoryId: 32,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750113093439L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 39,
@@ -486,7 +486,7 @@ const categories = [
     subcategoryId: 33,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00066417700009L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 40,
@@ -499,7 +499,7 @@ const categories = [
     subcategoryId: 34,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00040009176656L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 41,
@@ -512,7 +512,7 @@ const categories = [
     subcategoryId: 35,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750104790590L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 42,
@@ -524,7 +524,7 @@ const categories = [
     subcategoryId: 36,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750116501081L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 43,
@@ -537,7 +537,7 @@ const categories = [
     subcategoryId: 37,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00065024002056L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 44,
@@ -549,7 +549,7 @@ const categories = [
     subcategoryId: 38,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750116501178L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 45,
@@ -561,7 +561,7 @@ const categories = [
     subcategoryId: 27,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00900249010007L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 46,
@@ -574,7 +574,7 @@ const categories = [
     subcategoryId: 39,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105531787L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 47,
@@ -587,7 +587,7 @@ const categories = [
     subcategoryId: 25,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750107112007L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 48,
@@ -599,7 +599,7 @@ const categories = [
     subcategoryId: 40,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00020616900000L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 49,
@@ -612,7 +612,7 @@ const categories = [
     subcategoryId: 41,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00020104100000L.jpg',
-    active: 1
+    active: true
   },
   {
     id: 50,
@@ -625,7 +625,7 @@ const categories = [
     subcategoryId: 42,
     urlImage:
       'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750179160078L.jpg',
-    active: 1
+    active: true
   },
 ];
 module.exports = categories;

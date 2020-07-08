@@ -75,8 +75,6 @@ async function getAll(TABLE, filter) {
     const orderFilter = [['title', order]];
     const offset = (page - 1) * limit;
 
-    console.log(limit);
-    
     return models.Product.findAll({
       where: newFilter,
       order: orderFilter,

@@ -21,12 +21,12 @@ describe('controller - products', () => {
     const createProduct = {
       "title":"Six de modelo especial",
       "description":"6 cervezas modelo especial de lata",
-      "url_image":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
+      "urlImage":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
       "quantity": 355,
-      "id_measure": 4,
-      "id_category": 7,
-      "id_subcategory": 31,
-      "active":"1"
+      "measureId": 1,
+      "categoryId": 1,
+      "subcategoryId": 1,
+      "active":true
     }
     return Controller.createProduct(createProduct).then((product) => {
       expect(product).toMatchObject({ id: expect.any(Number) });
@@ -36,12 +36,12 @@ describe('controller - products', () => {
     const updateProduct = {
       "title":"Six de modelo especial",
       "description":"6 cervezas modelo especial de lata",
-      "url_image":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
+      "urlImage":"https://cdn.byprice.com/657562b1-0635-47ca-b84d-789854e74c4b/300_300.png",
       "quantity": 355,
-      "id_measure": 4,
-      "id_category": 7,
-      "id_subcategory": 31,
-      "active":"1"
+      "measureId": 1,
+      "categoryId": 1,
+      "subcategoryId": 1,
+      "active":true
     }
     return Controller.updateProduct(updateProduct,1).then((product) => {
       expect(product).toMatchObject({
@@ -49,11 +49,11 @@ describe('controller - products', () => {
         title: expect.any(String),
         description: expect.any(String),
         quantity: expect.any(Number),
-        id_measure: expect.any(Number),
-        id_category: expect.any(Number),
-        id_subcategory: expect.any(Number),
-        url_image: expect.any(String),
-        active: expect.any(Number),
+        measureId: expect.any(Number),
+        categoryId: expect.any(Number),
+        subcategoryId: expect.any(Number),
+        urlImage: expect.any(String),
+        active: expect.any(Boolean),
       });
     });
   });
