@@ -15,7 +15,7 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'users', key: 'id' },
+        references: { model: 'user', key: 'id' },
       },
       urlImage: {
         type: Sequelize.TEXT,
@@ -26,11 +26,11 @@ module.exports = {
         allowNull: false
       },
       latitude: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.DECIMAL,
         allowNull: false
       },
       longitude: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.DECIMAL,
         allowNull: false
       },
       createdAt: {

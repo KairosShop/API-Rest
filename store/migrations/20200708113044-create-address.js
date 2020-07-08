@@ -21,11 +21,11 @@ module.exports = {
         allowNull: false,
       },
       latitude: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.DECIMAL,
         allowNull: false,
       },
       longitude: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.DECIMAL,
         allowNull: false,
       },
       createdAt: {
