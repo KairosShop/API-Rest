@@ -12,7 +12,14 @@ module.exports = (sequelize, DataTypes) => {
 
       User.hasMany(models.Address, {
         foreignKey: 'userId',
-        as: 'address',
+        as: 'addresses',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
+
+      User.hasMany(models.Supermarket, {
+        foreignKey: 'userId',
+        as: 'supermarkets',
         onDelete: 'RESTRICT',
         onUpdate: 'CASCADE',
       });
