@@ -32,13 +32,13 @@ async function signIn(req, res, next) {
         if (!permisionsScope) {
           next(boom.unauthorized());
         }
-        const { id, email, firstName, lastName } = user;
+        const { id, email, rol, firstName, lastName } = user;
         let scopes;
         switch (user.rol) {
           case 'admin':
             scopes = permisionsScope.admin;
             break;
-          case 'super marker':
+          case 'super market':
             scopes = permisionsScope.supermarket;
             break;
           default:
@@ -49,6 +49,7 @@ async function signIn(req, res, next) {
         const payload = {
           sub: id,
           email,
+          rol,
           scopes: scopes,
         };
 

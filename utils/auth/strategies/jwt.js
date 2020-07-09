@@ -2,9 +2,9 @@ const passport = require('passport');
 const { Strategy, ExtractJwt } = require('passport-jwt');
 const boom = require('@hapi/boom');
 const pemissionsScopes = require('./pemissions');
-const usersController = require('../../../api/components/users/controller');
+const controller = require('../../../api/components/users/index');
 
-const { jwt } = require('../config/index');
+const { jwt } = require('../../../config/index');
 
 passport.use(
   new Strategy(
@@ -14,14 +14,25 @@ passport.use(
     },
     async function (tokenPayload, cb) {
       try {
-        const user = await usersController.getUser({ email: tokenPayload.email });
+        const user = await controller.getUser({ email: tokenPayload.email });
         if (!user) {
           return cb(boom.unauthorized(), false);
         }
 
         delete user.password;
-
-        cb(null, { ...user, scopes: pemissionsScopes });
+        let scopes;
+        switch (user.rol) {
+          case 'admin':
+            scopes = pemissionsScopes.admin;
+            break;
+          case 'super market':
+            scopes = pemissionsScopes.supermarket;
+            break;
+          default:
+            scopes = pemissionsScopes.customer;
+            break;
+        }
+        cb(null, { ...user, scopes: scopes });
       } catch (error) {
         return cb(error);
       }

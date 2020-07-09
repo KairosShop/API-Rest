@@ -86,7 +86,7 @@ const users = [{
   "email": "chumble9@reddit.com",
   "firstName": "Connie",
   "lastName": "Humble",
-  "rol": "super market",
+  "rol": "admin",
   "verified": 0,
   "active": true,
   "password": "$2b$10$cq9P9bUSzY40ne0lJX3l/umUAZcjTbMB7TMgF.aGmOPU7yW2HfAIG"
