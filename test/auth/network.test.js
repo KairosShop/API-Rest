@@ -18,11 +18,7 @@ describe('routes - users', function () {
             });
         });
         it("should respond with status 200 - sign in user", function(done) {
-            const signIn = {
-                "email": "chumble9@reddit.com",
-                "password":"secret"
-            }
-            request.post("/api/sign-in/").send(signIn).end((err, res) => {
+            request.post("/api/sign-in/").auth('chumble9@reddit.com','secret').end((err, res) => {
               expect(res.body).toMatchObject({error: false, status: 200, body: expect.any(Object) });
               expect(res.body.body).toMatchObject({ token: expect.any(String),user: expect.any(Object) });
               done();

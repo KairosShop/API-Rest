@@ -20,6 +20,7 @@ router.post('/sign-up', validationHandler(createUserSchema), signUp);
 
 async function signIn(req, res, next) {
   passport.authenticate('basic', async function (error, user) {
+
     try {
       if (error || !user || typeof user !== 'object') {
         next(boom.unauthorized());
@@ -41,8 +42,11 @@ async function signIn(req, res, next) {
           case 'super market':
             scopes = permisionsScope.supermarket;
             break;
-          default:
+          case 'customer':
             scopes = permisionsScope.customer;
+            break;
+          default:
+            scopes = [];
             break;
         }
 
