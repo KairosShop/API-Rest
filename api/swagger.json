@@ -51,6 +51,10 @@
     {
       "name": "supermarket",
       "description": "Everything about your supermarkets"
+    },
+    {
+      "name": "auth",
+      "description": "Everything about your auth"
     }
   ],
   "paths": {
@@ -1166,6 +1170,11 @@
     },
     "/users": {
       "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": [
           "users"
         ],
@@ -1216,6 +1225,11 @@
         }
       },
       "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": [
           "users"
         ],
@@ -1354,6 +1368,11 @@
     },
     "/users/{idUser}": {
       "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": [
           "users"
         ],
@@ -1406,6 +1425,11 @@
         }
       },
       "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": [
           "users"
         ],
@@ -1468,6 +1492,11 @@
         }
       },
       "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": [
           "users"
         ],
@@ -2807,122 +2836,131 @@
           }
         }
       }
+    },
+    "/auth/sign-in": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "login in the app",
+        "operationId": "signIn",
+        "requestBody": {
+          "description": "Cart object that needs to be add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/signIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/sign-up": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Add a new user to the store",
+        "operationId": "signUp",
+        "requestBody": {
+          "description": "User object that needs to be add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
-      "ApiResponse": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "boolean",
-            "format": "int64"
-          },
-          "status": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "body": {
-            "type": "object",
-            "format": "int32"
-          }
-        },
-        "example": {
-          "error": false,
-          "status": 200,
-          "body": [
-            {
-              "id": 1,
-              "data1": "result1",
-              "data2": "result2"
-            }
-          ]
-        }
-      },
-      "cartResponse": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "boolean",
-            "format": "int64"
-          },
-          "status": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "body": {
-            "type": "object",
-            "format": "int32"
-          }
-        },
-        "example": {
-          "error": false,
-          "status": 200,
-          "body": [
-            {
-              "id": 1,
-              "userId": 4,
-              "status": "Stand by",
-              "createdAt": "2020-05-19 19:45:44",
-              "updatedAt": "2020-06-14 11:35:23",
-              "detail": [
-                {
-                  "cartId": 1,
-                  "productId": 24,
-                  "quantity": 2,
-                  "supermarketId": "",
-                  "price": "",
-                  "createdAt": "2020-06-24 06:09:24",
-                  "updatedAt": ""
-                }
-              ]
-            }
-          ]
-        }
-      },
-      "ApiError400": {
-        "type": "object",
-        "properties": {
-          "statusCode": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "error": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "stack": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "statusCode": 400,
-          "error": "Bad Request",
-          "message": "id is not allowed",
-          "stack": "ValidationError id is not allowed"
-        }
-      },
-      "ApiError404": {
-        "properties": {
-          "statusCode": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "error": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "statusCode": 404,
-          "error": "Not Found",
-          "message": "Not Found"
-        }
-      },
       "Product": {
         "type": "object",
         "properties": {
@@ -2987,7 +3025,7 @@
           "quantity": 90,
           "measureId": 4,
           "urlImage": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
-          "active": 1
+          "active": true
         }
       },
       "Category": {
@@ -3449,6 +3487,196 @@
         "example": {
           "productId": 1,
           "quantity": 2
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "format": "int64"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "body": {
+            "type": "object",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "error": false,
+          "status": 200,
+          "body": [
+            {
+              "id": 1,
+              "data1": "result1",
+              "data2": "result2"
+            }
+          ]
+        }
+      },
+      "cartResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "format": "int64"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "body": {
+            "type": "object",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "error": false,
+          "status": 200,
+          "body": [
+            {
+              "id": 1,
+              "userId": 4,
+              "status": "Stand by",
+              "createdAt": "2020-05-19 19:45:44",
+              "updatedAt": "2020-06-14 11:35:23",
+              "detail": [
+                {
+                  "cartId": 1,
+                  "productId": 24,
+                  "quantity": 2,
+                  "supermarketId": "",
+                  "price": "",
+                  "createdAt": "2020-06-24 06:09:24",
+                  "updatedAt": ""
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "loginResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "format": "int64"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "body": {
+            "type": "object",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "error": false,
+          "status": 200,
+          "body": [
+            {
+              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+              "user": {
+                "id": 1,
+                "email": "fgascard8@domainmarket.com",
+                "firstName": "Fanchon",
+                "lastName": "Gascard"
+              }
+            }
+          ]
+        }
+      },
+      "signIn": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "uniqueItems": true
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "example": {
+          "email": "hola@carlosramirezflores.com",
+          "password": "idonothavepassword1"
+        }
+      },
+      "ApiError400": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "stack": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "statusCode": 400,
+          "error": "Bad Request",
+          "message": "id is not allowed",
+          "stack": "ValidationError id is not allowed"
+        }
+      },
+      "ApiError401": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "stack": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "statusCode": 401,
+          "error": "Unauthorized",
+          "message": "Unauthorized",
+          "stack": "Error Unauthorized  at ..."
+        }
+      },
+      "ApiError404": {
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "statusCode": 404,
+          "error": "Not Found",
+          "message": "Not Found"
         }
       }
     }
