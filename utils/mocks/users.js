@@ -78,7 +78,8 @@ const users = [{
   "lastName": "Gascard",
   "rol": "super market",
   "verified": 0,
-  "active": true
+  "active": true,
+  "password": "$2b$10$cq9P9bUSzY40ne0lJX3l/umUAZcjTbMB7TMgF.aGmOPU7yW2HfAIG"
 }, {
   "id": 10,
   "urlImage": "https://www.shareicon.net/data/2015/10/09/653498_users_512x512.png",
@@ -87,6 +88,7 @@ const users = [{
   "lastName": "Humble",
   "rol": "super market",
   "verified": 0,
-  "active": true
+  "active": true,
+  "password": "$2b$10$cq9P9bUSzY40ne0lJX3l/umUAZcjTbMB7TMgF.aGmOPU7yW2HfAIG"
 }]
 module.exports = users;

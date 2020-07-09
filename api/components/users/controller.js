@@ -11,8 +11,8 @@ module.exports = function (injectedStore) {
     return users || [];
   }
 
-  async function getUser(id) {
-    const user = await store.getById(TABLE, id);
+  async function getUser(filter={}) {
+    const user = await store.getOne(TABLE, filter);
     return user || [];
   }
 
@@ -22,11 +22,11 @@ module.exports = function (injectedStore) {
     
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const { userId }  = await store.create(TABLE, userData);
+    const { id: userId }  = await store.create(TABLE, userData);
 
     await store.create('authentication', { userId, password: hashedPassword});
 
-    return userId || [];
+    return [userId] || [];
   }
 
   async function updateUser(userData, id) {
