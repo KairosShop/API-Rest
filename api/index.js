@@ -19,6 +19,7 @@ const supermarket =  require('./components/supermarket/network');
 const prices =  require('./components/prices/network');
 const address =  require('./components/address/network');
 const cart =  require('./components/cart/network');
+const auth =  require('./components/auth/network');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(helmet());
 
 // Routing
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+app.use('/api/auth', auth);
 app.use('/api/categories', categories);
 app.use('/api/subcategories', subcategories);
 app.use('/api/measures', measures);

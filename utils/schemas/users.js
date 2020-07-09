@@ -14,7 +14,6 @@ const lastNameSchema = joi.string().min(2).max(50);
 const rolSchema = joi.string().uppercase().valid('CUSTOMER', 'SUPER MARKET', 'ADMIN');
 const passwordSchema = joi.string().pattern(new RegExp('^[\\w$ _*+\\-\\+]{8,30}$'));
 
-
 const createUserSchema = {
   email: emailSchema.required(),
   firstName: firstNameSchema.required(),

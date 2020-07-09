@@ -12,7 +12,7 @@ describe('controller - users', () => {
   });
 
   test('should return object user', () => {
-    return Controller.getUser(1).then((user) => {
+    return Controller.getUser({id:1}).then((user) => {
       expect(user).toStrictEqual(usersMock[0]);
     });
   });
@@ -26,7 +26,7 @@ describe('controller - users', () => {
       "password":"vstlod pa$$word__3 r-5*"
     }
     return Controller.createUser(createUser).then((user) => {
-      expect(user).toMatchObject({ id: expect.any(Number) });
+      expect(typeof user[0]).toBe('number');
     });
   });
   test('should return object user updated', () => {

@@ -46,12 +46,17 @@ async function getAll(table, filter={}) {
     }
     return data;
 }
+async function getOne(table, filter={}) {
+    const row = await getAll(table,filter);
+    return row[0];
+}
 async function getById(table, id) {
     const row = await getAll(table);
     return row.filter(item => item.id == id)[0];
 }
 
 async function create(table, data) {
+    table =  table == 'authentication' ? 'users' : table;
     if(table == 'details'){
         data = await getAll(table, data);
     } else {
@@ -81,6 +86,7 @@ async function deleted(table, data) {
 module.exports={
     getAll,
     getById,
+    getOne,
     create,
     update,
     upsert,
