@@ -90,7 +90,7 @@ async function get(req, res, next) {
 async function getById(req, res, next) {
   const { idUser } = req.params;
   try {
-    const user = await Controller.getUser({id: idUser});
+    const user = await Controller.getUserById(idUser);
     responses.success(req, res, user, 200);
   } catch (error) {
     next(error);

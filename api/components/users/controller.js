@@ -16,6 +16,11 @@ module.exports = function (injectedStore) {
     return user || [];
   }
 
+  async function getUserById(id) {
+    const user = await store.getById(TABLE, id);
+    return user || [];
+  }
+
   async function createUser(userData) {
     const { password } =  userData;
     delete userData.password;
@@ -44,5 +49,6 @@ module.exports = function (injectedStore) {
     createUser,
     updateUser,
     removeUser,
+    getUserById,
   }
 }

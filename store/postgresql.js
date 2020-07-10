@@ -122,7 +122,6 @@ async function getById(TABLE, id) {
   const whereFilter = { id, deleted: false };
   if (TABLE == 'categories') {
     let filterSubcategories = { deleted: false, active: true };
-
     return models.Category.findOne({
       where: whereFilter,
       include: [
@@ -162,6 +161,10 @@ async function getById(TABLE, id) {
     });
   } else if (TABLE === 'authentication') {
     return models.Authentication.findOne({
+      where: whereFilter,
+    });
+  } else if (TABLE === 'users') {
+    return models.User.findOne({
       where: whereFilter,
     });
   }
@@ -206,7 +209,8 @@ async function remove(TABLE, id) {
 async function getOne(TABLE, filter = {}) {
   let whereFilter = { deleted: false };
   if (TABLE === 'users') {
-    const { email } = filter;
+    let { email} = filter;
+
     whereFilter = { email, ...whereFilter };
     let user = await models.User.findOne({
       where: whereFilter,
