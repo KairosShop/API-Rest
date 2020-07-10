@@ -8,7 +8,7 @@ describe('routes - users', function () {
     describe('GET /users',  function () {
          beforeAll(async (done) =>{
             const requestLogin = testServer(routeLogin);
-            const data =  await requestLogin.post("/api/sign-in/").auth('chumble9@reddit.com','secret')
+            const data =  await requestLogin.post("/api/sign-in/").auth('admin@kairosshop.xyz','12345678')
             token = data.body.body.token;
             done();
         })
@@ -31,11 +31,11 @@ describe('routes - users', function () {
         });
 
         test('should respond with status 200 - search by role', function (done) {
-            request.get('/api/?role=admin').set('Authorization', `Bearer ${token}`).expect(200, done);
+            request.get('/api/?rol=admin').set('Authorization', `Bearer ${token}`).expect(200, done);
         });
 
         test('should respond with status 200 - search by verified', function (done) {
-            request.get('/api/?verified=1').set('Authorization', `Bearer ${token}`).expect(200, done);
+            request.get('/api/?verified=true').set('Authorization', `Bearer ${token}`).expect(200, done);
         });
 
         test('should respond with status 200 - search by active', function (done) {

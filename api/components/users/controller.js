@@ -25,6 +25,7 @@ module.exports = function (injectedStore) {
     const { password } =  userData;
     delete userData.password;
 
+    userData.rol = userData.rol.toUpperCase();
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser  = await store.create(TABLE, userData);
     const { id: userId } = newUser;

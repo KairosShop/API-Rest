@@ -103,7 +103,7 @@ async function getAll(TABLE, filter) {
       newFilter = { lasteName, ...newFilter };
     }
     if (rol) {
-      newFilter = { rol, ...newFilter };
+      newFilter = { rol: rol.toUpperCase(), ...newFilter };
     }
 
     const orderFilter = [['rol', order]];
