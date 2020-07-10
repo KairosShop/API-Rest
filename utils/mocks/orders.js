@@ -2,8 +2,10 @@ const orders = [
   {
     id: 1,
     supermarketId: 4,
+    userId: 4,
+    cartId: 4,
     total: '16.32',
-    status: 'In process',
+    status: 'in process',
     createdAt: '2019-08-19 04:49:02',
     updatedAt: '2020-04-20 07:55:06',
     ordersDetails: [
@@ -32,8 +34,10 @@ const orders = [
   {
     id: 2,
     supermarketId: 7,
+    userId: 2,
+    cartId: 6,
     total: '20.04',
-    status: 'In process',
+    status: 'in process',
     createdAt: '2019-08-15 01:50:24',
     updatedAt: '2019-10-26 03:18:31',
     ordersDetails: [
@@ -72,6 +76,8 @@ const orders = [
   {
     id: 3,
     supermarketId: 4,
+    userId: 2,
+    cartId: 7,
     total: '31.48',
     status: 'ceancel',
     createdAt: '2019-09-26 21:00:12',
@@ -112,6 +118,8 @@ const orders = [
   {
     id: 4,
     supermarketId: 5,
+    userId: 1,
+    cartId: 1,
     total: '46.13',
     status: 'successfull',
     createdAt: '2020-06-15 23:44:04',
@@ -182,6 +190,8 @@ const orders = [
   {
     id: 5,
     supermarketId: 4,
+    userId: 5,
+    cartId:5,
     total: '37.67',
     status: 'successfull',
     createdAt: '2020-05-30 17:36:54',
