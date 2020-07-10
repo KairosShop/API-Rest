@@ -8,18 +8,22 @@ const {
   userIdSchema,
   createUserSchema,
   updateUserSchema,
+  filterSchema,
 } = require('../../../utils/schemas/users');
 const validationHandler = require('../../../utils/middleware/validationHandler');
 const scopesValidationHandler = require('../../../utils/middleware/scopesValidationHandler');
 
 require('../../../utils/auth/strategies/jwt');
 
+
 router.get(
   '/',
   passport.authenticate('jwt', { session: false }),
   scopesValidationHandler(['read:users']),
+  validationHandler(filterSchema, 'query'),
   get
 );
+//TODO:
 router.get(
   '/:idUser',
   passport.authenticate('jwt', { session: false }),
@@ -27,6 +31,7 @@ router.get(
   validationHandler({ idUser: userIdSchema }, 'params'),
   getById
 );
+//TODO:
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
@@ -34,6 +39,7 @@ router.post(
   validationHandler(createUserSchema),
   createUser
 );
+//TODO:
 router.put(
   '/:idUser',
   passport.authenticate('jwt', { session: false }),
@@ -41,6 +47,7 @@ router.put(
   validationHandler(updateUserSchema),
   updateUser
 );
+//TODO:
 router.delete(
   '/:idUser',
   passport.authenticate('jwt', { session: false }),
@@ -55,9 +62,13 @@ async function get(req, res, next) {
     firstName = '',
     lastName = '',
     rol = '',
-    verified = '',
-    active = '',
+    verified = true,
+    active = true,
+    order = 'ASC',
+    page = 1,
+    limit = 20,
   } = req.query;
+
   try {
     const users = await Controller.getUsers({
       email,
@@ -66,6 +77,9 @@ async function get(req, res, next) {
       rol,
       verified,
       active,
+      order,
+      page,
+      limit
     });
     responses.success(req, res, users, 200);
   } catch (error) {

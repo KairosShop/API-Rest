@@ -4,6 +4,7 @@ const boom = require('@hapi/boom');
 const bcrypt = require('bcrypt');
 
 const controller = require('../../../api/components/users/index');
+
 passport.use(
   new BasicStrategy(async function(email, password, cb) {
     try {
@@ -12,6 +13,7 @@ passport.use(
       if (!user) {
         return cb(boom.unauthorized(), false);
       }
+
       if (!(await bcrypt.compare(password, user.password))) {
         return cb(boom.unauthorized(), false);
       }

@@ -4,6 +4,9 @@ test-report.xml
 ### Linux ###
 *~
 
+.vscode/
+store/seeders/20200710111834-Authentications.js
+
 # temporary files which can be created if a process still has a handle open of a deleted file
 .fuse_hidden*
 

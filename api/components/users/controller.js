@@ -19,13 +19,12 @@ module.exports = function (injectedStore) {
   async function createUser(userData) {
     const { password } =  userData;
     delete userData.password;
-    
-    const hashedPassword = await bcrypt.hash(password, 10);
 
-    const { id: userId }  = await store.create(TABLE, userData);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser  = await store.create(TABLE, userData);
+    const { id: userId } = newUser;
 
     await store.create('authentication', { userId, password: hashedPassword});
-
     return [userId] || [];
   }
 
