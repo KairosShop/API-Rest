@@ -8,6 +8,8 @@ const price =  require('../utils/mocks/prices');
 const address =  require('../utils/mocks/address');
 const cart =  require('../utils/mocks/cart');
 const details =  require('../utils/mocks/details');
+const orders =  require('../utils/mocks/orders');
+const ordersDetails =  require('../utils/mocks/ordersDetails');
 
 const db = {
     categories,
@@ -19,7 +21,9 @@ const db = {
     price,
     address,
     cart,
-    details
+    details,
+    orders,
+    ordersDetails
 }
 
 async function getAll(table, filter={}) {
