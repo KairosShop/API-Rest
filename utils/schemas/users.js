@@ -35,6 +35,7 @@ const filterSchema = {
   lastName: lastNameSchema,
   rol: rolSchema,
   active: activeSchema,
+  verified: activeSchema,
   order: orderSchema,
   page: pageSchema,
   limit: limitSchema,

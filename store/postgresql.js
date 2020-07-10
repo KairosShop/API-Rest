@@ -87,6 +87,34 @@ async function getAll(TABLE, filter) {
         },
       ],
     });
+  } else if (TABLE == 'users') {
+    const { order, page, limit } = filter;
+    const { email, firstName, lasteName, rol, verified, active } = filter;
+
+    let newFilter = { deleted: false, verified, active };
+
+    if (email) {
+      newFilter = { email, ...newFilter };
+    }
+    if (firstName) {
+      newFilter = { firstName, ...newFilter };
+    }
+    if (lasteName) {
+      newFilter = { lasteName, ...newFilter };
+    }
+    if (rol) {
+      newFilter = { rol: rol.toUpperCase(), ...newFilter };
+    }
+
+    const orderFilter = [['rol', order]];
+    const offset = (page - 1) * limit;
+
+    return models.User.findAll({
+      where: newFilter,
+      order: orderFilter,
+      offset,
+      limit,
+    });
   }
 }
 
@@ -94,7 +122,6 @@ async function getById(TABLE, id) {
   const whereFilter = { id, deleted: false };
   if (TABLE == 'categories') {
     let filterSubcategories = { deleted: false, active: true };
-
     return models.Category.findOne({
       where: whereFilter,
       include: [
@@ -132,6 +159,14 @@ async function getById(TABLE, id) {
         },
       ],
     });
+  } else if (TABLE === 'authentication') {
+    return models.Authentication.findOne({
+      where: whereFilter,
+    });
+  } else if (TABLE === 'users') {
+    return models.User.findOne({
+      where: whereFilter,
+    });
   }
 }
 
@@ -142,6 +177,10 @@ async function create(TABLE, data) {
     return models.Subcategory.create(data);
   } else if (TABLE === 'products') {
     return models.Product.create(data);
+  } else if (TABLE === 'users') {
+    return models.User.create(data);
+  } else if (TABLE === 'authentication') {
+    return models.Authentication.create(data);
   }
 }
 
@@ -153,6 +192,8 @@ async function update(TABLE, data, id) {
     return models.Subcategory.update(data, { where: whereFilter });
   } else if (TABLE === 'products') {
     return models.Product.update(data, { where: whereFilter });
+  } else if (TABLE === 'users') {
+    return models.User.update(data, { where: whereFilter });
   }
 }
 
@@ -164,6 +205,27 @@ async function remove(TABLE, id) {
     return models.Subcategory.update(updateData, { where: { id } });
   } else if (TABLE === 'products') {
     return models.Product.update(updateData, { where: { id } });
+  } else if (TABLE === 'users') {
+    return models.User.update(updateData, { where: { id } });
+  }
+}
+
+async function getOne(TABLE, filter = {}) {
+  let whereFilter = { deleted: false };
+  if (TABLE === 'users') {
+    let { email } = filter;
+
+    whereFilter = { email, ...whereFilter };
+    let user = await models.User.findOne({
+      where: whereFilter,
+    });
+
+    const auth = await models.Authentication.findOne({
+      where: { userId: user.id },
+    });
+    user.password = auth.password;
+
+    return user;
   }
 }
 
@@ -173,4 +235,5 @@ module.exports = {
   create,
   update,
   remove,
+  getOne,
 };

@@ -1287,11 +1287,45 @@
               "items": {
                 "type": "string",
                 "enum": [
-                  "admin",
-                  "customer",
-                  "super market"
+                  "ADMIN",
+                  "CUSTOMER",
+                  "SUPER MARKET"
                 ]
               }
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "description": "Order category values",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
+              "default": "ASC"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page of category values",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit category of page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20
             }
           },
           {
@@ -1301,14 +1335,8 @@
             "required": false,
             "style": "form",
             "schema": {
-              "type": "integer",
-              "items": {
-                "type": "integer",
-                "enum": [
-                  1,
-                  0
-                ]
-              }
+              "type": "boolean",
+              "default": true
             }
           },
           {
@@ -1318,14 +1346,8 @@
             "required": false,
             "style": "form",
             "schema": {
-              "type": "integer",
-              "items": {
-                "type": "integer",
-                "enum": [
-                  1,
-                  0
-                ]
-              }
+              "type": "boolean",
+              "default": true
             }
           }
         ],
@@ -3166,9 +3188,9 @@
           "rol": {
             "type": "string",
             "enum": [
-              "admin",
-              "customer",
-              "super market"
+              "ADMIN",
+              "CUSTOMER",
+              "SUPER MARKET"
             ]
           },
           "password": {

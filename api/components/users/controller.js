@@ -16,16 +16,21 @@ module.exports = function (injectedStore) {
     return user || [];
   }
 
+  async function getUserById(id) {
+    const user = await store.getById(TABLE, id);
+    return user || [];
+  }
+
   async function createUser(userData) {
     const { password } =  userData;
     delete userData.password;
-    
-    const hashedPassword = await bcrypt.hash(password, 10);
 
-    const { id: userId }  = await store.create(TABLE, userData);
+    userData.rol = userData.rol.toUpperCase();
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser  = await store.create(TABLE, userData);
+    const { id: userId } = newUser;
 
     await store.create('authentication', { userId, password: hashedPassword});
-
     return [userId] || [];
   }
 
@@ -45,5 +50,6 @@ module.exports = function (injectedStore) {
     createUser,
     updateUser,
     removeUser,
+    getUserById,
   }
 }
