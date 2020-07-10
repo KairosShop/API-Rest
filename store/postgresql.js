@@ -192,6 +192,8 @@ async function update(TABLE, data, id) {
     return models.Subcategory.update(data, { where: whereFilter });
   } else if (TABLE === 'products') {
     return models.Product.update(data, { where: whereFilter });
+  } else if (TABLE === 'users') {
+    return models.User.update(data, { where: whereFilter });
   }
 }
 
@@ -203,13 +205,15 @@ async function remove(TABLE, id) {
     return models.Subcategory.update(updateData, { where: { id } });
   } else if (TABLE === 'products') {
     return models.Product.update(updateData, { where: { id } });
+  } else if (TABLE === 'users') {
+    return models.User.update(updateData, { where: { id } });
   }
 }
 
 async function getOne(TABLE, filter = {}) {
   let whereFilter = { deleted: false };
   if (TABLE === 'users') {
-    let { email} = filter;
+    let { email } = filter;
 
     whereFilter = { email, ...whereFilter };
     let user = await models.User.findOne({

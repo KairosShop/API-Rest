@@ -22,10 +22,10 @@ passport.use(
         delete user.password;
         let scopes;
         switch (user.rol) {
-          case 'admin':
+          case 'ADMIN':
             scopes = pemissionsScopes.admin;
             break;
-          case 'super market':
+          case 'SUPER MARKET':
             scopes = pemissionsScopes.supermarket;
             break;
           default:

@@ -23,7 +23,6 @@ router.get(
   validationHandler(filterSchema, 'query'),
   get
 );
-//TODO:
 router.get(
   '/:idUser',
   passport.authenticate('jwt', { session: false }),
@@ -31,7 +30,6 @@ router.get(
   validationHandler({ idUser: userIdSchema }, 'params'),
   getById
 );
-//TODO:
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
@@ -39,7 +37,6 @@ router.post(
   validationHandler(createUserSchema),
   createUser
 );
-//TODO:
 router.put(
   '/:idUser',
   passport.authenticate('jwt', { session: false }),
@@ -47,7 +44,7 @@ router.put(
   validationHandler(updateUserSchema),
   updateUser
 );
-//TODO:
+
 router.delete(
   '/:idUser',
   passport.authenticate('jwt', { session: false }),
@@ -110,6 +107,7 @@ async function createUser(req, res, next) {
 async function updateUser(req, res, next) {
   const { idUser } = req.params;
   const { body: user } = req;
+
   try {
     const updatedUser = await Controller.updateUser(user, idUser);
     responses.success(req, res, updatedUser, 200);
