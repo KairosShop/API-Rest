@@ -16,8 +16,9 @@ passport.use(
         return cb(boom.unauthorized(), false);
       }
 
-      delete user.password;
-      return cb(null, user);
+      const dataUser = { ... user };
+      delete dataUser.password;
+      return cb(null, dataUser);
     } catch (error) {
       return cb(error);
     }
