@@ -1,4 +1,4 @@
-const store = require('../../../store/mocks');
+const store = require('../../../store/postgresql');
 const controller = require('../users/controller');
 
 module.exports = controller(store);

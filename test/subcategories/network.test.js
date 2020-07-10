@@ -20,7 +20,7 @@ describe('routes - subcategories', function () {
     it('should respond with status 201', function (done) {
       const createSubcategory = {
         categoryId: 1,
-        title: 'Leche',
+        title: 'Cerveza Corona',
         urlImage:
           'https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg',
       };

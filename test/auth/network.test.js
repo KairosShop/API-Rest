@@ -6,7 +6,7 @@ describe('routes - users', function () {
     describe('POST /auth', function () {
         it("should respond with status 201 - sign up user", function(done) {
             const signUp = {
-                "email": "chumble9@reddit.com",
+                "email": "chumble92@reddit.com",
                 "firstName": "Carlos",
                 "lastName": "Ramírez",
                 "rol":"admin",
@@ -18,7 +18,7 @@ describe('routes - users', function () {
             });
         });
         it("should respond with status 200 - sign in user", function(done) {
-            request.post("/api/sign-in/").auth('chumble9@reddit.com','secret').end((err, res) => {
+            request.post("/api/sign-in/").auth('chumble92@reddit.com','secret12345').end((err, res) => {
               expect(res.body).toMatchObject({error: false, status: 200, body: expect.any(Object) });
               expect(res.body.body).toMatchObject({ token: expect.any(String),user: expect.any(Object) });
               done();

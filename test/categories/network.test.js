@@ -47,7 +47,7 @@ describe('routes - categories', function () {
   describe('PUT /categories', function () {
     it('should respond with status 200', function (done) {
       let mockCategory = {
-        title: mocks[0].title,
+        title: 'Un producto de lacteos',
         urlImage: mocks[0].urlImage,
       };
       request
