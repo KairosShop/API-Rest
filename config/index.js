@@ -40,6 +40,9 @@ const config = {
     dialect: 'postgres',
     logging: true
   },
+  storage:{
+    products: process.env.GCP_STORAGE_BUCKET_PRODUCTS,
+  }
 };
 
 module.exports = config;
