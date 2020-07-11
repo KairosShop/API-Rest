@@ -2,9 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const cors = require('cors');
-const { api } = require('../config');
+const { api, dev } = require('../config');
+const agent = require('@google-cloud/debug-agent');
 
-const { logErrors, wrapErrors, errorHandler } = require('../utils/middleware/errorHandlers');
+const {
+  logErrors,
+  wrapErrors,
+  errorHandler,
+} = require('../utils/middleware/errorHandlers');
 const notFoundHandler = require('../utils/middleware/notFoundHandler');
 
 const swaggerUi = require('swagger-ui-express');
@@ -21,6 +26,11 @@ const address =  require('./components/address/network');
 const cart =  require('./components/cart/network');
 const orders =  require('./components/orders/network');
 const auth =  require('./components/auth/network');
+
+if (!dev) {
+  agent.start();
+}
+
 
 const app = express();
 
