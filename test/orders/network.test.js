@@ -17,7 +17,7 @@ describe('routes - orders', function () {
     describe('POST /orders', function () {
         it("should respond with status 201 - create order", function(done) {
             const createOrder = {
-                cartId: 1,
+                userId: 1,
                 total: 500,
                 products: [
                   {
