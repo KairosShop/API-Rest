@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 
       Supermarket.hasMany(models.Price, {
         as: 'prices',
-        foreignKey: 'priceId',
+        foreignKey: 'supermarketId',
         onDelete: 'RESTRICT',
         onUpdate: 'CASCADE',
       });

@@ -1,6 +1,7 @@
 const models = require('./models');
 
 async function getAll(TABLE, filter) {
+
   if (TABLE == 'categories') {
     let newFilter = { deleted: false };
     let filterSubcategories = { deleted: false, active: true };
@@ -134,7 +135,62 @@ async function getAll(TABLE, filter) {
       offset,
       limit,
     });
-  } 
+  } else if (TABLE == 'supermarket') {
+    const { order, page, limit } = filter;
+    const { supermarket, address, active, userId } = filter;
+
+    let newFilter = { deleted: false };
+
+    if (supermarket) {
+      newFilter = { supermarket, ...newFilter };
+    }
+    if (address) {
+      newFilter = { address, ...newFilter };
+    }
+    if (userId) {
+      newFilter = { userId,  ...newFilter };
+    }
+    if (active) {
+      newFilter = active ? { active, ...newFilter } : false;
+    }
+
+    const orderFilter = [['supermarket', order]];
+    const offset = (page - 1) * limit;
+    return models.Supermarket.findAll({
+      where: newFilter,
+      order: orderFilter,
+      offset,
+      limit,
+    });
+  }else if (TABLE == 'price') {
+    const { order, page, limit } = filter;
+    const { supermarketId, productId, active, price } = filter;
+
+    let newFilter = { };
+
+    if (supermarketId) {
+      newFilter = { supermarketId, ...newFilter };
+    }
+    if (productId) {
+      newFilter = { productId, ...newFilter };
+    }
+    if (price) {
+      newFilter = { price,  ...newFilter };
+    }
+    if (active) {
+      newFilter = active ? { active, ...newFilter } : false;
+    }
+
+    const orderFilter = [['price', order]];
+    const offset = (page - 1) * limit;
+
+    return models.Price.findAll({
+      where: newFilter,
+      order: orderFilter,
+      offset,
+      limit,
+    });
+  }
 }
 
 async function getById(TABLE, id) {
@@ -206,7 +262,11 @@ async function create(TABLE, data) {
     return models.Authentication.create(data);
   } else if (TABLE === 'address') {
     return models.Address.create(data);
-  } 
+  } else if (TABLE === 'supermarket') {
+    return models.Supermarket.create(data);
+  } else if (TABLE === 'price') {
+    return models.Price.create(data);
+  }
 }
 
 async function update(TABLE, data, id) {
@@ -221,7 +281,11 @@ async function update(TABLE, data, id) {
     return models.User.update(data, { where: whereFilter });
   } else if (TABLE === 'address') {
     return models.Address.update(data, { where: whereFilter });
-  } 
+  } else if (TABLE === 'supermarket') {
+    return models.Supermarket.update(data, { where: whereFilter });
+  } else if (TABLE === 'price') {
+    return models.Price.update(data, { where: whereFilter });
+  }
 }
 
 async function remove(TABLE, id) {
@@ -236,7 +300,9 @@ async function remove(TABLE, id) {
     return models.User.update(updateData, { where: { id } });
   } else if (TABLE === 'address') {
     return models.Address.update(updateData, { where: { id } });
-  } 
+  } else if (TABLE === 'supermarket') {
+    return models.Supermarket.update(updateData, { where: { id } });
+  }
 }
 
 async function getOne(TABLE, filter = {}) {
