@@ -162,7 +162,7 @@ async function getAll(TABLE, filter) {
       offset,
       limit,
     });
-  }else if (TABLE == 'price') {
+  } else if (TABLE == 'price') {
     const { order, page, limit } = filter;
     const { supermarketId, productId, active, price } = filter;
 
@@ -189,6 +189,32 @@ async function getAll(TABLE, filter) {
       order: orderFilter,
       offset,
       limit,
+    });
+  } else if (TABLE == 'orders') {
+    const { status, userId } = filter;
+    let newFilter = { deleted: false };
+    let filterDetails = { deleted: false };
+
+    if (status) {
+      newFilter = { status, ...newFilter };
+    } 
+    if (userId) {
+      newFilter = { userId, ...newFilter };
+    }
+
+    const orderFilter = [['id', 'DESC']];
+
+    return models.Orders.findAll({
+      where: newFilter,
+      order: orderFilter,
+      include: [
+        {
+          model: models.OrdersDetails,
+          as: 'details',
+          where: filterDetails,
+          required: false,
+        },
+      ],
     });
   }
 }
@@ -266,6 +292,10 @@ async function create(TABLE, data) {
     return models.Supermarket.create(data);
   } else if (TABLE === 'price') {
     return models.Price.create(data);
+  } else if (TABLE === 'orders') {
+    return models.Orders.create(data);
+  } else if (TABLE === 'ordersDetails') {
+    return models.OrdersDetails.create(data);
   }
 }
 
@@ -285,6 +315,8 @@ async function update(TABLE, data, id) {
     return models.Supermarket.update(data, { where: whereFilter });
   } else if (TABLE === 'price') {
     return models.Price.update(data, { where: whereFilter });
+  } else if (TABLE === 'orders') {
+    return models.Orders.update(data, { where: whereFilter });
   }
 }
 
@@ -302,6 +334,8 @@ async function remove(TABLE, id) {
     return models.Address.update(updateData, { where: { id } });
   } else if (TABLE === 'supermarket') {
     return models.Supermarket.update(updateData, { where: { id } });
+  } else if (TABLE === 'orders') {
+    return models.Orders.update(updateData, { where: { id } });
   }
 }
 
@@ -330,6 +364,23 @@ async function getOne(TABLE, filter = {}) {
     });
 
     return result;
+  } else if (TABLE == 'orders') {
+    let { id } = filter;
+    whereFilter = { id, ...whereFilter };
+    
+    let filterOrdersDetails = { deleted: false };
+    
+    return models.Orders.findOne({
+      where: whereFilter,
+      include: [
+        {
+          model: models.OrdersDetails,
+          as: 'details',
+          where: filterOrdersDetails,
+          required: false,
+        },
+      ],
+    });
   }
 }
 
