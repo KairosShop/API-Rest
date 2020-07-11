@@ -42,7 +42,11 @@
     },
     {
       "name": "cart",
-      "description": "Everything about your cart"
+      "description": "Everything about your users"
+    },
+    {
+      "name": "orders",
+      "description": "Everything about your orders"
     },
     {
       "name": "address",
@@ -1287,45 +1291,11 @@
               "items": {
                 "type": "string",
                 "enum": [
-                  "ADMIN",
-                  "CUSTOMER",
-                  "SUPER MARKET"
+                  "admin",
+                  "customer",
+                  "super market"
                 ]
               }
-            }
-          },
-          {
-            "name": "order",
-            "in": "query",
-            "description": "Order category values",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ],
-              "default": "ASC"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Page of category values",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 1
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Limit category of page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20
             }
           },
           {
@@ -1335,8 +1305,14 @@
             "required": false,
             "style": "form",
             "schema": {
-              "type": "boolean",
-              "default": true
+              "type": "integer",
+              "items": {
+                "type": "integer",
+                "enum": [
+                  1,
+                  0
+                ]
+              }
             }
           },
           {
@@ -1346,8 +1322,14 @@
             "required": false,
             "style": "form",
             "schema": {
-              "type": "boolean",
-              "default": true
+              "type": "integer",
+              "items": {
+                "type": "integer",
+                "enum": [
+                  1,
+                  0
+                ]
+              }
             }
           }
         ],
@@ -2972,6 +2954,216 @@
           }
         }
       }
+    },
+    "/orders": {
+      "post": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Add a new orders to the store",
+        "operationId": "createOrder",
+        "requestBody": {
+          "description": "Order object that needs to be add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Orders"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "get all orders",
+        "description": "get all orders, optional with params",
+        "operationId": "getOrders",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/orderResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{idOrder}": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Find order by id",
+        "description": "Returns a single order",
+        "operationId": "getOrder",
+        "parameters": [
+          {
+            "name": "idOrder",
+            "in": "path",
+            "description": "ID of order to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/orderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Update an existing status in order",
+        "operationId": "updateOrder",
+        "parameters": [
+          {
+            "name": "idOrder",
+            "in": "path",
+            "description": "ID of order",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Order object that needs to be update to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrdersUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -3188,9 +3380,9 @@
           "rol": {
             "type": "string",
             "enum": [
-              "ADMIN",
-              "CUSTOMER",
-              "SUPER MARKET"
+              "admin",
+              "customer",
+              "super market"
             ]
           },
           "password": {
@@ -3511,6 +3703,131 @@
           "quantity": 2
         }
       },
+      "Orders": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "uniqueItems": true,
+            "readOnly": true
+          },
+          "supermarketId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "cartId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "total": {
+            "type": "number"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "products": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/OrderDetails"
+            }
+          }
+        },
+        "example": [
+          {
+            "cartId": 1,
+            "total": 500,
+            "products": [
+              {
+                "productId": 1,
+                "quantity": 2,
+                "price": 3,
+                "supermarketId": 3
+              },
+              {
+                "productId": 3,
+                "quantity": 1,
+                "price": 1,
+                "supermarketId": 3
+              }
+            ]
+          }
+        ]
+      },
+      "OrderDetails": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "uniqueItems": true,
+            "readOnly": true
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "orderId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "supermarketId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "price": {
+            "type": "number"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "productId",
+          "quantity",
+          "supermarketId",
+          "price",
+          "orderId"
+        ],
+        "example": [
+          "productId",
+          "quantity",
+          "supermarketId",
+          "price"
+        ]
+      },
+      "OrdersUpdate": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "SUCCESSFULL",
+              "IN PROCESS",
+              "CANCEL"
+            ]
+          }
+        },
+        "example": {
+          "status": "SUCCESSFULL"
+        }
+      },
       "ApiResponse": {
         "type": "object",
         "properties": {
@@ -3610,6 +3927,46 @@
               }
             }
           ]
+        }
+      },
+      "orderResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "format": "int64"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "body": {
+            "type": "object",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "error": false,
+          "status": 200,
+          "body": {
+            "id": 1,
+            "supermarketId": 4,
+            "cartId": 4,
+            "total": 16.32,
+            "status": "in process",
+            "createdAt": "2019-08-19 04:49:02",
+            "updatedAt": "2020-04-20 07:55:06",
+            "ordersDetails": {
+              "id": 4,
+              "orderId": 1,
+              "productId": 12,
+              "supermarketId": 1,
+              "price": 1.38,
+              "quantity": 2,
+              "createdAt": "2019-08-09 03:37:26",
+              "updatedAt": "2020-05-12 19:39:29"
+            }
+          }
         }
       },
       "signIn": {

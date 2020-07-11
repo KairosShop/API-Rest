@@ -29,7 +29,6 @@ module.exports = function (injectedStore) {
         throw(error.message);
       }
     }
-
     return { orderId } || [];
   }
   async function updateOrder(productData, id) {
