@@ -2,9 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const cors = require('cors');
-const { api } = require('../config');
+const { api, dev } = require('../config');
+const agent = require('@google-cloud/debug-agent');
 
-const { logErrors, wrapErrors, errorHandler } = require('../utils/middleware/errorHandlers');
+const {
+  logErrors,
+  wrapErrors,
+  errorHandler,
+} = require('../utils/middleware/errorHandlers');
 const notFoundHandler = require('../utils/middleware/notFoundHandler');
 
 const swaggerUi = require('swagger-ui-express');
@@ -13,13 +18,16 @@ const swaggerDoc = require('./swagger.json');
 const categories = require('./components/categories/network');
 const subcategories = require('./components/subcategories/network');
 const measures = require('./components/measures/network');
-const users =  require('./components/users/network');
-const products =  require('./components/products/network');
-const supermarket =  require('./components/supermarket/network');
-const prices =  require('./components/prices/network');
-const address =  require('./components/address/network');
-const cart =  require('./components/cart/network');
-const auth =  require('./components/auth/network');
+const users = require('./components/users/network');
+const products = require('./components/products/network');
+const supermarket = require('./components/supermarket/network');
+const prices = require('./components/prices/network');
+const address = require('./components/address/network');
+const cart = require('./components/cart/network');
+const auth = require('./components/auth/network');
+if (!dev) {
+  agent.start();
+}
 
 const app = express();
 
