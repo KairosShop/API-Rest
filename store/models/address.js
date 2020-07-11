@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       latitude: { type: DataTypes.DECIMAL, allowNull: false },
       longitude: { type: DataTypes.DECIMAL, allowNull: false },
+      deleted: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
     },
     {
       sequelize,

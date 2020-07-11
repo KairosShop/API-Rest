@@ -115,7 +115,26 @@ async function getAll(TABLE, filter) {
       offset,
       limit,
     });
-  }
+  } else if (TABLE == 'address') {
+    const { order, page, limit } = filter;
+    const { address } = filter;
+
+    let newFilter = { deleted: false };
+
+    if (address) {
+      newFilter = { address, ...newFilter };
+    }
+
+    const orderFilter = [['address', order]];
+    const offset = (page - 1) * limit;
+
+    return models.Address.findAll({
+      where: newFilter,
+      order: orderFilter,
+      offset,
+      limit,
+    });
+  } 
 }
 
 async function getById(TABLE, id) {
@@ -167,6 +186,10 @@ async function getById(TABLE, id) {
     return models.User.findOne({
       where: whereFilter,
     });
+  } else if (TABLE === 'supermarket') {
+    return models.Supermarket.findOne({
+      where: whereFilter,
+    });
   }
 }
 
@@ -181,7 +204,9 @@ async function create(TABLE, data) {
     return models.User.create(data);
   } else if (TABLE === 'authentication') {
     return models.Authentication.create(data);
-  }
+  } else if (TABLE === 'address') {
+    return models.Address.create(data);
+  } 
 }
 
 async function update(TABLE, data, id) {
@@ -194,7 +219,9 @@ async function update(TABLE, data, id) {
     return models.Product.update(data, { where: whereFilter });
   } else if (TABLE === 'users') {
     return models.User.update(data, { where: whereFilter });
-  }
+  } else if (TABLE === 'address') {
+    return models.Address.update(data, { where: whereFilter });
+  } 
 }
 
 async function remove(TABLE, id) {
@@ -207,7 +234,9 @@ async function remove(TABLE, id) {
     return models.Product.update(updateData, { where: { id } });
   } else if (TABLE === 'users') {
     return models.User.update(updateData, { where: { id } });
-  }
+  } else if (TABLE === 'address') {
+    return models.Address.update(updateData, { where: { id } });
+  } 
 }
 
 async function getOne(TABLE, filter = {}) {
@@ -226,6 +255,15 @@ async function getOne(TABLE, filter = {}) {
     user.password = auth.password;
 
     return user;
+  } else if (TABLE == 'address') {
+    let { id, userId } = filter;
+
+    whereFilter = { id, userId, ...whereFilter };
+    let result = await models.Address.findOne({
+      where: whereFilter,
+    });
+
+    return result;
   }
 }
 
