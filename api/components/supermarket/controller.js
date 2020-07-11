@@ -15,6 +15,7 @@ module.exports = function (injectedStore) {
   }
 
   async function createSupermarket(supermarketData) {
+    supermarketData.deleted = false;
     const created = await store.create(TABLE, supermarketData);
     return created || [];
   }

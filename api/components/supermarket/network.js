@@ -68,6 +68,7 @@ async function getById(req, res, next) {
 
 async function createSupermarket(req, res, next) {
   const { body: supermarket } = req;
+  supermarket.userId = 4;
   try {
     const createdSupermarket = await Controller.createSupermarket(supermarket);
     responses.success(req, res, createdSupermarket, 201);

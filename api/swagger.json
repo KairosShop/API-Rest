@@ -3476,7 +3476,7 @@
           "longitude": {
             "type": "string"
           },
-          "urlLogo": {
+          "urlImage": {
             "type": "string"
           },
           "active": {
@@ -3502,7 +3502,7 @@
           "address",
           "latitude",
           "longitude",
-          "urlLogo",
+          "urlImage",
           "userId"
         ],
         "example": {
@@ -3510,7 +3510,7 @@
           "address": "3w Weeping Birch Avenue",
           "latitude": 3.7220621,
           "longitude": 96.8297403,
-          "urlLogo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
+          "urlImage": "http://dummyimage.com/246x208.png/ff4444/ffffff",
           "userId": 1,
           "active": true
         }
