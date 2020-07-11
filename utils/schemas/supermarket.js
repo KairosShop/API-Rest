@@ -16,7 +16,7 @@ const longitudeSchema = latitudeSchema;
 const createSupermarketSchema = {
   supermarket: supermarketSchema.required(),
   address: addressSchema.required(),
-  urlLogo: urlImageSchema.required(),
+  urlImage: urlImageSchema.required(),
   latitude: latitudeSchema.required(),
   longitude: longitudeSchema.required(),
   active: activeSchema,
@@ -24,7 +24,7 @@ const createSupermarketSchema = {
 const updateSupermarketSchema = {
   supermarket: supermarketSchema,
   address: addressSchema,
-  urlLogo: urlImageSchema,
+  urlImage: urlImageSchema,
   latitude: latitudeSchema,
   longitude: longitudeSchema,
   active: activeSchema,
