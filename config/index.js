@@ -40,8 +40,10 @@ const config = {
     dialect: 'postgres',
     logging: true
   },
-  storage:{
+  gcpstorage:{
     products: process.env.GCP_STORAGE_BUCKET_PRODUCTS,
+    user:  process.env.GCP_STORAGE_BUCKET_USERS,
+    super: process.env.GCP_STORAGE_BUCKET_SUPER
   }
 };
 

@@ -1,6 +1,7 @@
 const { format } = require('util');
 const { Storage } = require('@google-cloud/storage');
 const storage = new Storage();
+const { gcpstorage } = require('../../../config')
 
 module.exports = function (injectedStore) {
   let store = injectedStore;
@@ -13,11 +14,11 @@ module.exports = function (injectedStore) {
       let nameBucket;
 
       if(type == 'CUSTOMER'){
-        nameBucket = 'usersimg';
+        nameBucket =  gcpstorage.user;
       }else if(type == 'SUPERMARKET'){
-        nameBucket = 'superimg';
+        nameBucket = gcpstorage.super;
       }else{
-        nameBucket = 'productsimg';
+        nameBucket = gcpstorage.products;
       }
 
       const bucket = storage.bucket(nameBucket);
