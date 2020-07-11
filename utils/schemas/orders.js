@@ -15,14 +15,18 @@ const orderSchema = joi.object().keys({
   price: priceSchema.required(),
 });
 const createOrderSchema = {
-  cartId: idSchema.required(),
+  userId: idSchema.required(),
   total: priceSchema.required(),
   products: joi.array().items(orderSchema),
 };
 const statusOrderSchema = {
   status: statusSchema,
+  userId: idSchema
 };
-const filterSchema = {};
+const filterSchema = {
+  status: statusSchema,
+  userId: idSchema
+};
 
 module.exports = {
   orderIdSchema: idSchema.required(),

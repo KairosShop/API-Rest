@@ -26,8 +26,7 @@ router.put(
   updateOrder
 );
 async function get(req, res, next) {
-  const userId = 4,
-  status = 'in process';
+  let { userId = '', status = '' } = req.query;
   try {
     const orders = await Controller.getOrders({userId, status});
     responses.success(req, res, orders, 200);
