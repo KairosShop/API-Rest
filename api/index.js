@@ -26,6 +26,7 @@ const address =  require('./components/address/network');
 const cart =  require('./components/cart/network');
 const orders =  require('./components/orders/network');
 const auth =  require('./components/auth/network');
+const files =  require('./components/files/network');
 
 if (!dev) {
   agent.start();
@@ -51,6 +52,7 @@ app.use('/api/prices', prices);
 app.use('/api/address', address);
 app.use('/api/cart', cart);
 app.use('/api/orders', orders);
+app.use('/api/files', files);
 
 // middlewares by errors
 app.use(notFoundHandler);

@@ -7,6 +7,8 @@ const pageSchema = joi.number().integer().min(1);
 const limitSchema = joi.number().integer().min(1);
 const activeSchema = joi.boolean();
 const allSchema = joi.boolean();
+const typeFileSchema = joi.string().uppercase().valid('CUSTOMER', 'SUPERMARKET', 'PRODUCT');
+
 
 module.exports = {
   idSchema,
@@ -15,5 +17,6 @@ module.exports = {
   pageSchema,
   limitSchema,
   activeSchema,
-  allSchema
+  allSchema,
+  typeFileSchema
 };
