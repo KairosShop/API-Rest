@@ -34,7 +34,7 @@ async function signIn(req, res, next) {
         }
         const { id, email, rol, firstName, lastName } = user;
         let scopes;
-        switch (user.rol) {
+        switch (rol) {
           case 'ADMIN':
             scopes = permisionsScope.admin;
             break;
@@ -60,7 +60,7 @@ async function signIn(req, res, next) {
           expiresIn: '15m',
         });
 
-        let respose = { token, user: { id, email, firstName, lastName } };
+        let respose = { token, user: { id, email, firstName, lastName, rol } };
         responses.success(req, res, respose, 200);
       });
     } catch (error) {
