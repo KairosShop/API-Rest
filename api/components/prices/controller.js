@@ -1,6 +1,3 @@
-const dateformat =  require('dateformat');
-
-const date = dateformat(new Date(), "yyyy-mm-dd h:MM:ss");
 const TABLE = 'price';
 module.exports = function (injectedStore) {
   let store = injectedStore;
@@ -14,12 +11,10 @@ module.exports = function (injectedStore) {
   }
 
   async function createPrice(priceData) {
-    priceData.createdAt= date;
     const created = await store.create(TABLE, priceData);
     return created || [];
   }
   async function updatePrice(priceData, id) {
-    priceData.updatedAt= date;
     const updated = await store.update(TABLE, priceData, id);
     return updated || [];
   }

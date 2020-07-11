@@ -23,7 +23,7 @@ describe('controller - supermaket', () => {
       "address": "Av México 44 colonia centro jalpa zacatecas",
       "latitude": "3.7220621",
       "longitude": "96.8297403",
-      "urlLogo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
+      "urlImage": "http://dummyimage.com/246x208.png/ff4444/ffffff",
       "active": true,
       "userId": 2
     }
@@ -37,7 +37,7 @@ describe('controller - supermaket', () => {
       "address": "Calle arroyo seco 344-a colonia centro zapopan jalisco",
       "latitude": "3.7220621",
       "longitude": "96.8297403",
-      "urlLogo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
+      "urlImage": "http://dummyimage.com/246x208.png/ff4444/ffffff",
       "active": true,
       "userId": 2
     }
