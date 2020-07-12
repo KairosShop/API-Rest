@@ -19,7 +19,7 @@ describe('controller - orders', () => {
 
   test('should return object order created', () => {
     const createOrder = {
-      cartId: 1,
+      userId: 1,
       total: 500,
       products: [
         {
