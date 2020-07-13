@@ -25,21 +25,14 @@ module.exports = function (injectedStore) {
   async function createUser(userData) {
     const { password } =  userData;
     delete userData.password;
-    try {
-      const { id } = await store.getOne( TABLE, { email: userData.email });
-      if( !id ){
-        userData.rol = userData.rol.toUpperCase();
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser  = await store.create(TABLE, userData);
-        const { id: userId } = newUser;
-        await store.create('authentication', { userId, password: hashedPassword});
-        return [userId] || [];
-      } else {
-        return 'The user is already registered';
-      }
-    } catch (error) {
-      boom.badRequest('error in the create user');
-    }
+    
+    userData.rol = userData.rol.toUpperCase();
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser  = await store.create(TABLE, userData);
+    const { id: userId } = newUser;
+    await store.create('authentication', { userId, password: hashedPassword});
+    return [userId] || [];
+     
     
   }
 
