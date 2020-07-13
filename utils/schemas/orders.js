@@ -15,7 +15,6 @@ const orderSchema = joi.object().keys({
   price: priceSchema.required(),
 });
 const createOrderSchema = {
-  userId: idSchema.required(),
   total: priceSchema.required(),
   products: joi.array().items(orderSchema),
 };
