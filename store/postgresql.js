@@ -67,13 +67,13 @@ async function getAll(TABLE, filter) {
 
     if (title) {
       title = {
-        [Op.like]: `%${title}%`
+        [Op.iLike]: `%${title}%`
       }
       newFilter = { title, ...newFilter };
     }
     if (description) {
       description = {
-        [Op.like]:  `%${description}%`
+        [Op.iLike]:  `%${description}%`
       }
       newFilter = { description, ...newFilter };
     }
