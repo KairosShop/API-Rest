@@ -41,10 +41,6 @@
       "description": "Everything about your users"
     },
     {
-      "name": "cart",
-      "description": "Everything about your users"
-    },
-    {
       "name": "orders",
       "description": "Everything about your orders"
     },
@@ -68,7 +64,9 @@
   "paths": {
     "/products": {
       "post": {
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "summary": "Add a new product to the store",
         "operationId": "createProduct",
         "requestBody": {
@@ -116,7 +114,9 @@
         }
       },
       "get": {
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "summary": "get all products",
         "description": "get all products, optional with params",
         "operationId": "getProducts",
@@ -224,7 +224,10 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": ["asc", "desc"]
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
               }
             }
           },
@@ -290,7 +293,9 @@
     },
     "/products/{idProduct}": {
       "get": {
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "summary": "Find product by id",
         "description": "Returns a single product",
         "operationId": "getProduct",
@@ -340,7 +345,9 @@
         }
       },
       "put": {
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "summary": "Update an existing product",
         "operationId": "updateProduct",
         "parameters": [
@@ -400,7 +407,9 @@
         }
       },
       "delete": {
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "summary": "Delete product",
         "operationId": "removeProduct",
         "parameters": [
@@ -451,7 +460,9 @@
     },
     "/categories": {
       "post": {
-        "tags": ["categories"],
+        "tags": [
+          "categories"
+        ],
         "summary": "Add a new category to the store",
         "operationId": "createCategory",
         "requestBody": {
@@ -499,7 +510,9 @@
         }
       },
       "get": {
-        "tags": ["categories"],
+        "tags": [
+          "categories"
+        ],
         "summary": "get all categories",
         "description": "get all categories, optional with params category",
         "operationId": "getCategories",
@@ -524,7 +537,10 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["ASC", "DESC"],
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
               "default": "ASC"
             }
           },
@@ -588,7 +604,9 @@
     },
     "/categories/{idCategory}": {
       "get": {
-        "tags": ["categories"],
+        "tags": [
+          "categories"
+        ],
         "summary": "Find category by id",
         "description": "Returns a single category",
         "operationId": "getCategory",
@@ -638,7 +656,9 @@
         }
       },
       "put": {
-        "tags": ["categories"],
+        "tags": [
+          "categories"
+        ],
         "summary": "Update an existing category",
         "operationId": "updateCategory",
         "parameters": [
@@ -698,7 +718,9 @@
         }
       },
       "delete": {
-        "tags": ["categories"],
+        "tags": [
+          "categories"
+        ],
         "summary": "Delete category",
         "operationId": "removeCategory",
         "parameters": [
@@ -749,7 +771,9 @@
     },
     "/subcategories": {
       "post": {
-        "tags": ["subcategories"],
+        "tags": [
+          "subcategories"
+        ],
         "summary": "Add a new subcategory to the store",
         "operationId": "createSubcategory",
         "requestBody": {
@@ -799,7 +823,9 @@
     },
     "/subcategories/{idSubcategory}": {
       "put": {
-        "tags": ["subcategories"],
+        "tags": [
+          "subcategories"
+        ],
         "summary": "Update an existing subcategory",
         "operationId": "updateSubcategory",
         "parameters": [
@@ -859,7 +885,9 @@
         }
       },
       "delete": {
-        "tags": ["subcategories"],
+        "tags": [
+          "subcategories"
+        ],
         "summary": "Delete subcategory",
         "operationId": "removeSubcategory",
         "parameters": [
@@ -908,7 +936,9 @@
         }
       },
       "get": {
-        "tags": ["subcategories"],
+        "tags": [
+          "subcategories"
+        ],
         "summary": "Find subcategory by id",
         "description": "Returns a single subcategory",
         "operationId": "getSubcategory",
@@ -960,7 +990,9 @@
     },
     "/subcategories/category/{idCategory}": {
       "get": {
-        "tags": ["subcategories"],
+        "tags": [
+          "subcategories"
+        ],
         "summary": "get all subcategories by idCategory",
         "description": "get all subcategories by idCategory, optional with params subcategory",
         "operationId": "getSubcategories",
@@ -1028,7 +1060,9 @@
     },
     "/measures": {
       "get": {
-        "tags": ["measures"],
+        "tags": [
+          "measures"
+        ],
         "summary": "get all measures",
         "description": "get all measures, optional with params measure",
         "operationId": "getMeasures",
@@ -1086,7 +1120,9 @@
     },
     "/measures/{idMeasure}": {
       "get": {
-        "tags": ["measures"],
+        "tags": [
+          "measures"
+        ],
         "summary": "Find measures by id",
         "description": "Returns a single measure",
         "operationId": "getMeasure",
@@ -1143,7 +1179,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "summary": "Add a new user to the store",
         "operationId": "createUser",
         "requestBody": {
@@ -1196,7 +1234,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "summary": "get all users",
         "description": "get all users, optional with params",
         "operationId": "getUsers",
@@ -1250,7 +1290,11 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": ["admin", "customer", "super market"]
+                "enum": [
+                  "admin",
+                  "customer",
+                  "super market"
+                ]
               }
             }
           },
@@ -1264,7 +1308,10 @@
               "type": "integer",
               "items": {
                 "type": "integer",
-                "enum": [1, 0]
+                "enum": [
+                  1,
+                  0
+                ]
               }
             }
           },
@@ -1278,7 +1325,10 @@
               "type": "integer",
               "items": {
                 "type": "integer",
-                "enum": [1, 0]
+                "enum": [
+                  1,
+                  0
+                ]
               }
             }
           }
@@ -1327,7 +1377,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "summary": "Find user by id",
         "description": "Returns a single user",
         "operationId": "getUser",
@@ -1382,7 +1434,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "summary": "Update an existing user",
         "operationId": "updateUser",
         "parameters": [
@@ -1447,7 +1501,9 @@
             "bearerAuth": []
           }
         ],
-        "tags": ["users"],
+        "tags": [
+          "users"
+        ],
         "summary": "Delete user",
         "operationId": "removeUser",
         "parameters": [
@@ -1498,7 +1554,9 @@
     },
     "/supermarket": {
       "post": {
-        "tags": ["supermarket"],
+        "tags": [
+          "supermarket"
+        ],
         "summary": "Add a new supermarket to the store",
         "operationId": "createSupermarket",
         "requestBody": {
@@ -1546,7 +1604,9 @@
         }
       },
       "get": {
-        "tags": ["supermarket"],
+        "tags": [
+          "supermarket"
+        ],
         "summary": "get all supermarkets",
         "description": "get all supermarkets, optional with params",
         "operationId": "getSupermarkets",
@@ -1610,7 +1670,10 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": ["asc", "desc"]
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
               }
             }
           },
@@ -1676,7 +1739,9 @@
     },
     "/supermarket/{idSupermarket}": {
       "get": {
-        "tags": ["supermarket"],
+        "tags": [
+          "supermarket"
+        ],
         "summary": "Find supermarket by id",
         "description": "Returns a single supermarket",
         "operationId": "getSupermarket",
@@ -1726,7 +1791,9 @@
         }
       },
       "put": {
-        "tags": ["supermarket"],
+        "tags": [
+          "supermarket"
+        ],
         "summary": "Update an existing supermarket",
         "operationId": "updateSupermarket",
         "parameters": [
@@ -1786,7 +1853,9 @@
         }
       },
       "delete": {
-        "tags": ["supermarket"],
+        "tags": [
+          "supermarket"
+        ],
         "summary": "Delete supermarket",
         "operationId": "removeSupermarket",
         "parameters": [
@@ -1837,7 +1906,9 @@
     },
     "/prices": {
       "post": {
-        "tags": ["prices"],
+        "tags": [
+          "prices"
+        ],
         "summary": "Add a new prices to the store",
         "operationId": "createPrice",
         "requestBody": {
@@ -1887,7 +1958,9 @@
     },
     "/prices/{idPrice}": {
       "put": {
-        "tags": ["prices"],
+        "tags": [
+          "prices"
+        ],
         "summary": "Update an existing price",
         "operationId": "updatePrice",
         "parameters": [
@@ -1949,7 +2022,9 @@
     },
     "/prices/supermarket/{idSupermarket}": {
       "get": {
-        "tags": ["prices"],
+        "tags": [
+          "prices"
+        ],
         "summary": "Find prices by supermarketId",
         "description": "Returns all prices by supermarket",
         "operationId": "getPrices",
@@ -2005,7 +2080,10 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": ["asc", "desc"]
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
               }
             }
           },
@@ -2071,7 +2149,9 @@
     },
     "/prices/product/{idProduct}": {
       "get": {
-        "tags": ["prices"],
+        "tags": [
+          "prices"
+        ],
         "summary": "Find prices by productId",
         "description": "Returns all prices by product",
         "operationId": "getPrice",
@@ -2127,7 +2207,10 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": ["asc", "desc"]
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
               }
             }
           },
@@ -2193,7 +2276,9 @@
     },
     "/address": {
       "post": {
-        "tags": ["address"],
+        "tags": [
+          "address"
+        ],
         "summary": "Add a new address to the store",
         "operationId": "createAddress",
         "requestBody": {
@@ -2241,7 +2326,9 @@
         }
       },
       "get": {
-        "tags": ["address"],
+        "tags": [
+          "address"
+        ],
         "summary": "get all address",
         "description": "get all address, optional with params address",
         "operationId": "getAddress",
@@ -2269,7 +2356,10 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": ["asc", "desc"]
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
               }
             }
           },
@@ -2335,7 +2425,9 @@
     },
     "/address/{idAddress}": {
       "get": {
-        "tags": ["address"],
+        "tags": [
+          "address"
+        ],
         "summary": "Find address by id",
         "description": "Returns a single address",
         "operationId": "getById",
@@ -2385,7 +2477,9 @@
         }
       },
       "put": {
-        "tags": ["address"],
+        "tags": [
+          "address"
+        ],
         "summary": "Update an existing address",
         "operationId": "updateAddress",
         "parameters": [
@@ -2445,7 +2539,9 @@
         }
       },
       "delete": {
-        "tags": ["address"],
+        "tags": [
+          "address"
+        ],
         "summary": "Delete address",
         "operationId": "removeAddress",
         "parameters": [
@@ -2494,250 +2590,11 @@
         }
       }
     },
-    "/cart": {
-      "post": {
-        "tags": ["cart"],
-        "summary": "Add a new cart to the store",
-        "operationId": "createCart",
-        "requestBody": {
-          "description": "Cart object that needs to be add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Details"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError400"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError404"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": ["cart"],
-        "summary": "Update an existing products in cart",
-        "operationId": "updateCart",
-        "requestBody": {
-          "description": "Product of cart object that needs to be update to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Details"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError400"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError404"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": ["cart"],
-        "summary": "get all carts",
-        "description": "get all carts, optional with params",
-        "operationId": "getCarts",
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/cartResponse"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError400"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError404"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/cart/{idCart}": {
-      "get": {
-        "tags": ["cart"],
-        "summary": "Find cart by id",
-        "description": "Returns a single cart",
-        "operationId": "getCart",
-        "parameters": [
-          {
-            "name": "idCart",
-            "in": "path",
-            "description": "ID of cart to return",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/cartResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError400"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError404"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/cart/{idProduct}": {
-      "delete": {
-        "tags": ["cart"],
-        "summary": "Delete product of the cart",
-        "operationId": "removeCart",
-        "parameters": [
-          {
-            "name": "idProduct",
-            "in": "path",
-            "description": "idProduct id to delete in the cart",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError400"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError404"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/auth/sign-in": {
       "post": {
-        "tags": ["auth"],
+        "tags": [
+          "auth"
+        ],
         "summary": "login in the app",
         "operationId": "signIn",
         "requestBody": {
@@ -2797,7 +2654,9 @@
     },
     "/auth/sign-up": {
       "post": {
-        "tags": ["auth"],
+        "tags": [
+          "auth"
+        ],
         "summary": "Add a new user to the store",
         "operationId": "signUp",
         "requestBody": {
@@ -2847,7 +2706,9 @@
     },
     "/orders": {
       "post": {
-        "tags": ["orders"],
+        "tags": [
+          "orders"
+        ],
         "summary": "Add a new orders to the store",
         "operationId": "createOrder",
         "requestBody": {
@@ -2895,7 +2756,9 @@
         }
       },
       "get": {
-        "tags": ["orders"],
+        "tags": [
+          "orders"
+        ],
         "summary": "get all orders",
         "description": "get all orders, optional with params",
         "operationId": "getOrders",
@@ -2937,7 +2800,9 @@
     },
     "/orders/{idOrder}": {
       "get": {
-        "tags": ["orders"],
+        "tags": [
+          "orders"
+        ],
         "summary": "Find order by id",
         "description": "Returns a single order",
         "operationId": "getOrder",
@@ -2987,7 +2852,9 @@
         }
       },
       "put": {
-        "tags": ["orders"],
+        "tags": [
+          "orders"
+        ],
         "summary": "Update an existing status in order",
         "operationId": "updateOrder",
         "parameters": [
@@ -3047,9 +2914,65 @@
         }
       }
     },
+    "/orders/print/{idOrder}": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Pirnt order PDF by id",
+        "description": "Returns a single url width pdf",
+        "operationId": "getPdf",
+        "parameters": [
+          {
+            "name": "idOrder",
+            "in": "path",
+            "description": "ID of order to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/pdfResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/files/{type}": {
       "post": {
-        "tags": ["files"],
+        "tags": [
+          "files"
+        ],
         "summary": "Update images",
         "description": "Update images product, user and supermarket",
         "operationId": "postFile",
@@ -3073,7 +2996,11 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": ["product", "customer", "supermarket"]
+              "enum": [
+                "product",
+                "customer",
+                "supermarket"
+              ]
             }
           }
         ],
@@ -3219,7 +3146,10 @@
             "readOnly": true
           }
         },
-        "required": ["title", "urlImage"],
+        "required": [
+          "title",
+          "urlImage"
+        ],
         "example": {
           "title": "Milks",
           "urlImage": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
@@ -3259,7 +3189,11 @@
             "readOnly": true
           }
         },
-        "required": ["categoryId", "title", "urlImage"],
+        "required": [
+          "categoryId",
+          "title",
+          "urlImage"
+        ],
         "example": {
           "categoryId": 2,
           "title": "Condensed Milk",
@@ -3293,7 +3227,9 @@
             "readOnly": true
           }
         },
-        "required": ["measure"]
+        "required": [
+          "measure"
+        ]
       },
       "AddUser": {
         "type": "object",
@@ -3316,7 +3252,11 @@
           },
           "rol": {
             "type": "string",
-            "enum": ["admin", "customer", "super market"]
+            "enum": [
+              "admin",
+              "customer",
+              "super market"
+            ]
           },
           "password": {
             "type": "string",
@@ -3336,7 +3276,13 @@
             "readOnly": true
           }
         },
-        "required": ["email", "firstName", "lastName", "rol", "password"],
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "rol",
+          "password"
+        ],
         "example": {
           "email": "hola@carlosramirezflores.com",
           "firstName": "Carlos",
@@ -3361,7 +3307,11 @@
           },
           "rol": {
             "type": "string",
-            "enum": ["admin", "customer", "super market"]
+            "enum": [
+              "admin",
+              "customer",
+              "super market"
+            ]
           },
           "urlImage": {
             "type": "string"
@@ -3471,7 +3421,12 @@
             "readOnly": true
           }
         },
-        "required": ["supermarketId", "productId", "price", "active"],
+        "required": [
+          "supermarketId",
+          "productId",
+          "price",
+          "active"
+        ],
         "example": {
           "supermarketId": 1,
           "productId": 2,
@@ -3527,7 +3482,11 @@
             "readOnly": true
           }
         },
-        "required": ["address", "latitude", "longitude"],
+        "required": [
+          "address",
+          "latitude",
+          "longitude"
+        ],
         "example": {
           "address": "7089 Weeping Birch Avenue",
           "latitude": -25.4426635,
@@ -3549,7 +3508,12 @@
           },
           "status": {
             "type": "string",
-            "enum": ["stand by", "successfull", "in process", "cancel"]
+            "enum": [
+              "stand by",
+              "successfull",
+              "in process",
+              "cancel"
+            ]
           },
           "createdAt": {
             "type": "string",
@@ -3603,7 +3567,10 @@
             "readOnly": true
           }
         },
-        "required": ["productId", "quantity"],
+        "required": [
+          "productId",
+          "quantity"
+        ],
         "example": {
           "productId": 1,
           "quantity": 2
@@ -3621,7 +3588,7 @@
             "type": "integer",
             "format": "int64"
           },
-          "cartId": {
+          "userId": {
             "type": "integer",
             "format": "int64"
           },
@@ -3647,7 +3614,6 @@
         },
         "example": [
           {
-            "cartId": 1,
             "total": 500,
             "products": [
               {
@@ -3711,14 +3677,23 @@
           "price",
           "orderId"
         ],
-        "example": ["productId", "quantity", "supermarketId", "price"]
+        "example": [
+          "productId",
+          "quantity",
+          "supermarketId",
+          "price"
+        ]
       },
       "OrdersUpdate": {
         "type": "object",
         "properties": {
           "status": {
             "type": "string",
-            "enum": ["SUCCESSFULL", "IN PROCESS", "CANCEL"]
+            "enum": [
+              "SUCCESSFULL",
+              "IN PROCESS",
+              "CANCEL"
+            ]
           }
         },
         "example": {
@@ -3866,6 +3841,30 @@
           }
         }
       },
+      "pdfResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "format": "int64"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "body": {
+            "type": "object",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "error": false,
+          "status": 200,
+          "body": {
+            "url": "https://storage.googleapis.com/usersimg/221846thth5-invoice.pdf"
+          }
+        }
+      },
       "signIn": {
         "type": "object",
         "properties": {
@@ -3879,7 +3878,10 @@
             "format": "password"
           }
         },
-        "required": ["email", "password"],
+        "required": [
+          "email",
+          "password"
+        ],
         "example": {
           "email": "hola@carlosramirezflores.com",
           "password": "idonothavepassword1"
