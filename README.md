@@ -1,6 +1,6 @@
 # API Kairos
 
-# [![Logo](./src/assets/images/brand/LogoBlue.png)](https://kairosshop.xyz/)
+# [![Logo](https://kairos-staging.firebaseapp.com/assets/images/brand/LogoBlue.svg)](https://kairosshop.xyz/)
 This API REST was generated with NODE JS and is part of the final proyect of the Master students of Platzi, from Cohort 2.
 
 This project is the Kairos backend a API.
@@ -79,7 +79,7 @@ This database stores the payment transactions.
 HTML to PDF converter that uses PhantomJS.
 
 ## Architecture
-# [![Architecture](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/003ab002-0125-41f7-9a02-18abc89714ba/API_Kairos.jpg)]
+# [![Architecture](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/003ab002-0125-41f7-9a02-18abc89714ba/API_Kairos.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200713%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200713T015816Z&X-Amz-Expires=86400&X-Amz-Signature=bc8150c08d11153e115dd740a16bbe22a0ae36d10380ce335d9f5b65a6af028d&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22API_Kairos.jpg%22)]
 
 
 ## Members ✒️
