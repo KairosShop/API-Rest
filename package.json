@@ -11,7 +11,7 @@
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
     "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate && npm run seed",
-    "test": "cross-env NODE_ENV=test jest --coverage --testTimeout=10000",
+    "test": "cross-env NODE_ENV=test jest --coverage --testTimeout=50000",
     "pretest": "cross-env NODE_ENV=test npm run migrate:reset"
   },
   "repository": {

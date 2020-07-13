@@ -3,7 +3,7 @@ module.exports = {
     return queryInterface.bulkInsert('OrdersDetails', [
       {
         orderId: 1,
-        productId: 12,
+        productId: 14,
         supermarketId: 2,
         price: '1.38',
         quantity: 2,
@@ -58,7 +58,7 @@ module.exports = {
       },
       {
         orderId: 3,
-        productId: 11,
+        productId: 21,
         supermarketId: 3,
         price: '2.41',
         quantity: 5,
@@ -91,7 +91,7 @@ module.exports = {
       },
       {
         orderId: 2,
-        productId: 11,
+        productId: 4,
         supermarketId: 2,
         price: '2.09',
         quantity: 1,
@@ -179,7 +179,7 @@ module.exports = {
       },
       {
         orderId: 1,
-        productId: 50,
+        productId: 12,
         supermarketId: 3,
         price: '1.10',
         quantity: 3,

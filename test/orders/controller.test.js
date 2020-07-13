@@ -11,12 +11,17 @@ describe('controller - orders', () => {
     });
   });
 
-  test('should return object one cart', () => {
+  test('should return object one order', () => {
     return Controller.getOrder(1).then((order) => {
       expect(order).toStrictEqual(ordersMock[0]);
     });
   });
 
+  test('should return object url to pdf order', () => {
+    return Controller.createPdf(1).then((order) => {
+      expect(order).toMatchObject({ url: expect.any(String)});
+    });
+  });
   test('should return object order created', () => {
     const createOrder = {
       userId: 1,

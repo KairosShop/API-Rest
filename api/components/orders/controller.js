@@ -55,7 +55,11 @@ module.exports = function (injectedStore) {
     return new Promise((resolve, reject) => {
       (async () => {
         const order = await store.getOne(TABLE, id);
-
+        if(!order){
+          reject(boom.badRequest('not exists order'));
+          return;
+        }
+        
         const namefile= dateFormat(order.createdAt,"HHMMssSS") + `${order.id}-invoice.pdf`
         const bucketName =  gcpstorage.user;
 
@@ -63,10 +67,10 @@ module.exports = function (injectedStore) {
           const existsFile = await validExists(bucketName, namefile);
           if(existsFile){
             resolve({url: `https://storage.googleapis.com/${bucketName}/${namefile}`});
-            return true;
+            return;
           }
         } catch (error) {
-          reject(boom.badRequest());
+          reject(boom.badRequest('not valid if the pdf file exists'));
         }
 
         let bodyHeader= orderPDF.bodyHead;
@@ -97,8 +101,9 @@ module.exports = function (injectedStore) {
                         </tr>`
               tableSupermarket++;
             }
+            const product= detail.products ? detail.products.title: '';
             tableBody +=`<tr class="item">
-                            <td>${detail.products.title}</td>
+                            <td>${product}</td>
                             <td> ${detail.price} </td>
                             <td> $${detail.price} </td>
                             <td> $${totalRow}</td>
@@ -113,7 +118,7 @@ module.exports = function (injectedStore) {
         const html = orderPDF.header + bodyHeader + tableBody + orderPDF.footer;
         pdf.create(html).toFile(__dirname + `/${namefile}`, async function(err, res) {
             if (err){
-              reject(boom.badRequest());
+              reject(boom.badRequest('the pdf file was not generated'));
             } else {
               try {
                 await uploadFile(bucketName,res.filename)
@@ -123,7 +128,7 @@ module.exports = function (injectedStore) {
                 );
                 resolve({url: publicUrl});
               } catch (error) {
-                reject(boom.badRequest());
+                reject(boom.badRequest('the pdf file was not uploaded'));
               }
             }
         });
@@ -131,19 +136,27 @@ module.exports = function (injectedStore) {
     });
   }
   async function uploadFile(bucketName, filename) {
-    await storage.bucket(bucketName).upload(filename, {
-      gzip: true,
-      metadata: {
-        cacheControl: 'public, max-age=31536000',
-      },
-    });
+    try {
+      await storage.bucket(bucketName).upload(filename, {
+        gzip: true,
+        metadata: {
+          cacheControl: 'public, max-age=31536000',
+        },
+      });
+    } catch (error) {
+      boom.badRequest(error.message)
+    }
   }
   async function validExists(bucketName, filename) {
-    const [metadata] = await storage
-      .bucket(bucketName)
-      .file(filename)
-      .getMetadata();
-    return metadata.name ? true : false;
+    try {
+      const [metadata] = await storage
+        .bucket(bucketName)
+        .file(filename)
+        .getMetadata();
+      return metadata.name ? true : false;
+    } catch (error) {
+      boom.badRequest(error.message)
+    }
   }
 
   return {
