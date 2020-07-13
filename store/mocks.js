@@ -6,8 +6,10 @@ const products = require('../utils/mocks/products');
 const supermarket =  require('../utils/mocks/supermarket');
 const price =  require('../utils/mocks/prices');
 const address =  require('../utils/mocks/address');
-const dateformat =  require('dateformat');
-const date = dateformat(new Date(), "yyyy-mm-dd h:MM:ss");
+const cart =  require('../utils/mocks/cart');
+const details =  require('../utils/mocks/details');
+const orders =  require('../utils/mocks/orders');
+const ordersDetails =  require('../utils/mocks/ordersDetails');
 
 const db = {
     categories,
@@ -18,14 +20,19 @@ const db = {
     supermarket,
     price,
     address,
+    cart,
+    details,
+    orders,
+    ordersDetails
 }
 
 async function getAll(table, filter={}) {
     let data = db[table];
-    let { order, limit, page } = filter;
+    let { order, limit, page, all } = filter;
     delete filter.order;
     delete filter.limit;
     delete filter.page;
+    delete filter.all;
     if ( Object.keys(filter).length ) {
         Object.entries(filter).forEach(([key, value]) =>{
             if(value){
@@ -36,12 +43,16 @@ async function getAll(table, filter={}) {
     if( order ) {
         data = order === 'asc' ? data.sort() : data.reverse();
     }
-    if( limit ) {
+    if( limit && !all ) {
         let init = limit * --page;
         limit = init ? Number(init) + Number(limit) : limit;
         data = data.length >= Number(limit) ? data.slice(init, limit) : data;
     }
     return data;
+}
+async function getOne(table, filter={}) {
+    const row = await getAll(table,filter);
+    return row[0];
 }
 async function getById(table, id) {
     const row = await getAll(table);
@@ -49,23 +60,40 @@ async function getById(table, id) {
 }
 
 async function create(table, data) {
-    data.create_at= date;
-    data.id = 5;
+    table =  table == 'authentication' ? 'users' : table;
+    if(table == 'details'){
+        data = await getAll(table, data);
+    } else {
+        data = await getById(table, 1);
+    }
     return data;
 }
 
-async function update(table, data, id) {
-    return getById(table, id)
+async function update(table, data, Id) {
+    const { id } = await getById(table, Id);
+    return id ? [1] : [0];
+}
+async function upsert(table, data, Id) {
+    const { id } = await getById(table, Id);
+    return id ? [1] : [0];
 }
 
 async function remove(table, Id) {
     const { id } = await getById(table, Id);
     return { id };
 }
+
+async function deleted(table, data) {
+    const deletedData = await getAll(table, data);
+    return deletedData;
+}
 module.exports={
     getAll,
     getById,
+    getOne,
     create,
     update,
+    upsert,
     remove,
+    deleted
 }

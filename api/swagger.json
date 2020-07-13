@@ -41,18 +41,32 @@
       "description": "Everything about your users"
     },
     {
+      "name": "orders",
+      "description": "Everything about your orders"
+    },
+    {
       "name": "address",
       "description": "Everything about your address"
     },
     {
       "name": "supermarket",
       "description": "Everything about your supermarkets"
+    },
+    {
+      "name": "auth",
+      "description": "Everything about your auth"
+    },
+    {
+      "name": "files",
+      "description": "Update files"
     }
   ],
   "paths": {
     "/products": {
       "post": {
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "summary": "Add a new product to the store",
         "operationId": "createProduct",
         "requestBody": {
@@ -100,11 +114,26 @@
         }
       },
       "get": {
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "summary": "get all products",
         "description": "get all products, optional with params",
         "operationId": "getProducts",
         "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "The q values that optional to be considered for filter by search in title and description fields",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
           {
             "name": "title",
             "in": "query",
@@ -134,7 +163,7 @@
           {
             "name": "categoryId",
             "in": "query",
-            "description": "The id_category values that optional to be considered for filter",
+            "description": "The categoryId values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -145,7 +174,7 @@
           {
             "name": "subcategoryId",
             "in": "query",
-            "description": "The id_subcategory values that optional to be considered for filter",
+            "description": "The subcategoryId values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -167,7 +196,7 @@
           {
             "name": "measureId",
             "in": "query",
-            "description": "The id_measure values that optional to be considered for filter",
+            "description": "The measureId values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -182,8 +211,7 @@
             "required": false,
             "style": "form",
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "boolean"
             }
           },
           {
@@ -196,7 +224,10 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": ["asc", "desc"]
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
               }
             }
           },
@@ -262,7 +293,9 @@
     },
     "/products/{idProduct}": {
       "get": {
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "summary": "Find product by id",
         "description": "Returns a single product",
         "operationId": "getProduct",
@@ -312,7 +345,9 @@
         }
       },
       "put": {
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "summary": "Update an existing product",
         "operationId": "updateProduct",
         "parameters": [
@@ -372,7 +407,9 @@
         }
       },
       "delete": {
-        "tags": ["products"],
+        "tags": [
+          "products"
+        ],
         "summary": "Delete product",
         "operationId": "removeProduct",
         "parameters": [
@@ -423,7 +460,9 @@
     },
     "/categories": {
       "post": {
-        "tags": ["categories"],
+        "tags": [
+          "categories"
+        ],
         "summary": "Add a new category to the store",
         "operationId": "createCategory",
         "requestBody": {
@@ -471,7 +510,9 @@
         }
       },
       "get": {
-        "tags": ["categories"],
+        "tags": [
+          "categories"
+        ],
         "summary": "get all categories",
         "description": "get all categories, optional with params category",
         "operationId": "getCategories",
@@ -479,7 +520,7 @@
           {
             "name": "title",
             "in": "query",
-            "description": "Category values that optional to be considered for filter",
+            "description": "Title values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -496,7 +537,10 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["ASC", "DESC"],
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
               "default": "ASC"
             }
           },
@@ -558,103 +602,11 @@
         }
       }
     },
-    "/categories/subcategories": {
-      "get": {
-        "tags": ["categories"],
-        "summary": "get all categories with subcategories",
-        "description": "get all categories with subcategories, optional with params category",
-        "operationId": "getWithSubcategories",
-        "parameters": [
-          {
-            "name": "category",
-            "in": "query",
-            "description": "Category values that optional to be considered for filter",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "string",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "name": "order",
-            "in": "query",
-            "description": "Sort order values that optional to be considered for filter",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "string",
-              "items": {
-                "type": "string",
-                "enum": ["asc", "desc"]
-              }
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The limit values that optional to be considered for filter",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "The page values that optional to be considered for filter",
-            "required": false,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ApiResponse"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError400"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError404"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/categories/{idCategory}": {
       "get": {
-        "tags": ["categories"],
+        "tags": [
+          "categories"
+        ],
         "summary": "Find category by id",
         "description": "Returns a single category",
         "operationId": "getCategory",
@@ -704,7 +656,9 @@
         }
       },
       "put": {
-        "tags": ["categories"],
+        "tags": [
+          "categories"
+        ],
         "summary": "Update an existing category",
         "operationId": "updateCategory",
         "parameters": [
@@ -764,7 +718,9 @@
         }
       },
       "delete": {
-        "tags": ["categories"],
+        "tags": [
+          "categories"
+        ],
         "summary": "Delete category",
         "operationId": "removeCategory",
         "parameters": [
@@ -815,7 +771,9 @@
     },
     "/subcategories": {
       "post": {
-        "tags": ["subcategories"],
+        "tags": [
+          "subcategories"
+        ],
         "summary": "Add a new subcategory to the store",
         "operationId": "createSubcategory",
         "requestBody": {
@@ -865,7 +823,9 @@
     },
     "/subcategories/{idSubcategory}": {
       "put": {
-        "tags": ["subcategories"],
+        "tags": [
+          "subcategories"
+        ],
         "summary": "Update an existing subcategory",
         "operationId": "updateSubcategory",
         "parameters": [
@@ -925,7 +885,9 @@
         }
       },
       "delete": {
-        "tags": ["subcategories"],
+        "tags": [
+          "subcategories"
+        ],
         "summary": "Delete subcategory",
         "operationId": "removeSubcategory",
         "parameters": [
@@ -974,7 +936,9 @@
         }
       },
       "get": {
-        "tags": ["subcategories"],
+        "tags": [
+          "subcategories"
+        ],
         "summary": "Find subcategory by id",
         "description": "Returns a single subcategory",
         "operationId": "getSubcategory",
@@ -1026,7 +990,9 @@
     },
     "/subcategories/category/{idCategory}": {
       "get": {
-        "tags": ["subcategories"],
+        "tags": [
+          "subcategories"
+        ],
         "summary": "get all subcategories by idCategory",
         "description": "get all subcategories by idCategory, optional with params subcategory",
         "operationId": "getSubcategories",
@@ -1094,7 +1060,9 @@
     },
     "/measures": {
       "get": {
-        "tags": ["measures"],
+        "tags": [
+          "measures"
+        ],
         "summary": "get all measures",
         "description": "get all measures, optional with params measure",
         "operationId": "getMeasures",
@@ -1152,7 +1120,9 @@
     },
     "/measures/{idMeasure}": {
       "get": {
-        "tags": ["measures"],
+        "tags": [
+          "measures"
+        ],
         "summary": "Find measures by id",
         "description": "Returns a single measure",
         "operationId": "getMeasure",
@@ -1204,7 +1174,14 @@
     },
     "/users": {
       "post": {
-        "tags": ["users"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "users"
+        ],
         "summary": "Add a new user to the store",
         "operationId": "createUser",
         "requestBody": {
@@ -1252,7 +1229,14 @@
         }
       },
       "get": {
-        "tags": ["users"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "users"
+        ],
         "summary": "get all users",
         "description": "get all users, optional with params",
         "operationId": "getUsers",
@@ -1306,7 +1290,11 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": ["admin", "customer", "super market"]
+                "enum": [
+                  "admin",
+                  "customer",
+                  "super market"
+                ]
               }
             }
           },
@@ -1320,7 +1308,10 @@
               "type": "integer",
               "items": {
                 "type": "integer",
-                "enum": [1, 0]
+                "enum": [
+                  1,
+                  0
+                ]
               }
             }
           },
@@ -1334,7 +1325,10 @@
               "type": "integer",
               "items": {
                 "type": "integer",
-                "enum": [1, 0]
+                "enum": [
+                  1,
+                  0
+                ]
               }
             }
           }
@@ -1378,7 +1372,14 @@
     },
     "/users/{idUser}": {
       "get": {
-        "tags": ["users"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "users"
+        ],
         "summary": "Find user by id",
         "description": "Returns a single user",
         "operationId": "getUser",
@@ -1428,7 +1429,14 @@
         }
       },
       "put": {
-        "tags": ["users"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "users"
+        ],
         "summary": "Update an existing user",
         "operationId": "updateUser",
         "parameters": [
@@ -1488,7 +1496,14 @@
         }
       },
       "delete": {
-        "tags": ["users"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "users"
+        ],
         "summary": "Delete user",
         "operationId": "removeUser",
         "parameters": [
@@ -1539,7 +1554,9 @@
     },
     "/supermarket": {
       "post": {
-        "tags": ["supermarket"],
+        "tags": [
+          "supermarket"
+        ],
         "summary": "Add a new supermarket to the store",
         "operationId": "createSupermarket",
         "requestBody": {
@@ -1587,7 +1604,9 @@
         }
       },
       "get": {
-        "tags": ["supermarket"],
+        "tags": [
+          "supermarket"
+        ],
         "summary": "get all supermarkets",
         "description": "get all supermarkets, optional with params",
         "operationId": "getSupermarkets",
@@ -1621,9 +1640,9 @@
             }
           },
           {
-            "name": "id_user",
+            "name": "userId",
             "in": "query",
-            "description": "The id_user values that optional to be considered for filter",
+            "description": "The userId values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -1638,10 +1657,7 @@
             "required": false,
             "style": "form",
             "schema": {
-              "type": "integer",
-              "items": {
-                "enum": [1, 0]
-              }
+              "type": "boolean"
             }
           },
           {
@@ -1654,7 +1670,10 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": ["asc", "desc"]
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
               }
             }
           },
@@ -1720,7 +1739,9 @@
     },
     "/supermarket/{idSupermarket}": {
       "get": {
-        "tags": ["supermarket"],
+        "tags": [
+          "supermarket"
+        ],
         "summary": "Find supermarket by id",
         "description": "Returns a single supermarket",
         "operationId": "getSupermarket",
@@ -1770,7 +1791,9 @@
         }
       },
       "put": {
-        "tags": ["supermarket"],
+        "tags": [
+          "supermarket"
+        ],
         "summary": "Update an existing supermarket",
         "operationId": "updateSupermarket",
         "parameters": [
@@ -1830,7 +1853,9 @@
         }
       },
       "delete": {
-        "tags": ["supermarket"],
+        "tags": [
+          "supermarket"
+        ],
         "summary": "Delete supermarket",
         "operationId": "removeSupermarket",
         "parameters": [
@@ -1881,7 +1906,9 @@
     },
     "/prices": {
       "post": {
-        "tags": ["prices"],
+        "tags": [
+          "prices"
+        ],
         "summary": "Add a new prices to the store",
         "operationId": "createPrice",
         "requestBody": {
@@ -1931,7 +1958,9 @@
     },
     "/prices/{idPrice}": {
       "put": {
-        "tags": ["prices"],
+        "tags": [
+          "prices"
+        ],
         "summary": "Update an existing price",
         "operationId": "updatePrice",
         "parameters": [
@@ -1993,8 +2022,10 @@
     },
     "/prices/supermarket/{idSupermarket}": {
       "get": {
-        "tags": ["prices"],
-        "summary": "Find prices by id_supermarket",
+        "tags": [
+          "prices"
+        ],
+        "summary": "Find prices by supermarketId",
         "description": "Returns all prices by supermarket",
         "operationId": "getPrices",
         "parameters": [
@@ -2009,9 +2040,9 @@
             }
           },
           {
-            "name": "id_product",
+            "name": "productId",
             "in": "query",
-            "description": "The id_product values that optional to be considered for filter",
+            "description": "The productId values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -2036,10 +2067,7 @@
             "required": false,
             "style": "form",
             "schema": {
-              "type": "integer",
-              "items": {
-                "enum": [1, 0]
-              }
+              "type": "boolean"
             }
           },
           {
@@ -2052,7 +2080,10 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": ["asc", "desc"]
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
               }
             }
           },
@@ -2118,8 +2149,10 @@
     },
     "/prices/product/{idProduct}": {
       "get": {
-        "tags": ["prices"],
-        "summary": "Find prices by id_product",
+        "tags": [
+          "prices"
+        ],
+        "summary": "Find prices by productId",
         "description": "Returns all prices by product",
         "operationId": "getPrice",
         "parameters": [
@@ -2134,9 +2167,9 @@
             }
           },
           {
-            "name": "id_supermarket",
+            "name": "supermarketId",
             "in": "query",
-            "description": "The id_supermarket values that optional to be considered for filter",
+            "description": "The supermarketId values that optional to be considered for filter",
             "required": false,
             "style": "form",
             "schema": {
@@ -2161,10 +2194,7 @@
             "required": false,
             "style": "form",
             "schema": {
-              "type": "integer",
-              "items": {
-                "enum": [1, 0]
-              }
+              "type": "boolean"
             }
           },
           {
@@ -2177,7 +2207,10 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": ["asc", "desc"]
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
               }
             }
           },
@@ -2243,7 +2276,9 @@
     },
     "/address": {
       "post": {
-        "tags": ["address"],
+        "tags": [
+          "address"
+        ],
         "summary": "Add a new address to the store",
         "operationId": "createAddress",
         "requestBody": {
@@ -2291,7 +2326,9 @@
         }
       },
       "get": {
-        "tags": ["address"],
+        "tags": [
+          "address"
+        ],
         "summary": "get all address",
         "description": "get all address, optional with params address",
         "operationId": "getAddress",
@@ -2319,7 +2356,10 @@
               "type": "string",
               "items": {
                 "type": "string",
-                "enum": ["asc", "desc"]
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
               }
             }
           },
@@ -2385,7 +2425,9 @@
     },
     "/address/{idAddress}": {
       "get": {
-        "tags": ["address"],
+        "tags": [
+          "address"
+        ],
         "summary": "Find address by id",
         "description": "Returns a single address",
         "operationId": "getById",
@@ -2435,7 +2477,9 @@
         }
       },
       "put": {
-        "tags": ["address"],
+        "tags": [
+          "address"
+        ],
         "summary": "Update an existing address",
         "operationId": "updateAddress",
         "parameters": [
@@ -2495,7 +2539,9 @@
         }
       },
       "delete": {
-        "tags": ["address"],
+        "tags": [
+          "address"
+        ],
         "summary": "Delete address",
         "operationId": "removeAddress",
         "parameters": [
@@ -2543,81 +2589,465 @@
           }
         }
       }
+    },
+    "/auth/sign-in": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "login in the app",
+        "operationId": "signIn",
+        "requestBody": {
+          "description": "Cart object that needs to be add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/signIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError401"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/sign-up": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Add a new user to the store",
+        "operationId": "signUp",
+        "requestBody": {
+          "description": "User object that needs to be add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders": {
+      "post": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Add a new orders to the store",
+        "operationId": "createOrder",
+        "requestBody": {
+          "description": "Order object that needs to be add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Orders"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "get all orders",
+        "description": "get all orders, optional with params",
+        "operationId": "getOrders",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/orderResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{idOrder}": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Find order by id",
+        "description": "Returns a single order",
+        "operationId": "getOrder",
+        "parameters": [
+          {
+            "name": "idOrder",
+            "in": "path",
+            "description": "ID of order to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/orderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Update an existing status in order",
+        "operationId": "updateOrder",
+        "parameters": [
+          {
+            "name": "idOrder",
+            "in": "path",
+            "description": "ID of order",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Order object that needs to be update to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrdersUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/print/{idOrder}": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Pirnt order PDF by id",
+        "description": "Returns a single url width pdf",
+        "operationId": "getPdf",
+        "parameters": [
+          {
+            "name": "idOrder",
+            "in": "path",
+            "description": "ID of order to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/pdfResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files/{type}": {
+      "post": {
+        "tags": [
+          "files"
+        ],
+        "summary": "Update images",
+        "description": "Update images product, user and supermarket",
+        "operationId": "postFile",
+        "requestBody": {
+          "description": "Product object that needs to be add to the store",
+          "content": {
+            "image/png": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "description": "ID of product to return",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "product",
+                "customer",
+                "supermarket"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError400"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError404"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
-      "ApiResponse": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "boolean",
-            "format": "int64"
-          },
-          "status": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "body": {
-            "type": "object",
-            "format": "int32"
-          }
-        },
-        "example": {
-          "error": false,
-          "status": 200,
-          "body": [
-            {
-              "id": 1,
-              "data1": "result1",
-              "data2": "result2"
-            }
-          ]
-        }
-      },
-      "ApiError400": {
-        "type": "object",
-        "properties": {
-          "statusCode": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "error": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "stack": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "statusCode": 400,
-          "error": "Bad Request",
-          "message": "id is not allowed",
-          "stack": "ValidationError id is not allowed"
-        }
-      },
-      "ApiError404": {
-        "properties": {
-          "statusCode": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "error": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "statusCode": 404,
-          "error": "Not Found",
-          "message": "Not Found"
-        }
-      },
       "Product": {
         "type": "object",
         "properties": {
@@ -2652,8 +3082,7 @@
             "type": "string"
           },
           "active": {
-            "type": "integer",
-            "format": "int64"
+            "type": "boolean"
           },
           "createdAt": {
             "type": "string",
@@ -2683,7 +3112,7 @@
           "quantity": 90,
           "measureId": 4,
           "urlImage": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
-          "active": 1
+          "active": true
         }
       },
       "Category": {
@@ -2717,9 +3146,12 @@
             "readOnly": true
           }
         },
-        "required": ["category", "urlImage"],
+        "required": [
+          "title",
+          "urlImage"
+        ],
         "example": {
-          "category": "Milks",
+          "title": "Milks",
           "urlImage": "https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105861787L.jpg",
           "active": true
         }
@@ -2757,7 +3189,11 @@
             "readOnly": true
           }
         },
-        "required": ["categoryId", "title", "urlImage"],
+        "required": [
+          "categoryId",
+          "title",
+          "urlImage"
+        ],
         "example": {
           "categoryId": 2,
           "title": "Condensed Milk",
@@ -2778,21 +3214,22 @@
             "uniqueItems": true
           },
           "active": {
-            "type": "integer",
-            "format": "int64"
+            "type": "boolean"
           },
-          "create_at": {
+          "createdAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           },
-          "update_at": {
+          "updatedAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           }
         },
-        "required": ["measure"]
+        "required": [
+          "measure"
+        ]
       },
       "AddUser": {
         "type": "object",
@@ -2815,28 +3252,37 @@
           },
           "rol": {
             "type": "string",
-            "enum": ["admin", "customer", "super market"]
+            "enum": [
+              "admin",
+              "customer",
+              "super market"
+            ]
           },
           "password": {
             "type": "string",
             "format": "password"
           },
           "active": {
-            "type": "integer",
-            "format": "int64"
+            "type": "boolean"
           },
-          "create_at": {
+          "createdAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           },
-          "update_at": {
+          "updatedAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           }
         },
-        "required": ["email", "firstName", "lastName", "rol", "password"],
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "rol",
+          "password"
+        ],
         "example": {
           "email": "hola@carlosramirezflores.com",
           "firstName": "Carlos",
@@ -2861,14 +3307,17 @@
           },
           "rol": {
             "type": "string",
-            "enum": ["admin", "customer", "super market"]
+            "enum": [
+              "admin",
+              "customer",
+              "super market"
+            ]
           },
-          "url_image": {
+          "urlImage": {
             "type": "string"
           },
           "active": {
-            "type": "integer",
-            "format": "int64"
+            "type": "boolean"
           }
         },
         "example": {
@@ -2876,8 +3325,8 @@
           "firstName": "Carlos",
           "lastName": "Ramírez",
           "rol": "customer",
-          "url_image": "https://encrypted-tbn0gstatic.com/images?q=tbn%3AANd9GcQRQwITGCC0JMklTMN9rwebGYR9EuhHs0EviA&usqp=CAU",
-          "active": 1
+          "urlImage": "https://encrypted-tbn0gstatic.com/images?q=tbn%3AANd9GcQRQwITGCC0JMklTMN9rwebGYR9EuhHs0EviA&usqp=CAU",
+          "active": true
         }
       },
       "Supermarket": {
@@ -2900,23 +3349,22 @@
           "longitude": {
             "type": "string"
           },
-          "url_logo": {
+          "urlImage": {
             "type": "string"
           },
           "active": {
+            "type": "boolean"
+          },
+          "userId": {
             "type": "integer",
             "format": "int64"
           },
-          "id_user": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "create_at": {
+          "createdAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           },
-          "update_at": {
+          "updatedAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
@@ -2927,17 +3375,17 @@
           "address",
           "latitude",
           "longitude",
-          "url_logo",
-          "id_user"
+          "urlImage",
+          "userId"
         ],
         "example": {
           "supermarket": "The Market",
           "address": "3w Weeping Birch Avenue",
           "latitude": 3.7220621,
           "longitude": 96.8297403,
-          "url_logo": "http://dummyimage.com/246x208.png/ff4444/ffffff",
-          "id_user": 1,
-          "active": 1
+          "urlImage": "http://dummyimage.com/246x208.png/ff4444/ffffff",
+          "userId": 1,
+          "active": true
         }
       },
       "Prices": {
@@ -2948,11 +3396,11 @@
             "uniqueItems": true,
             "readOnly": true
           },
-          "id_supermarket": {
+          "supermarketId": {
             "type": "integer",
             "format": "int64"
           },
-          "id_product": {
+          "productId": {
             "type": "integer",
             "format": "int64"
           },
@@ -2960,26 +3408,30 @@
             "type": "number"
           },
           "active": {
-            "type": "integer",
-            "format": "int64"
+            "type": "boolean"
           },
-          "create_at": {
+          "createdAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           },
-          "update_at": {
+          "updatedAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           }
         },
-        "required": ["id_supermarket", "id_product", "price", "active"],
+        "required": [
+          "supermarketId",
+          "productId",
+          "price",
+          "active"
+        ],
         "example": {
-          "id_supermarket": 1,
-          "id_product": 2,
+          "supermarketId": 1,
+          "productId": 2,
           "price": 50,
-          "active": 1
+          "active": true
         }
       },
       "UpdatePrices": {
@@ -2989,13 +3441,12 @@
             "type": "number"
           },
           "active": {
-            "type": "integer",
-            "format": "int64"
+            "type": "boolean"
           }
         },
         "example": {
           "price": 50,
-          "active": 1
+          "active": true
         }
       },
       "Address": {
@@ -3006,7 +3457,7 @@
             "uniqueItems": true,
             "readOnly": true
           },
-          "id_user": {
+          "userId": {
             "type": "integer",
             "format": "int64",
             "readOnly": true
@@ -3020,22 +3471,487 @@
           "longitude": {
             "type": "string"
           },
-          "create_at": {
+          "createdAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           },
-          "update_at": {
+          "updatedAt": {
             "type": "string",
             "format": "date-time",
             "readOnly": true
           }
         },
-        "required": ["address", "latitude", "longitude"],
+        "required": [
+          "address",
+          "latitude",
+          "longitude"
+        ],
         "example": {
           "address": "7089 Weeping Birch Avenue",
           "latitude": -25.4426635,
           "longitude": -49.0628847
+        }
+      },
+      "Cart": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "uniqueItems": true,
+            "readOnly": true
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64",
+            "readOnly": true
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "stand by",
+              "successfull",
+              "in process",
+              "cancel"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "detail": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Details"
+            }
+          }
+        }
+      },
+      "Details": {
+        "type": "object",
+        "properties": {
+          "cartId": {
+            "type": "integer",
+            "uniqueItems": true,
+            "readOnly": true
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "supermarketId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "price": {
+            "type": "number"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "productId",
+          "quantity"
+        ],
+        "example": {
+          "productId": 1,
+          "quantity": 2
+        }
+      },
+      "Orders": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "uniqueItems": true,
+            "readOnly": true
+          },
+          "supermarketId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "total": {
+            "type": "number"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "products": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/OrderDetails"
+            }
+          }
+        },
+        "example": [
+          {
+            "total": 500,
+            "products": [
+              {
+                "productId": 1,
+                "quantity": 2,
+                "price": 3,
+                "supermarketId": 3
+              },
+              {
+                "productId": 3,
+                "quantity": 1,
+                "price": 1,
+                "supermarketId": 3
+              }
+            ]
+          }
+        ]
+      },
+      "OrderDetails": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "uniqueItems": true,
+            "readOnly": true
+          },
+          "productId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "orderId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "supermarketId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "price": {
+            "type": "number"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "productId",
+          "quantity",
+          "supermarketId",
+          "price",
+          "orderId"
+        ],
+        "example": [
+          "productId",
+          "quantity",
+          "supermarketId",
+          "price"
+        ]
+      },
+      "OrdersUpdate": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "SUCCESSFULL",
+              "IN PROCESS",
+              "CANCEL"
+            ]
+          }
+        },
+        "example": {
+          "status": "SUCCESSFULL"
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "format": "int64"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "body": {
+            "type": "object",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "error": false,
+          "status": 200,
+          "body": [
+            {
+              "id": 1,
+              "data1": "result1",
+              "data2": "result2"
+            }
+          ]
+        }
+      },
+      "cartResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "format": "int64"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "body": {
+            "type": "object",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "error": false,
+          "status": 200,
+          "body": [
+            {
+              "id": 1,
+              "userId": 4,
+              "status": "Stand by",
+              "createdAt": "2020-05-19 19:45:44",
+              "updatedAt": "2020-06-14 11:35:23",
+              "detail": [
+                {
+                  "cartId": 1,
+                  "productId": 24,
+                  "quantity": 2,
+                  "supermarketId": "",
+                  "price": "",
+                  "createdAt": "2020-06-24 06:09:24",
+                  "updatedAt": ""
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "loginResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "format": "int64"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "body": {
+            "type": "object",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "error": false,
+          "status": 200,
+          "body": [
+            {
+              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+              "user": {
+                "id": 1,
+                "email": "fgascard8@domainmarket.com",
+                "firstName": "Fanchon",
+                "lastName": "Gascard"
+              }
+            }
+          ]
+        }
+      },
+      "orderResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "format": "int64"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "body": {
+            "type": "object",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "error": false,
+          "status": 200,
+          "body": {
+            "id": 1,
+            "supermarketId": 4,
+            "cartId": 4,
+            "total": 16.32,
+            "status": "in process",
+            "createdAt": "2019-08-19 04:49:02",
+            "updatedAt": "2020-04-20 07:55:06",
+            "ordersDetails": {
+              "id": 4,
+              "orderId": 1,
+              "productId": 12,
+              "supermarketId": 1,
+              "price": 1.38,
+              "quantity": 2,
+              "createdAt": "2019-08-09 03:37:26",
+              "updatedAt": "2020-05-12 19:39:29"
+            }
+          }
+        }
+      },
+      "pdfResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "format": "int64"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "body": {
+            "type": "object",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "error": false,
+          "status": 200,
+          "body": {
+            "url": "https://storage.googleapis.com/usersimg/221846thth5-invoice.pdf"
+          }
+        }
+      },
+      "signIn": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "uniqueItems": true
+          },
+          "password": {
+            "type": "string",
+            "format": "password"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "example": {
+          "email": "hola@carlosramirezflores.com",
+          "password": "idonothavepassword1"
+        }
+      },
+      "ApiError400": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "stack": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "statusCode": 400,
+          "error": "Bad Request",
+          "message": "id is not allowed",
+          "stack": "ValidationError id is not allowed"
+        }
+      },
+      "ApiError401": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "stack": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "statusCode": 401,
+          "error": "Unauthorized",
+          "message": "Unauthorized",
+          "stack": "Error Unauthorized  at ..."
+        }
+      },
+      "ApiError404": {
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "statusCode": 404,
+          "error": "Not Found",
+          "message": "Not Found"
         }
       }
     }

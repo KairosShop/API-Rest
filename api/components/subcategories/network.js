@@ -36,9 +36,9 @@ router.delete(
 
 async function get(req, res, next) {
   let { subcategory = '' } = req.query;
-  const { idCategory: id_category } = req.params;
+  const { idCategory: categoryId } = req.params;
   try {
-    const categories = await Controller.getSubcategories({subcategory, id_category});
+    const categories = await Controller.getSubcategories({subcategory, categoryId});
     responses.success(req, res, categories, 200);
   } catch (error) {
     next(error);

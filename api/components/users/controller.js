@@ -1,6 +1,6 @@
-const dateformat =  require('dateformat');
+const boom = require('@hapi/boom');
 
-const date = dateformat(new Date(), "yyyy-mm-dd h:MM:ss");
+const bcrypt =  require('bcrypt');
 const TABLE = 'users';
 module.exports = function (injectedStore) {
   let store = injectedStore;
@@ -12,19 +12,31 @@ module.exports = function (injectedStore) {
     return users || [];
   }
 
-  async function getUser(id) {
+  async function getUser(filter={}) {
+    const user = await store.getOne(TABLE, filter);
+    return user || [];
+  }
+
+  async function getUserById(id) {
     const user = await store.getById(TABLE, id);
     return user || [];
   }
 
   async function createUser(userData) {
-    userData.create_at= date;
-    const created = await store.create(TABLE, userData);
-    return created || [];
+    const { password } =  userData;
+    delete userData.password;
+    
+    userData.rol = userData.rol.toUpperCase();
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser  = await store.create(TABLE, userData);
+    const { id: userId } = newUser;
+    await store.create('authentication', { userId, password: hashedPassword});
+    return [userId] || [];
+     
+    
   }
 
   async function updateUser(userData, id) {
-    userData.update_at= date;
     const updated = await store.update(TABLE, userData, id);
     return updated || [];
   }
@@ -40,5 +52,6 @@ module.exports = function (injectedStore) {
     createUser,
     updateUser,
     removeUser,
+    getUserById,
   }
 }

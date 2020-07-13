@@ -46,14 +46,13 @@ describe('routes - categories', function () {
 
   describe('PUT /categories', function () {
     it('should respond with status 200', function (done) {
-      const updateCategory = {
-        title: 'Limpieza',
-        urlImage:
-          'https://image.freepik.com/vector-gratis/tienda-lacteos-supermercado_182089-268.jpg',
+      let mockCategory = {
+        title: 'Un producto de lacteos',
+        urlImage: mocks[0].urlImage,
       };
       request
         .put('/api/1')
-        .send(updateCategory)
+        .send(mockCategory)
         .end((err, res) => {
           expect(res.body).toMatchObject({
             error: false,

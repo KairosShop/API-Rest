@@ -28,6 +28,13 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'RESTRICT',
         onUpdate: 'CASCADE',
       });
+
+      Product.hasMany(models.Price, {
+        foreignKey: 'productId',
+        as: 'product',
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+      });
     }
   }
   Product.init(

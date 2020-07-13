@@ -1,49 +1,68 @@
 const express = require('express');
 const Controller = require('./index');
 const responses = require('../../../utils/network/responses');
+const decodeToken = require('../../../utils/auth/strategies/decodeToken');
+const passport = require('passport');
 const router = express.Router();
 
 const {
   addressIdSchema,
   createAddressSchema,
   updateAddressSchema,
-  filterSchema
+  filterSchema,
 } = require('../../../utils/schemas/address');
 const validationHandler = require('../../../utils/middleware/validationHandler');
+const scopesValidationHandler = require('../../../utils/middleware/scopesValidationHandler');
 
-router.get('/',validationHandler(filterSchema, 'query'), get);
+require('../../../utils/auth/strategies/jwt');
+
+router.get(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  scopesValidationHandler(['read:address']),
+  validationHandler(filterSchema, 'query'),
+  get
+);
 router.get(
   '/:idAddress',
+  passport.authenticate('jwt', { session: false }),
+  scopesValidationHandler(['read:address']),
   validationHandler({ idAddress: addressIdSchema }, 'params'),
   getById
 );
-router.post('/', validationHandler(createAddressSchema), createAddress);
+router.post(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  scopesValidationHandler(['create:address']),
+  validationHandler(createAddressSchema),
+  createAddress
+);
 router.put(
   '/:idAddress',
+  passport.authenticate('jwt', { session: false }),
+  scopesValidationHandler(['update:address']),
   validationHandler({ idAddress: addressIdSchema }, 'params'),
   validationHandler(updateAddressSchema),
   updateAddress
 );
 router.delete(
   '/:idAddress',
+  passport.authenticate('jwt', { session: false }),
+  scopesValidationHandler(['delete:address']),
   validationHandler({ idAddress: addressIdSchema }, 'params'),
   removeAddress
 );
 async function get(req, res, next) {
-  let {
-    address = '',
-    id_user = '3',
-    order = 'asc',
-    page = '1',
-    limit = '15',
-  } = req.query;
+  const decoded = decodeToken(req.headers.authorization);
+  const userId = decoded.sub;
+  let { address = '', order = 'asc', page = '1', limit = '15' } = req.query;
   try {
     const resultAddress = await Controller.getAddress({
       address,
-      id_user,
+      userId,
       order,
       page,
-      limit
+      limit,
     });
     responses.success(req, res, resultAddress, 200);
   } catch (error) {
@@ -53,10 +72,11 @@ async function get(req, res, next) {
 
 async function getById(req, res, next) {
   const { idAddress: id } = req.params;
-  const id_user = 3;
+  const decoded = decodeToken(req.headers.authorization);
+  const userId = decoded.sub;
   try {
-    const address = await Controller.getAddress({ id, id_user });
-    responses.success(req, res, address[0], 200);
+    const address = await Controller.getOne({ id, userId });
+    responses.success(req, res, address, 200);
   } catch (error) {
     next(error);
   }
@@ -64,7 +84,8 @@ async function getById(req, res, next) {
 
 async function createAddress(req, res, next) {
   const { body: address } = req;
-  address.id_user = 3;
+  const decoded = decodeToken(req.headers.authorization);
+  address.userId = decoded.sub;
   try {
     const createdAddress = await Controller.createAddress(address);
     responses.success(req, res, createdAddress, 201);

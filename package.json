@@ -9,8 +9,9 @@
     "test:coverage": "jest --coverage",
     "start": "node api/index.js",
     "migrate": "npx sequelize-cli db:migrate",
-    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
-    "test": "cross-env NODE_ENV=test jest --coverage --testTimeout=10000",
+    "seed": "npx sequelize-cli db:seed:all",
+    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate && npm run seed",
+    "test": "cross-env NODE_ENV=test jest --coverage --testTimeout=50000",
     "pretest": "cross-env NODE_ENV=test npm run migrate:reset"
   },
   "repository": {
@@ -26,6 +27,7 @@
   "homepage": "https://gitlab.com/kairos6/api-kairos#readme",
   "dependencies": {
     "@google-cloud/debug-agent": "^5.1.0",
+    "@google-cloud/storage": "^5.1.2",
     "@hapi/boom": "^9.1.0",
     "@hapi/joi": "^17.1.1",
     "@sentry/node": "^5.19.0",
@@ -37,7 +39,12 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.23.3",
+    "html-pdf": "^2.2.0",
     "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
+    "passport": "^0.4.1",
+    "passport-http": "^0.3.0",
+    "passport-jwt": "^4.0.0",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.0",
@@ -45,6 +52,7 @@
     "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
+    "chalk": "^4.1.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.3.1",
     "eslint-config-prettier": "^6.11.0",
