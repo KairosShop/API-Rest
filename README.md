@@ -3,9 +3,10 @@
 # [![Logo](https://kairos-staging.firebaseapp.com/assets/images/brand/LogoBlue.svg)](https://kairosshop.xyz/)
 This API REST was generated with NODE JS and is part of the final proyect of the Master students of Platzi, from Cohort 2.
 
-This project is the Kairos backend a API.
+This project is the Kairos backend a API. Documentation width swagger: https://staging.kairosshop.xyz/api-docs/
 
 More info: https://www.notion.so/alejozepol/Kairos-d91d3954a8b44d64bd1e70797c9a58b5
+
 ## [Node.js](https://nodejs.org/)
 
 Technology real time provided by Node.js.
