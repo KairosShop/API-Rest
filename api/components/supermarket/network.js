@@ -1,6 +1,8 @@
 const express = require('express');
 const Controller = require('./index');
 const responses = require('../../../utils/network/responses');
+const decodeToken = require('../../../utils/auth/strategies/decodeToken');
+const passport = require('passport');
 const router = express.Router();
 
 const {
@@ -10,22 +12,35 @@ const {
   filterSchema
 } = require('../../../utils/schemas/supermarket');
 const validationHandler = require('../../../utils/middleware/validationHandler');
+const scopesValidationHandler = require('../../../utils/middleware/scopesValidationHandler');
+
+require('../../../utils/auth/strategies/jwt');
 
 router.get('/',validationHandler(filterSchema, 'query'), get);
+
 router.get(
   '/:idSupermarket',
   validationHandler({ idSupermarket: supermarketIdSchema }, 'params'),
   getById
 );
-router.post('/', validationHandler(createSupermarketSchema), createSupermarket);
+
+router.post('/',
+passport.authenticate('jwt', { session: false }),
+validationHandler(createSupermarketSchema), createSupermarket);
+
 router.put(
   '/:idSupermarket',
+  passport.authenticate('jwt', { session: false }),
+  scopesValidationHandler(['update:supermarket']),
   validationHandler({ idSupermarket: supermarketIdSchema }, 'params'),
   validationHandler(updateSupermarketSchema),
   updateSupermarket
 );
+
 router.delete(
   '/:idSupermarket',
+  passport.authenticate('jwt', { session: false }),
+  scopesValidationHandler(['delete:supermarket']),
   validationHandler({ idSupermarket: supermarketIdSchema }, 'params'),
   removeSupermarket
 );
@@ -68,7 +83,10 @@ async function getById(req, res, next) {
 
 async function createSupermarket(req, res, next) {
   const { body: supermarket } = req;
-  supermarket.userId = 4;
+
+  const decoded = decodeToken(req.headers.authorization);
+  supermarket.userId = decoded.sub;
+
   try {
     const createdSupermarket = await Controller.createSupermarket(supermarket);
     responses.success(req, res, createdSupermarket, 201);
