@@ -1,31 +1,41 @@
 const testServer = require('../../utils/testServer');
+const routeLogin = require('../../api/components/auth/network');
+const route = require('../../api/components/address/network')
+
+let token ;
 
 describe('routes - address', function () {
-    const route = require('../../api/components/address/network')
 
     const request = testServer(route);
     describe('GET /address', function () {
+        beforeAll(async (done) =>{
+            const requestLogin = testServer(routeLogin);
+            const data =  await requestLogin.post("/api/sign-in/").auth('admin@kairosshop.xyz','12345678')
+            token = data.body.body.token;
+            done();
+        })
+
         test('should respond with status 200', function (done) {
-            request.get('/api/').expect(200, done);
+            request.get('/api/').set('Authorization', `Bearer ${token}`).expect(200, done);
         });
         test('should respond with status 200', function (done) {
-            request.get('/api/?address=99257 Northridge Parkway').expect(200, done);
+            request.get('/api/?address=99257 Northridge Parkway').set('Authorization', `Bearer ${token}`).expect(200, done);
         });
 
         test('should respond with status 200', function (done) {
-            request.get('/api/2').expect(200, done);
+            request.get('/api/2').set('Authorization', `Bearer ${token}`).expect(200, done);
         });
 
         test('should respond with status 200 - sort asc order address', function (done) {
-            request.get('/api/?order=asc').expect(200, done);
+            request.get('/api/?order=asc').set('Authorization', `Bearer ${token}`).expect(200, done);
         });
 
         test('should respond with status 200 - sort desc order address', function (done) {
-            request.get('/api/?order=desc').expect(200, done);
+            request.get('/api/?order=desc').set('Authorization', `Bearer ${token}`).expect(200, done);
         });
 
         test('should respond with status 200 - limit address and page', function (done) {
-            request.get('/api/?limit=1&page=2').expect(200, done);
+            request.get('/api/?limit=1&page=2').set('Authorization', `Bearer ${token}`).expect(200, done);
         });
     });
     describe('POST /address', function () {
@@ -35,7 +45,7 @@ describe('routes - address', function () {
                 "latitude": "48.9270449",
                 "longitude": "2.3265854"
             }
-            request.post("/api/").send(createAddress).end((err, res) => {
+            request.post("/api/").set('Authorization', `Bearer ${token}`).send(createAddress).end((err, res) => {
               expect(res.body).toMatchObject({error: false, status: 201, body: {} });
               done();
             });
@@ -44,7 +54,7 @@ describe('routes - address', function () {
             const createAddress = {
                 "address":"500"
             }
-            request.post("/api/").send(createAddress).end((err, res) => {
+            request.post("/api/").set('Authorization', `Bearer ${token}`).send(createAddress).end((err, res) => {
                 expect(res.statusCode).toBe(500);
                 done();
             });
@@ -55,7 +65,7 @@ describe('routes - address', function () {
             const updateAddress = {
                 "address": "2s Nelson Street",
             }
-            request.put("/api/2").send(updateAddress).end((err, res) => {
+            request.put("/api/2").set('Authorization', `Bearer ${token}`).send(updateAddress).end((err, res) => {
               expect(res.body).toMatchObject({error:false, status:200, body:[1]});
               done();
             });
@@ -64,7 +74,7 @@ describe('routes - address', function () {
 
     describe('DELETE /address', function () {
         test('should respond with status 200', function (done) {
-            request.delete('/api/2').expect(200, done);
+            request.delete('/api/2').set('Authorization', `Bearer ${token}`).expect(200, done);
         });
     });
 });

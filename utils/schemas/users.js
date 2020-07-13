@@ -19,7 +19,8 @@ const createUserSchema = {
   firstName: firstNameSchema.required(),
   lastName: lastNameSchema.required(),
   rol: rolSchema.required(),
-  password: passwordSchema.required()
+  password: passwordSchema.required(),
+  urlImage: urlImageSchema,
 };
 const updateUserSchema = {
   urlImage: urlImageSchema,
