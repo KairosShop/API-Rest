@@ -58,7 +58,7 @@ async function signIn(req, res, next) {
         };
 
         const token = jwt.sign(payload, jwtSecret.secret, {
-          expiresIn: '15m',
+          expiresIn: '120m',
         });
 
         let respose = { token, user: { id, email, firstName, lastName, rol } };

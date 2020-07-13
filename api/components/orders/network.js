@@ -17,6 +17,11 @@ router.get(
   validationHandler({ idOrder: orderIdSchema }, 'params'),
   getOrder
 );
+router.get(
+  '/print/:idOrder',
+  validationHandler({ idOrder: orderIdSchema }, 'params'),
+  getPdf
+);
 
 router.post('/', validationHandler(createOrderSchema), createOrder);
 router.put(
@@ -40,6 +45,15 @@ async function getOrder(req, res, next) {
   try {
     const order = await Controller.getOrder({ id });
     responses.success(req, res, order, 200);
+  } catch (error) {
+    next(error);
+  }
+}
+async function getPdf(req, res, next) {
+  const { idOrder: id } = req.params;
+  try {
+    const pdf = await Controller.createPdf({ id });
+    responses.success(req, res, pdf, 200);
   } catch (error) {
     next(error);
   }

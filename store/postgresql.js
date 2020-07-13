@@ -1,5 +1,5 @@
 const models = require('./models');
-
+const { Op } = require("sequelize");
 async function getAll(TABLE, filter) {
 
   if (TABLE == 'categories') {
@@ -59,16 +59,24 @@ async function getAll(TABLE, filter) {
   } else if (TABLE == 'products') {
     let newFilter = { deleted: false };
 
-    let { title, all, order, page, limit, categoryId } = filter;
+    let { title, description, all, order, page, limit, categoryId } = filter;
 
     if (!all) {
       newFilter = { active: true, ...newFilter };
     }
 
     if (title) {
+      title = {
+        [Op.like]: `%${title}%`
+      }
       newFilter = { title, ...newFilter };
     }
-
+    if (description) {
+      description = {
+        [Op.like]:  `%${description}%`
+      }
+      newFilter = { description, ...newFilter };
+    }
     if (categoryId) {
       newFilter = { categoryId, ...newFilter };
     }
@@ -367,9 +375,9 @@ async function getOne(TABLE, filter = {}) {
   } else if (TABLE == 'orders') {
     let { id } = filter;
     whereFilter = { id, ...whereFilter };
-    
+
     let filterOrdersDetails = { deleted: false };
-    
+
     return models.Orders.findOne({
       where: whereFilter,
       include: [
@@ -378,6 +386,20 @@ async function getOne(TABLE, filter = {}) {
           as: 'details',
           where: filterOrdersDetails,
           required: false,
+          order: [['supermarketId', 'ASC' ]],
+          include: [{
+              model: models.Supermarket,
+              as: 'supermarket',
+            },
+            {
+              model: models.Product,
+              as: 'products',
+            },
+          ]
+        },
+        {
+          model: models.User,
+          as: 'user',
         },
       ],
     });

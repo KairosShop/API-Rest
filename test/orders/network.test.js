@@ -10,9 +10,12 @@ describe('routes - orders', function () {
         });
 
         test('should respond with status 200', function (done) {
-            request.get('/api/2').expect(200, done);
+          request.get('/api/2').expect(200, done);
         });
 
+        test('should respond with status 200', function (done) {
+          request.get('/api/print/1').expect(200, done);
+        });
     });
     describe('POST /orders', function () {
         it("should respond with status 201 - create order", function(done) {
